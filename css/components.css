@@ -902,6 +902,32 @@
 }
 
 
+/* =================== SCROLL SLIDE (Hero → About) =================== */
+.scroll-slide-wrapper {
+  overflow-x: hidden;
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+  .about-section {
+    will-change: transform;
+    transform: translateX(80px);
+    transition: transform 0.1s linear;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section,
+  .about-section {
+    will-change: auto !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 /* ======================== HERO ======================== */
 .hero {
   padding: var(--space-16) 0;
