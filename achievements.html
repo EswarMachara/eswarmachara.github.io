@@ -8,7 +8,7 @@
   <meta name="author" content="Sai Manikanta Eswar Machara">
 
   <script>
-    (function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}else{document.documentElement.setAttribute('data-theme','light')}})();
+    (function(){var t=localStorage.getItem('theme'),d=document.documentElement,n=new Date(),u=n.getTime()+n.getTimezoneOffset()*6e4,i=new Date(u+198e5),h=i.getHours()*60+i.getMinutes(),p;if(h>=330&&h<720)p='morning';else if(h>=720&&h<1020)p='afternoon';else if(h>=1020&&h<1140)p='evening';else p='night';if(t==='dark'||t==='light'){d.setAttribute('data-theme',t);d.setAttribute('data-period',t==='dark'?'night':p)}else{d.setAttribute('data-theme',p==='night'?'dark':'light');d.setAttribute('data-period',p)}})();
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,6 @@
         <li><a href="index.html" class="navbar__link" data-nav="home">Home</a></li>
         <li><a href="research.html" class="navbar__link" data-nav="research">Research</a></li>
         <li><a href="projects/" class="navbar__link" data-nav="projects">Projects</a></li>
-        <li><a href="experience.html" class="navbar__link" data-nav="experience">Experience</a></li>
         <li><a href="achievements.html" class="navbar__link navbar__link--active" data-nav="achievements">Achievements</a></li>
         <li><a href="contact.html" class="navbar__link" data-nav="contact">Contact</a></li>
       </ul>
@@ -69,71 +68,63 @@
 
         <div class="grid grid-2">
 
-          <div class="achievement-card">
-            <div class="achievement-card__icon">
-              <i data-lucide="file-text"></i>
-            </div>
-            <div class="achievement-card__body">
-              <h3 class="achievement-card__title">ICCV 2025 Workshop Paper</h3>
-              <p class="achievement-card__desc">
-                DebrisVision paper accepted at an ICCV 2025 Workshop — a premier
-                venue in computer vision. Developed during the ISRO research
-                internship for post-disaster building debris estimation.
+          <div class="achievement-block">
+            <div class="achievement-block__main">
+              <h3 class="achievement-block__title">ICCV 2025 Workshop Paper</h3>
+              <p class="achievement-block__org">IEEE / CVF International Conference on Computer Vision</p>
+              <p class="achievement-block__summary">
+                DebrisVision paper accepted at ICCV 2025 Workshop for post-disaster
+                building debris estimation from satellite imagery, developed during ISRO internship.
               </p>
-              <span class="achievement-card__date">
-                <i data-lucide="calendar"></i> 2025
-              </span>
+            </div>
+            <div class="achievement-block__meta">
+              <span class="achievement-block__date">2025</span>
+              <span class="achievement-block__badge">Publication</span>
             </div>
           </div>
 
-          <div class="achievement-card">
-            <div class="achievement-card__icon">
-              <i data-lucide="trophy"></i>
-            </div>
-            <div class="achievement-card__body">
-              <h3 class="achievement-card__title">IEEE INDICON 2024 &mdash; 2nd Runner-up</h3>
-              <p class="achievement-card__desc">
-                Recognized as 2nd Runner-up at the Intel AI Hackathon held during
-                IEEE INDICON 2024 at IIT Kharagpur for CardioLens, an AI-assisted
-                echocardiogram analysis system.
+          <div class="achievement-block">
+            <div class="achievement-block__main">
+              <h3 class="achievement-block__title">IEEE INDICON 2024 — 2nd Runner-up</h3>
+              <p class="achievement-block__org">Intel AI Hackathon, IIT Kharagpur</p>
+              <p class="achievement-block__summary">
+                Recognized for CardioLens, an AI-assisted echocardiogram analysis system
+                achieving 0.90 Dice score with ResNet-101 encoder.
               </p>
-              <span class="achievement-card__date">
-                <i data-lucide="calendar"></i> December 2024
-              </span>
+            </div>
+            <div class="achievement-block__meta">
+              <span class="achievement-block__date">Dec 2024</span>
+              <span class="achievement-block__badge">3rd Place</span>
             </div>
           </div>
 
-          <div class="achievement-card">
-            <div class="achievement-card__icon">
-              <i data-lucide="rocket"></i>
-            </div>
-            <div class="achievement-card__body">
-              <h3 class="achievement-card__title">ISRO Research Internship</h3>
-              <p class="achievement-card__desc">
-                Selected for a research internship at the Indian Space Research
-                Organisation (ISRO), contributing to satellite image analysis
-                and post-disaster assessment research.
+          <div class="achievement-block">
+            <div class="achievement-block__main">
+              <h3 class="achievement-block__title">ISRO Research Internship</h3>
+              <p class="achievement-block__org">Indian Space Research Organisation</p>
+              <p class="achievement-block__summary">
+                Selected for satellite image analysis research contributing to
+                post-disaster assessment systems. Work resulted in ICCV 2025 publication.
               </p>
-              <span class="achievement-card__date">
-                <i data-lucide="calendar"></i> May &ndash; August 2024
-              </span>
+            </div>
+            <div class="achievement-block__meta">
+              <span class="achievement-block__date">May — Aug 2024</span>
+              <span class="achievement-block__badge">Research</span>
             </div>
           </div>
 
-          <div class="achievement-card">
-            <div class="achievement-card__icon">
-              <i data-lucide="award"></i>
-            </div>
-            <div class="achievement-card__body">
-              <h3 class="achievement-card__title">Smart India Hackathon 2024</h3>
-              <p class="achievement-card__desc">
-                Selected as an internal finalist in the Smart India Hackathon,
-                a nationwide innovation challenge organized by the Ministry of
-                Education, Government of India.
+          <div class="achievement-block">
+            <div class="achievement-block__main">
+              <h3 class="achievement-block__title">Smart India Hackathon 2024</h3>
+              <p class="achievement-block__org">Ministry of Education, Government of India</p>
+              <p class="achievement-block__summary">
+                Selected as internal finalist in the nationwide innovation challenge
+                addressing government and industry problem statements.
               </p>
-              <span class="achievement-card__date">
-                <i data-lucide="calendar"></i> September 2024
-              </span>
+            </div>
+            <div class="achievement-block__meta">
+              <span class="achievement-block__date">Sep 2024</span>
+              <span class="achievement-block__badge">Finalist</span>
             </div>
           </div>
 

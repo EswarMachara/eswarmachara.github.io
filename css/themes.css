@@ -142,3 +142,25 @@ html.theme-transition *::after {
               color 0.3s ease,
               border-color 0.3s ease !important;
 }
+
+/* ── IST Period Accent Overrides (light mode only) ── */
+[data-theme="light"][data-period="morning"] {
+  --accent: #3B82F6;
+  --accent-hover: #2563EB;
+  --accent-light: rgba(59, 130, 246, 0.08);
+  --accent-shadow: rgba(59, 130, 246, 0.25);
+}
+
+[data-theme="light"][data-period="afternoon"] {
+  --accent: #2563EB;
+  --accent-hover: #1D4ED8;
+  --accent-light: rgba(37, 99, 235, 0.08);
+  --accent-shadow: rgba(37, 99, 235, 0.25);
+}
+
+[data-theme="light"][data-period="evening"] {
+  --accent: #1D4ED8;
+  --accent-hover: #1E40AF;
+  --accent-light: rgba(29, 78, 216, 0.08);
+  --accent-shadow: rgba(29, 78, 216, 0.25);
+}

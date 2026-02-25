@@ -8,7 +8,7 @@
   <meta name="author" content="Sai Manikanta Eswar Machara">
 
   <script>
-    (function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}else{document.documentElement.setAttribute('data-theme','light')}})();
+    (function(){var t=localStorage.getItem('theme'),d=document.documentElement,n=new Date(),u=n.getTime()+n.getTimezoneOffset()*6e4,i=new Date(u+198e5),h=i.getHours()*60+i.getMinutes(),p;if(h>=330&&h<720)p='morning';else if(h>=720&&h<1020)p='afternoon';else if(h>=1020&&h<1140)p='evening';else p='night';if(t==='dark'||t==='light'){d.setAttribute('data-theme',t);d.setAttribute('data-period',t==='dark'?'night':p)}else{d.setAttribute('data-theme',p==='night'?'dark':'light');d.setAttribute('data-period',p)}})();
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,6 @@
         <li><a href="index.html" class="navbar__link" data-nav="home">Home</a></li>
         <li><a href="research.html" class="navbar__link" data-nav="research">Research</a></li>
         <li><a href="projects/" class="navbar__link" data-nav="projects">Projects</a></li>
-        <li><a href="experience.html" class="navbar__link" data-nav="experience">Experience</a></li>
         <li><a href="achievements.html" class="navbar__link" data-nav="achievements">Achievements</a></li>
         <li><a href="contact.html" class="navbar__link navbar__link--active" data-nav="contact">Contact</a></li>
       </ul>
@@ -135,7 +134,9 @@
           <div class="contact-form-wrapper">
             <h2 class="section-title">Send a Message</h2>
 
-            <form class="form" action="https://formspree.io/f/your-form-id" method="POST">
+            <form class="form" id="contactForm" action="https://formspree.io/f/xwpkpgon" method="POST">
+              <input type="hidden" name="_subject" value="Portfolio Contact: New Message">
+              <input type="hidden" name="_captcha" value="false">
 
               <div class="form__group">
                 <label class="form__label" for="name">Full Name</label>
@@ -150,21 +151,16 @@
               </div>
 
               <div class="form__group">
-                <label class="form__label" for="subject">Subject</label>
-                <input class="form__input" type="text" id="subject" name="subject"
-                       placeholder="Research collaboration, question, etc." required>
-              </div>
-
-              <div class="form__group">
                 <label class="form__label" for="message">Message</label>
                 <textarea class="form__textarea" id="message" name="message" rows="6"
                           placeholder="Your message..." required></textarea>
               </div>
 
-              <button type="submit" class="btn btn--primary">
+              <button type="submit" class="btn btn--primary" id="submitBtn">
                 <i data-lucide="send"></i> Send Message
               </button>
 
+              <p class="form__status" id="formStatus" aria-live="polite"></p>
             </form>
           </div>
 
@@ -211,5 +207,42 @@
 
   <script src="js/theme.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('contactForm');
+      var status = document.getElementById('formStatus');
+      var btn = document.getElementById('submitBtn');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        status.textContent = '';
+        status.className = 'form__status';
+        var data = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        }).then(function (r) {
+          if (r.ok) {
+            status.textContent = 'Message sent successfully. Thank you.';
+            status.classList.add('form__status--success');
+            form.reset();
+          } else {
+            status.textContent = 'Something went wrong. Please try again.';
+            status.classList.add('form__status--error');
+          }
+        }).catch(function () {
+          status.textContent = 'Network error. Please try again later.';
+          status.classList.add('form__status--error');
+        }).finally(function () {
+          btn.disabled = false;
+          btn.innerHTML = '<i data-lucide="send"></i> Send Message';
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+      });
+    });
+  </script>
 </body>
 </html>
