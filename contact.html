@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Sai Manikanta Eswar Machara</title>
+  <meta name="description" content="Get in touch with Sai Manikanta Eswar Machara for research collaborations, internships, or academic inquiries.">
+  <meta name="author" content="Sai Manikanta Eswar Machara">
+
+  <script>
+    (function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}else{document.documentElement.setAttribute('data-theme','light')}})();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="page">
+
+<header>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">Eswar Machara</a>
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="index.html" class="navbar__link" data-nav="home">Home</a></li>
+        <li><a href="research.html" class="navbar__link" data-nav="research">Research</a></li>
+        <li><a href="projects/" class="navbar__link" data-nav="projects">Projects</a></li>
+        <li><a href="experience.html" class="navbar__link" data-nav="experience">Experience</a></li>
+        <li><a href="achievements.html" class="navbar__link" data-nav="achievements">Achievements</a></li>
+        <li><a href="contact.html" class="navbar__link navbar__link--active" data-nav="contact">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><i data-lucide="moon"></i></span>
+          <span class="icon-sun"><i data-lucide="sun"></i></span>
+        </button>
+        <button class="hamburger hide-desktop" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+  </nav>
+</header>
+
+  <main class="page-main">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">Contact</h1>
+        <p class="page-header__subtitle">
+          Open to research collaborations, internship opportunities, and academic discussions.
+          Reach out through any of the channels below.
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="section" aria-label="Contact Information">
+      <div class="container">
+
+        <div class="contact-grid">
+
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <h2 class="section-title">Get in Touch</h2>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">
+                <i data-lucide="mail"></i>
+              </div>
+              <div class="contact-item__content">
+                <h3>Email</h3>
+                <a href="mailto:macharasaimanikantaeswar@gmail.com">macharasaimanikantaeswar@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">
+                <i data-lucide="map-pin"></i>
+              </div>
+              <div class="contact-item__content">
+                <h3>Location</h3>
+                <p>Hyderabad, India</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">
+                <i data-lucide="github"></i>
+              </div>
+              <div class="contact-item__content">
+                <h3>GitHub</h3>
+                <a href="https://github.com/EswarMachara" target="_blank" rel="noopener noreferrer">
+                  github.com/EswarMachara
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">
+                <i data-lucide="linkedin"></i>
+              </div>
+              <div class="contact-item__content">
+                <h3>LinkedIn</h3>
+                <a href="https://linkedin.com/in/eswarmachara" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/eswarmachara
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">
+                <i data-lucide="graduation-cap"></i>
+              </div>
+              <div class="contact-item__content">
+                <h3>Google Scholar</h3>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Scholar Profile
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-wrapper">
+            <h2 class="section-title">Send a Message</h2>
+
+            <form class="form" action="https://formspree.io/f/your-form-id" method="POST">
+
+              <div class="form__group">
+                <label class="form__label" for="name">Full Name</label>
+                <input class="form__input" type="text" id="name" name="name"
+                       placeholder="Your full name" required autocomplete="name">
+              </div>
+
+              <div class="form__group">
+                <label class="form__label" for="email">Email Address</label>
+                <input class="form__input" type="email" id="email" name="email"
+                       placeholder="your.email@example.com" required autocomplete="email">
+              </div>
+
+              <div class="form__group">
+                <label class="form__label" for="subject">Subject</label>
+                <input class="form__input" type="text" id="subject" name="subject"
+                       placeholder="Research collaboration, question, etc." required>
+              </div>
+
+              <div class="form__group">
+                <label class="form__label" for="message">Message</label>
+                <textarea class="form__textarea" id="message" name="message" rows="6"
+                          placeholder="Your message..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary">
+                <i data-lucide="send"></i> Send Message
+              </button>
+
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer__inner">
+    <div class="footer__links">
+      <a href="index.html" class="footer__link">Home</a>
+      <a href="research.html" class="footer__link">Research</a>
+      <a href="projects/" class="footer__link">Projects</a>
+      <a href="contact.html" class="footer__link">Contact</a>
+    </div>
+    <div class="footer__socials">
+      <a href="https://github.com/EswarMachara" target="_blank" rel="noopener noreferrer"
+         class="footer__social-link" aria-label="GitHub" title="GitHub">
+        <i data-lucide="github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/sai-manikanta-eswar-machara/" target="_blank" rel="noopener noreferrer"
+         class="footer__social-link" aria-label="LinkedIn" title="LinkedIn">
+        <i data-lucide="linkedin"></i>
+      </a>
+      <a href="https://scholar.google.com/citations?user=WPB2pcwAAAAJ" target="_blank" rel="noopener noreferrer"
+         class="footer__social-link" aria-label="Google Scholar" title="Google Scholar">
+        <i data-lucide="graduation-cap"></i>
+      </a>
+      <a href="mailto:macharasaimanikantaeswar@gmail.com"
+         class="footer__social-link" aria-label="Email" title="Email">
+        <i data-lucide="mail"></i>
+      </a>
+    </div>
+    <p class="footer__copy">&copy; 2026 Sai Manikanta Eswar Machara. All rights reserved.</p>
+  </div>
+</footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <script src="js/theme.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

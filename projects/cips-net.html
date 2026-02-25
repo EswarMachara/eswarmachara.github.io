@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIPS-Net — Sai Manikanta Eswar Machara</title>
+  <meta name="description" content="CIPS-Net: Instruction-Conditioned Pathology Segmentation with compositional graph reasoning.">
+  <meta name="author" content="Sai Manikanta Eswar Machara">
+
+  <script>
+    (function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}else{document.documentElement.setAttribute('data-theme','light')}})();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body class="page">
+
+  <header>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__brand">Eswar Machara</a>
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="../index.html" class="navbar__link" data-nav="home">Home</a></li>
+        <li><a href="../research.html" class="navbar__link" data-nav="research">Research</a></li>
+        <li><a href="./" class="navbar__link navbar__link--active" data-nav="projects">Projects</a></li>
+        <li><a href="../experience.html" class="navbar__link" data-nav="experience">Experience</a></li>
+        <li><a href="../achievements.html" class="navbar__link" data-nav="achievements">Achievements</a></li>
+        <li><a href="../contact.html" class="navbar__link" data-nav="contact">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><i data-lucide="moon"></i></span>
+          <span class="icon-sun"><i data-lucide="sun"></i></span>
+        </button>
+        <button class="hamburger hide-desktop" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+  </nav>
+</header>
+
+  <main class="page-main">
+    <article class="article">
+
+      <a href="./" class="back-link">
+        <i data-lucide="arrow-left"></i> Back to Projects
+      </a>
+
+      <header class="article__header">
+        <h1 class="article__title">CIPS-Net</h1>
+        <p class="article__abstract">
+          A vision-language segmentation framework for compositional, instruction-driven
+          segmentation of overlapping pathology classes in histopathology images, leveraging
+          a compositional graph reasoning module for instruction-aware dense decoding.
+        </p>
+
+        <div class="article__metrics">
+          <span class="metric-badge">0.795 Macro Dice</span>
+          <span class="tag tag--accent">Completed</span>
+        </div>
+
+        <div class="article__links">
+          <a href="#" class="btn btn--primary btn--sm">
+            <i data-lucide="github"></i> Code (Coming Soon)
+          </a>
+          <a href="#" class="btn btn--secondary btn--sm">
+            <i data-lucide="file-text"></i> Paper (In Preparation)
+          </a>
+        </div>
+      </header>
+
+      <div class="article__content">
+
+        <h2 id="problem-statement">Problem Statement</h2>
+        <p>
+          Histopathology image analysis requires identifying and segmenting multiple overlapping
+          tissue structures and pathological features. Traditional segmentation approaches use
+          fixed-label prediction, treating each class independently. This paradigm fails when
+          pathology categories overlap spatially, and it cannot generalize to new tissue types
+          without retraining. There is a need for instruction-driven segmentation that can
+          selectively segment specific structures based on natural language prompts.
+        </p>
+
+        <h2 id="motivation">Motivation</h2>
+        <p>
+          Pathologists routinely analyze tissue specimens by focusing on specific morphological
+          features described in clinical guidelines. An instruction-conditioned model that
+          segments tissue structures based on textual descriptions would align more naturally
+          with clinical workflows. This approach also enables a single model to handle multiple
+          segmentation tasks, reducing the need for task-specific architectures.
+        </p>
+
+        <h2 id="dataset">Dataset</h2>
+        <p>
+          The framework is evaluated on standard histopathology segmentation benchmarks
+          containing diverse tissue types with overlapping pathology annotations. The datasets
+          include pixel-level masks for multiple pathological categories that frequently
+          co-occur in the same regions.
+        </p>
+
+        <div class="image-placeholder">
+          Dataset Samples — Histopathology images with overlapping pathology annotations
+        </div>
+
+        <h2 id="methodology">Methodology</h2>
+        <p>
+          CIPS-Net introduces compositional graph reasoning into the segmentation pipeline.
+          Key contributions include:
+        </p>
+        <ul>
+          <li>Instruction encoding using language models for conditional segmentation</li>
+          <li>Compositional graph module that captures inter-class relationships</li>
+          <li>Dense decoder with instruction-aware feature modulation</li>
+          <li>U-Net backbone enhanced with cross-modal attention layers</li>
+        </ul>
+
+        <h2 id="architecture-overview">Architecture Overview</h2>
+
+        <div class="image-placeholder">
+          CIPS-Net Architecture — Encoder, Compositional Graph Module, Instruction-Conditioned Decoder
+        </div>
+
+        <h3>Instruction Encoder</h3>
+        <p>
+          Textual instructions describing the target pathology are encoded into a fixed-dimensional
+          embedding vector. This embedding conditions the decoder to selectively activate features
+          relevant to the queried pathology class.
+        </p>
+
+        <h3>Compositional Graph Module</h3>
+        <p>
+          A graph neural network module captures spatial and semantic relationships between
+          different tissue structures. Nodes represent pathology classes while edges encode
+          co-occurrence and spatial adjacency patterns learned from the training data.
+        </p>
+
+        <h3>Conditioned Decoder</h3>
+        <p>
+          The decoder receives multi-scale visual features from the encoder, modulated by the
+          instruction embedding through FiLM (Feature-wise Linear Modulation) layers. This
+          enables class-specific feature enhancement while suppressing irrelevant activations.
+        </p>
+
+        <h2 id="experiments">Experiments</h2>
+        <p>
+          The model is trained with standard cross-entropy and Dice loss functions, optimized
+          using AdamW with cosine annealing learning rate scheduling. Experiments compare
+          CIPS-Net against fixed-label U-Net baselines and other instruction-conditioned
+          segmentation approaches.
+        </p>
+
+        <div class="image-placeholder">
+          Training Configuration and Hyperparameter Details
+        </div>
+
+        <h2 id="results">Results</h2>
+        <p>
+          CIPS-Net achieves a Macro Dice score of 0.795, outperforming fixed-label U-Net
+          baselines on overlapping pathology segmentation. The instruction-conditioned
+          approach shows improved performance on rare pathology classes due to the
+          compositional reasoning capability.
+        </p>
+
+        <div class="image-placeholder">
+          Segmentation Results — Comparison with baselines across pathology classes
+        </div>
+
+        <h2 id="failure-cases">Failure Cases</h2>
+        <p>
+          The model struggles with extremely rare pathology classes that have fewer than
+          50 annotated instances in the training set. Additionally, highly ambiguous
+          instructions that could refer to multiple similar tissue types lead to
+          degraded segmentation boundaries.
+        </p>
+
+        <div class="image-placeholder">
+          Failure Case Analysis — Rare classes and ambiguous instructions
+        </div>
+
+        <h2 id="ablation-study">Ablation Study</h2>
+        <p>
+          Component-wise ablation demonstrates the contribution of each module:
+          the compositional graph module provides +3.2% Dice improvement, while
+          instruction conditioning adds +5.1% over the vanilla U-Net baseline.
+        </p>
+
+        <div class="image-placeholder">
+          Ablation Study Results — Component contribution analysis
+        </div>
+
+        <h2 id="future-work">Future Work</h2>
+        <ul>
+          <li>Extension to whole-slide image (WSI) analysis with hierarchical attention</li>
+          <li>Integration of chain-of-thought reasoning for complex multi-step instructions</li>
+          <li>Evaluation on additional histopathology benchmarks (CAMELYON, PanNuke)</li>
+          <li>Semi-supervised learning to leverage unlabeled pathology slides</li>
+        </ul>
+
+        <h2 id="references">References</h2>
+        <ul>
+          <li>Ronneberger, O. et al. "U-Net: Convolutional Networks for Biomedical Image Segmentation." MICCAI 2015.</li>
+          <li>Wang, X. et al. "Non-local Neural Networks." CVPR 2018.</li>
+          <li>Perez, E. et al. "FiLM: Visual Reasoning with a General Conditioning Layer." AAAI 2018.</li>
+          <li>Kipf, T. and Welling, M. "Semi-Supervised Classification with Graph Convolutional Networks." ICLR 2017.</li>
+        </ul>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+  <div class="container footer__inner">
+    <div class="footer__links">
+      <a href="../index.html" class="footer__link">Home</a>
+      <a href="../research.html" class="footer__link">Research</a>
+      <a href="./" class="footer__link">Projects</a>
+      <a href="../contact.html" class="footer__link">Contact</a>
+    </div>
+    <div class="footer__socials">
+      <a href="https://github.com/EswarMachara" target="_blank" rel="noopener noreferrer"
+         class="footer__social-link" aria-label="GitHub" title="GitHub">
+        <i data-lucide="github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/sai-manikanta-eswar-machara/" target="_blank" rel="noopener noreferrer"
+         class="footer__social-link" aria-label="LinkedIn" title="LinkedIn">
+        <i data-lucide="linkedin"></i>
+      </a>
+      <a href="https://scholar.google.com/citations?user=WPB2pcwAAAAJ" target="_blank" rel="noopener noreferrer"
+         class="footer__social-link" aria-label="Google Scholar" title="Google Scholar">
+        <i data-lucide="graduation-cap"></i>
+      </a>
+      <a href="mailto:macharasaimanikantaeswar@gmail.com"
+         class="footer__social-link" aria-label="Email" title="Email">
+        <i data-lucide="mail"></i>
+      </a>
+    </div>
+    <p class="footer__copy">&copy; 2026 Sai Manikanta Eswar Machara. All rights reserved.</p>
+  </div>
+</footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <script src="../js/theme.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

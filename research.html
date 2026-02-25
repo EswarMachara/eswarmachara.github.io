@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research — Sai Manikanta Eswar Machara</title>
+  <meta name="description" content="Research interests, publications, and ongoing work by Sai Manikanta Eswar Machara in Medical Image Analysis, Computer Vision, and Vision-Language Models.">
+  <meta name="author" content="Sai Manikanta Eswar Machara">
+
+  <script>
+    (function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}else{document.documentElement.setAttribute('data-theme','light')}})();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="page">
+
+<header>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">Eswar Machara</a>
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="index.html" class="navbar__link" data-nav="home">Home</a></li>
+        <li><a href="research.html" class="navbar__link navbar__link--active" data-nav="research">Research</a></li>
+        <li><a href="projects/" class="navbar__link" data-nav="projects">Projects</a></li>
+        <li><a href="experience.html" class="navbar__link" data-nav="experience">Experience</a></li>
+        <li><a href="achievements.html" class="navbar__link" data-nav="achievements">Achievements</a></li>
+        <li><a href="contact.html" class="navbar__link" data-nav="contact">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-moon"><i data-lucide="moon"></i></span>
+          <span class="icon-sun"><i data-lucide="sun"></i></span>
+        </button>
+        <button class="hamburger hide-desktop" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+  </nav>
+</header>
+
+  <main class="page-main">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">Research</h1>
+        <p class="page-header__subtitle">
+          Focused on advancing medical image analysis through computer vision and
+          vision-language models, with applications in segmentation, grounding,
+          and diagnostic automation.
+        </p>
+      </div>
+    </div>
+
+    <!-- Research Interests -->
+    <section class="section" aria-label="Research Interests">
+      <div class="container">
+        <h2 class="section-title">Research Interests</h2>
+
+        <div class="grid grid-3">
+
+          <div class="research-card">
+            <div class="research-card__icon">
+              <i data-lucide="heart-pulse"></i>
+            </div>
+            <h3 class="research-card__title">Medical Image Analysis</h3>
+            <p class="research-card__desc">
+              Developing deep learning methods for automated analysis of medical imaging
+              modalities including echocardiography, histopathology, and satellite-based
+              damage assessment. Focus on segmentation architectures and multi-task learning.
+            </p>
+          </div>
+
+          <div class="research-card">
+            <div class="research-card__icon">
+              <i data-lucide="eye"></i>
+            </div>
+            <h3 class="research-card__title">Computer Vision</h3>
+            <p class="research-card__desc">
+              Research in object detection, semantic segmentation, and pose estimation
+              with emphasis on YOLO-based architectures, multi-backbone fusion strategies,
+              and real-time inference optimization for deployment scenarios.
+            </p>
+          </div>
+
+          <div class="research-card">
+            <div class="research-card__icon">
+              <i data-lucide="brain-circuit"></i>
+            </div>
+            <h3 class="research-card__title">Vision-Language Models</h3>
+            <p class="research-card__desc">
+              Exploring multi-modal architectures that bridge natural language understanding
+              and visual perception. Current work focuses on referring expression grounding,
+              instruction-conditioned segmentation, and cross-modal alignment.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="section section--alt" aria-label="Publications">
+      <div class="container">
+        <h2 class="section-title">Publications</h2>
+
+        <div class="publication-card">
+          <div class="publication-card__venue">
+            <span class="publication-card__badge">ICCV 2025 Workshop</span>
+          </div>
+          <h3 class="publication-card__title">
+            DebrisVision: A Domain-Specific Architecture for Post-Disaster Building Debris Estimation
+          </h3>
+          <p class="publication-card__authors">
+            Sai Manikanta Eswar Machara, collaborators
+          </p>
+          <p class="publication-card__desc">
+            A domain-specific deep learning architecture for automated estimation of
+            building debris volumes from post-disaster satellite and aerial imagery,
+            developed during the ISRO research internship.
+          </p>
+          <div class="publication-card__links">
+            <a href="#" class="btn btn--sm btn--secondary">
+              <i data-lucide="file-text"></i> Paper
+            </a>
+            <a href="#" class="btn btn--sm btn--ghost">
+              <i data-lucide="github"></i> Code
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Ongoing Research -->
+    <section class="section" aria-label="Ongoing Research">
+      <div class="container">
+        <h2 class="section-title">Ongoing Research</h2>
+
+        <div class="grid grid-2">
+
+          <div class="card">
+            <div class="card__body">
+              <span class="tag tag--accent" style="margin-bottom: var(--space-3); display: inline-block;">In Progress</span>
+              <h3>RefYOLO-HuMaR</h3>
+              <p>
+                Multi-human referring expression grounding with token-level text-visual
+                alignment. Building a large-scale dataset with 95K+ images and developing
+                a YOLO-based grounding framework achieving 43.23% MSR.
+              </p>
+              <p style="margin-top: var(--space-3);">
+                <a href="projects/refyolo-humar.html" class="btn btn--sm btn--ghost">
+                  Read More <i data-lucide="arrow-right"></i>
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__body">
+              <span class="tag tag--accent" style="margin-bottom: var(--space-3); display: inline-block;">In Progress</span>
+              <h3>CIPS-Net</h3>
+              <p>
+                Instruction-conditioned pathology segmentation using compositional graph
+                reasoning for overlapping pathology classes. Achieving 0.795 Macro Dice
+                on standard histopathology benchmarks.
+              </p>
+              <p style="margin-top: var(--space-3);">
+                <a href="projects/cips-net.html" class="btn btn--sm btn--ghost">
+                  Read More <i data-lucide="arrow-right"></i>
+                </a>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer__inner">
+    <div class="footer__links">
+      <a href="index.html" class="footer__link">Home</a>
+      <a href="research.html" class="footer__link">Research</a>
+      <a href="projects/" class="footer__link">Projects</a>
+      <a href="contact.html" class="footer__link">Contact</a>
+    </div>
+    <div class="footer__socials">
+      <a href="https://github.com/EswarMachara" target="_blank" rel="noopener noreferrer"
+         class="footer__social-link" aria-label="GitHub" title="GitHub">
+        <i data-lucide="github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/sai-manikanta-eswar-machara/" target="_blank" rel="noopener noreferrer"
+         class="footer__social-link" aria-label="LinkedIn" title="LinkedIn">
+        <i data-lucide="linkedin"></i>
+      </a>
+      <a href="https://scholar.google.com/citations?user=WPB2pcwAAAAJ" target="_blank" rel="noopener noreferrer"
+         class="footer__social-link" aria-label="Google Scholar" title="Google Scholar">
+        <i data-lucide="graduation-cap"></i>
+      </a>
+      <a href="mailto:macharasaimanikantaeswar@gmail.com"
+         class="footer__social-link" aria-label="Email" title="Email">
+        <i data-lucide="mail"></i>
+      </a>
+    </div>
+    <p class="footer__copy">&copy; 2026 Sai Manikanta Eswar Machara. All rights reserved.</p>
+  </div>
+</footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <script src="js/theme.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
