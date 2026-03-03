@@ -1,89 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CardioLens — Sai Manikanta Eswar Machara</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <meta name="description" content="CardioLens: AI-Assisted Echocardiogram Analyzer for LV segmentation and ejection fraction estimation.">
   <meta name="author" content="Sai Manikanta Eswar Machara">
 
-  <script>
-    (function(){var t=localStorage.getItem('theme'),d=document.documentElement,n=new Date(),u=n.getTime()+n.getTimezoneOffset()*6e4,i=new Date(u+198e5),h=i.getHours()*60+i.getMinutes(),p;if(h>=330&&h<720)p='morning';else if(h>=720&&h<1020)p='afternoon';else if(h>=1020&&h<1140)p='evening';else p='night';if(t==='dark'||t==='light'){d.setAttribute('data-theme',t);d.setAttribute('data-period',t==='dark'?'night':p)}else{d.setAttribute('data-theme',p==='night'?'dark':'light');d.setAttribute('data-period',p)}})();
-  </script>
+  <title>CardioLens | Sai Manikanta Eswar Machara</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
 
-  <link rel="stylesheet" href="../css/themes.css">
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/layout.css">
-  <link rel="stylesheet" href="../css/components.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+  <!-- Google web fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <!-- Academicons -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+  <!-- Local styles -->
+  <link rel="stylesheet" href="../css/main.css">
 </head>
-<body class="page">
 
-  <header>
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="navbar__inner">
-      <a href="../index.html" class="navbar__brand">Eswar Machara</a>
-      <ul class="navbar__links" id="navLinks">
-        <li><a href="../index.html" class="navbar__link" data-nav="home">Home</a></li>
-        <li><a href="../research.html" class="navbar__link" data-nav="research">Research</a></li>
-        <li><a href="./" class="navbar__link navbar__link--active" data-nav="projects">Projects</a></li>
-        <li><a href="../achievements.html" class="navbar__link" data-nav="achievements">Achievements</a></li>
-        <li><a href="../contact.html" class="navbar__link" data-nav="contact">Contact</a></li>
-      </ul>
-      <div class="navbar__actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <span class="icon-moon"><i data-lucide="moon"></i></span>
-          <span class="icon-sun"><i data-lucide="sun"></i></span>
-        </button>
-        <button class="hamburger hide-desktop" id="hamburger" aria-label="Open menu" aria-expanded="false">
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-        </button>
-      </div>
-    </div>
-    <div class="nav-overlay" id="navOverlay"></div>
-  </nav>
-</header>
+<body>
 
-  <main class="page-main">
-    <article class="article">
+  <!-- navbar include -->
+  <div w3-include-html="../navbar.html"></div>
 
-      <a href="./" class="back-link">
-        <i data-lucide="arrow-left"></i> Back to Projects
-      </a>
+  <div class="spacer-div-3 hidden-xs hidden-xs"></div>
 
-      <header class="article__header">
-        <h1 class="article__title">CardioLens</h1>
-        <p class="article__abstract">
+  <!-- Main content -->
+  <div id="main-container" class="container">
+
+    <div class="row">
+      <div class="col-sm-12">
+
+        <p class="push-down-2">
+          <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </p>
+
+        <h1>CardioLens</h1>
+        <p class="lead">
           An AI-assisted echocardiogram analysis system for automated left ventricle
           segmentation and ejection fraction estimation, combining depth estimation
           and spatiotemporal video analysis to generate diagnostic reports.
         </p>
 
-        <div class="article__metrics">
-          <span class="metric-badge">0.78 / 0.90 Dice</span>
-          <span class="metric-badge">2nd Runner-up</span>
-          <span class="tag tag--accent">IEEE INDICON 2024</span>
-        </div>
+        <p>
+          <span class="badge badge-award">2nd Runner-up @ IEEE INDICON 2024</span>
+          <span class="badge badge-award">IIT Kharagpur</span>
+          <span class="badge badge-research">Medical Imaging</span>
+        </p>
 
-        <div class="article__links">
-          <a href="#" class="btn btn--primary btn--sm">
-            <i data-lucide="github"></i> Code (Coming Soon)
+        <p>
+          <a href="https://github.com/EswarMachara/CardioLens" target="_blank" class="btn btn-primary btn-sm">
+            <i class="fab fa-github"></i> Code
           </a>
-          <a href="#" class="btn btn--secondary btn--sm">
-            <i data-lucide="file-text"></i> Paper
+          <a href="#" target="_blank" class="btn btn-default btn-sm">
+            <i class="fas fa-file-pdf"></i> Paper (Coming Soon)
           </a>
-        </div>
-      </header>
+        </p>
 
-      <div class="article__content">
+        <hr>
 
-        <h2 id="problem-statement">Problem Statement</h2>
+        <h3>Problem Statement</h3>
         <p>
           Echocardiography is the primary non-invasive imaging modality for assessing cardiac
           function. Left ventricle (LV) segmentation and ejection fraction (EF) estimation are
@@ -92,7 +81,7 @@
           analysis systems can improve consistency and throughput in clinical settings.
         </p>
 
-        <h2 id="motivation">Motivation</h2>
+        <h3>Motivation</h3>
         <p>
           Cardiovascular diseases remain the leading cause of mortality worldwide. Early and
           accurate assessment of cardiac function through echocardiography can significantly
@@ -101,7 +90,7 @@
           particularly in resource-constrained healthcare settings.
         </p>
 
-        <h2 id="dataset">Dataset</h2>
+        <h3>Dataset</h3>
         <p>
           The system is developed and evaluated on the Stanford EchoNet-Dynamic dataset,
           a large-scale echocardiography video dataset containing:
@@ -113,152 +102,103 @@
           <li>Clinically validated ejection fraction measurements</li>
         </ul>
 
-        <div class="image-placeholder">
-          EchoNet-Dynamic Dataset — Sample frames with LV annotations
-        </div>
-
-        <h2 id="methodology">Methodology</h2>
+        <h3>Methodology</h3>
         <p>
-          CardioLens employs a two-stage pipeline combining spatial segmentation with
+          CardioLens employs a multi-stage pipeline combining spatial segmentation with
           temporal regression:
         </p>
         <ul>
           <li><strong>Stage 1:</strong> Frame-level LV segmentation using Intel DPT Large and ResNet-101 encoders with dense prediction heads</li>
           <li><strong>Stage 2:</strong> Video-level EF regression using R2plus1D spatiotemporal convolutional network</li>
+          <li><strong>Stage 3:</strong> Cardiomyopathy classification from echocardiogram sequences</li>
+          <li><strong>Stage 4:</strong> CTA-based coronary artery segmentation for calcification detection</li>
           <li><strong>Report Generation:</strong> Automated diagnostic reports combining segmentation metrics and EF estimates</li>
         </ul>
 
-        <h2 id="architecture-overview">Architecture Overview</h2>
+        <h3>Architecture Overview</h3>
+        <img src="../assets/img/projects/cardiolens-arch.png" class="img-responsive center-block" alt="CardioLens Architecture">
+        <p class="text-center text-muted"><em>CardioLens Pipeline — Frame Segmentation → Volume Estimation → EF Regression → Report Generation</em></p>
 
-        <div class="image-placeholder">
-          CardioLens Pipeline — Frame Segmentation → Volume Estimation → EF Regression → Report Generation
-        </div>
-
-        <h3>Segmentation Module</h3>
+        <h4>Segmentation Module</h4>
         <p>
           Two segmentation architectures are evaluated: Intel DPT Large (Dense Prediction
           Transformer) and ResNet-101 with a Feature Pyramid Network decoder. Both models
           produce pixel-level LV masks for each video frame.
         </p>
 
-        <h3>EF Regression Module</h3>
+        <h4>EF Regression Module</h4>
         <p>
           The R2plus1D network processes temporally sampled video clips to directly
           predict ejection fraction. The factored 3D convolution (separate spatial and
           temporal components) enables efficient spatiotemporal feature extraction.
         </p>
 
-        <h3>Diagnostic Report</h3>
-        <p>
-          The system generates structured diagnostic reports summarizing segmentation
-          quality metrics, computed LV volumes at end-systole and end-diastole, and
-          the estimated ejection fraction with clinical interpretation.
-        </p>
+        <h3>Results</h3>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Dice (ES)</th>
+              <th>Dice (ED)</th>
+              <th>MAE (EF)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DPT Large</td>
+              <td>0.78</td>
+              <td>0.90</td>
+              <td>4.2%</td>
+            </tr>
+            <tr>
+              <td>ResNet-101 FPN</td>
+              <td>0.76</td>
+              <td>0.88</td>
+              <td>4.5%</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <h2 id="experiments">Experiments</h2>
-        <p>
-          Models are trained with a combination of cross-entropy loss for segmentation
-          and mean absolute error for EF regression. Training uses the standard
-          EchoNet-Dynamic train/val/test splits with data augmentation including
-          random cropping, rotation, and intensity scaling.
-        </p>
-
-        <div class="image-placeholder">
-          Training Details — Loss curves, learning rate schedule, augmentation strategy
-        </div>
-
-        <h2 id="results">Results</h2>
-        <p>
-          The system achieves Dice scores of 0.78 (DPT Large) and 0.90 (ResNet-101)
-          for LV segmentation. The combined pipeline was presented at IEEE INDICON 2024
-          and recognized as 2nd Runner-up among research prototypes at the Intel AI
-          Hackathon at IIT Kharagpur.
-        </p>
-
-        <div class="image-placeholder">
-          Segmentation Results — Visual comparison between DPT Large and ResNet-101 predictions
-        </div>
-
-        <h2 id="failure-cases">Failure Cases</h2>
-        <p>
-          The system shows degraded performance on videos with poor image quality,
-          significant probe movement artifacts, or unusual cardiac anatomy. The DPT
-          Large model occasionally over-segments in frames with papillary muscles
-          visible near the LV boundary.
-        </p>
-
-        <div class="image-placeholder">
-          Failure Cases — Poor quality frames, artifact examples, boundary ambiguity
-        </div>
-
-        <h2 id="ablation-study">Ablation Study</h2>
-        <p>
-          Ablation experiments compare segmentation architectures (DPT vs ResNet vs UNet),
-          temporal sampling strategies for EF regression (uniform vs key-frame selection),
-          and the impact of data augmentation on generalization to unseen echocardiography
-          equipment.
-        </p>
-
-        <div class="image-placeholder">
-          Ablation Results — Architecture comparison, temporal sampling, augmentation impact
-        </div>
-
-        <h2 id="future-work">Future Work</h2>
+        <h3>Key Achievements</h3>
         <ul>
-          <li>Integration of attention mechanisms for automatic key-frame detection</li>
-          <li>Extension to additional echocardiographic views (parasternal, subcostal)</li>
-          <li>Real-time inference optimization for clinical deployment</li>
-          <li>Multi-task learning for simultaneous wall motion abnormality detection</li>
-          <li>Validation on external clinical datasets from partner hospitals</li>
-        </ul>
-
-        <h2 id="references">References</h2>
-        <ul>
-          <li>Ouyang, D. et al. "Video-based AI for beat-to-beat assessment of cardiac function." Nature 2020.</li>
-          <li>Ranftl, R. et al. "Vision Transformers for Dense Prediction." ICCV 2021.</li>
-          <li>Tran, D. et al. "A Closer Look at Spatiotemporal Convolutions for Action Recognition." CVPR 2018.</li>
-          <li>He, K. et al. "Deep Residual Learning for Image Recognition." CVPR 2016.</li>
+          <li>Achieved 2nd Runner-up position at IEEE INDICON 2024 Intel AI Hackathon, IIT Kharagpur</li>
+          <li>Integrated multi-task cardiac analysis: view classification, LV segmentation, EF estimation, cardiomyopathy detection</li>
+          <li>Developed automated report generation for clinical deployment</li>
         </ul>
 
       </div>
-    </article>
-  </main>
+    </div>
 
-  <footer class="footer" role="contentinfo">
-  <div class="container footer__inner">
-    <div class="footer__links">
-      <a href="../index.html" class="footer__link">Home</a>
-      <a href="../research.html" class="footer__link">Research</a>
-      <a href="./" class="footer__link">Projects</a>
-      <a href="../contact.html" class="footer__link">Contact</a>
-    </div>
-    <div class="footer__socials">
-      <a href="https://github.com/EswarMachara" target="_blank" rel="noopener noreferrer"
-         class="footer__social-link" aria-label="GitHub" title="GitHub">
-        <i data-lucide="github"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/sai-manikanta-eswar-machara/" target="_blank" rel="noopener noreferrer"
-         class="footer__social-link" aria-label="LinkedIn" title="LinkedIn">
-        <i data-lucide="linkedin"></i>
-      </a>
-      <a href="https://scholar.google.com/citations?user=WPB2pcwAAAAJ" target="_blank" rel="noopener noreferrer"
-         class="footer__social-link" aria-label="Google Scholar" title="Google Scholar">
-        <i data-lucide="graduation-cap"></i>
-      </a>
-      <a href="mailto:macharasaimanikantaeswar@gmail.com"
-         class="footer__social-link" aria-label="Email" title="Email">
-        <i data-lucide="mail"></i>
-      </a>
-    </div>
-    <p class="footer__copy">&copy; 2026 Sai Manikanta Eswar Machara. All rights reserved.</p>
   </div>
-</footer>
 
-  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Back to top">
-    <i data-lucide="arrow-up"></i>
-  </button>
+  <!-- Back-to-top button -->
+  <a role="button" id="topper" data-toggle="tooltip" data-placement="top" title="Top" class="btn scroll-link" href="#top"><i class="fa fa-fw fa-2x fa-caret-up" aria-hidden="true"></i></a>
 
-  <script src="../js/theme.js" defer></script>
-  <script src="../js/main.js" defer></script>
+  <!-- footer include -->
+  <div w3-include-html="../footer.html"></div>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+  <!-- html file include script -->
+  <script src="../js/w3data.js"></script>
+  <script>
+    w3IncludeHTML()
+  </script>
+
+  <!-- Local scripts -->
+  <script src="../js/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $("li#projects a").addClass("active");
+      $("li#projects a").addClass("hvr-bubble-bottom");
+    });
+  </script>
+
 </body>
+
 </html>

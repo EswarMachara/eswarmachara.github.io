@@ -1,175 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Achievements — Sai Manikanta Eswar Machara</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <meta name="description" content="Academic and research achievements of Sai Manikanta Eswar Machara, including publications and competition awards.">
   <meta name="author" content="Sai Manikanta Eswar Machara">
 
-  <script>
-    (function(){var t=localStorage.getItem('theme'),d=document.documentElement,n=new Date(),u=n.getTime()+n.getTimezoneOffset()*6e4,i=new Date(u+198e5),h=i.getHours()*60+i.getMinutes(),p;if(h>=330&&h<720)p='morning';else if(h>=720&&h<1020)p='afternoon';else if(h>=1020&&h<1140)p='evening';else p='night';if(t==='dark'||t==='light'){d.setAttribute('data-theme',t);d.setAttribute('data-period',t==='dark'?'night':p)}else{d.setAttribute('data-theme',p==='night'?'dark':'light');d.setAttribute('data-period',p)}})();
-  </script>
+  <title>Achievements | Sai Manikanta Eswar Machara</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="favicon/favicon.ico">
 
-  <link rel="stylesheet" href="css/themes.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+  <!-- jQuery UI CSS -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+  <!-- Google web fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <!-- Academicons -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+  <!-- Local styles -->
+  <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="page">
 
-<header>
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="navbar__inner">
-      <a href="index.html" class="navbar__brand">Eswar Machara</a>
-      <ul class="navbar__links" id="navLinks">
-        <li><a href="index.html" class="navbar__link" data-nav="home">Home</a></li>
-        <li><a href="research.html" class="navbar__link" data-nav="research">Research</a></li>
-        <li><a href="projects/" class="navbar__link" data-nav="projects">Projects</a></li>
-        <li><a href="achievements.html" class="navbar__link navbar__link--active" data-nav="achievements">Achievements</a></li>
-        <li><a href="contact.html" class="navbar__link" data-nav="contact">Contact</a></li>
-      </ul>
-      <div class="navbar__actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <span class="icon-moon"><i data-lucide="moon"></i></span>
-          <span class="icon-sun"><i data-lucide="sun"></i></span>
-        </button>
-        <button class="hamburger hide-desktop" id="hamburger" aria-label="Open menu" aria-expanded="false">
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-        </button>
-      </div>
-    </div>
-    <div class="nav-overlay" id="navOverlay"></div>
-  </nav>
-</header>
+<body>
 
-  <main class="page-main">
+  <!-- navbar include -->
+  <div w3-include-html="navbar.html"></div>
 
-    <!-- Page Header -->
-    <div class="page-header">
-      <div class="container">
-        <h1 class="page-header__title">Achievements</h1>
-        <p class="page-header__subtitle">
+  <div class="spacer-div-3 hidden-xs hidden-xs"></div>
+
+  <!-- Main content -->
+  <div id="main-container" class="container">
+
+    <div class="row">
+      <div class="col-sm-12">
+
+        <h1>Achievements</h1>
+        <p class="lead">
           Selected academic honors, research milestones, and competition recognitions.
         </p>
-      </div>
-    </div>
 
-    <!-- Achievements -->
-    <section class="section" aria-label="Achievements">
-      <div class="container">
+        <h3 class="push-down-3"><span>Publications</span></h3>
 
-        <div class="grid grid-2">
-
-          <div class="achievement-block">
-            <div class="achievement-block__main">
-              <h3 class="achievement-block__title">ICCV 2025 Workshop Paper</h3>
-              <p class="achievement-block__org">IEEE / CVF International Conference on Computer Vision</p>
-              <p class="achievement-block__summary">
-                DebrisVision paper accepted at ICCV 2025 Workshop for post-disaster
-                building debris estimation from satellite imagery, developed during ISRO internship.
-              </p>
-            </div>
-            <div class="achievement-block__meta">
-              <span class="achievement-block__date">2025</span>
-              <span class="achievement-block__badge">Publication</span>
-            </div>
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h4 class="panel-title"><i class="fas fa-file-alt"></i> ICCV 2025 Workshop Paper</h4>
           </div>
-
-          <div class="achievement-block">
-            <div class="achievement-block__main">
-              <h3 class="achievement-block__title">IEEE INDICON 2024 — 2nd Runner-up</h3>
-              <p class="achievement-block__org">Intel AI Hackathon, IIT Kharagpur</p>
-              <p class="achievement-block__summary">
-                Recognized for CardioLens, an AI-assisted echocardiogram analysis system
-                achieving 0.90 Dice score with ResNet-101 encoder.
-              </p>
-            </div>
-            <div class="achievement-block__meta">
-              <span class="achievement-block__date">Dec 2024</span>
-              <span class="achievement-block__badge">3rd Place</span>
-            </div>
+          <div class="panel-body">
+            <p><strong>DebrisVision: Bridging the Synthetic-to-Real Gap for Enhanced Underwater Debris Analysis</strong></p>
+            <p>IEEE / CVF International Conference on Computer Vision (CVAUI &amp; AAMVEM Workshop)</p>
+            <p class="text-muted">Co-first author publication at top-tier computer vision conference.</p>
+            <span class="badge badge-conf">ICCV 2025</span>
           </div>
+        </div>
 
-          <div class="achievement-block">
-            <div class="achievement-block__main">
-              <h3 class="achievement-block__title">ISRO Research Internship</h3>
-              <p class="achievement-block__org">Indian Space Research Organisation</p>
-              <p class="achievement-block__summary">
-                Selected for satellite image analysis research contributing to
-                post-disaster assessment systems. Work resulted in ICCV 2025 publication.
-              </p>
-            </div>
-            <div class="achievement-block__meta">
-              <span class="achievement-block__date">May — Aug 2024</span>
-              <span class="achievement-block__badge">Research</span>
-            </div>
+        <h3 class="push-down-3"><span>Competition Awards</span></h3>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4 class="panel-title"><i class="fas fa-trophy"></i> AI4AP Police Hackathon 2025 — 1st Place</h4>
           </div>
-
-          <div class="achievement-block">
-            <div class="achievement-block__main">
-              <h3 class="achievement-block__title">Smart India Hackathon 2024</h3>
-              <p class="achievement-block__org">Ministry of Education, Government of India</p>
-              <p class="achievement-block__summary">
-                Selected as internal finalist in the nationwide innovation challenge
-                addressing government and industry problem statements.
-              </p>
-            </div>
-            <div class="achievement-block__meta">
-              <span class="achievement-block__date">Sep 2024</span>
-              <span class="achievement-block__badge">Finalist</span>
-            </div>
+          <div class="panel-body">
+            <p><strong>Use Case 6: Personnel Evaluation System</strong></p>
+            <p>AI4AP (Artificial Intelligence for Andhra Pradesh Police) Hackathon, Guntur</p>
+            <p class="text-muted">Feb 2026 — Winner in personnel evaluation track using AI-based assessment systems.</p>
+            <span class="badge badge-award">1st Place</span>
           </div>
+        </div>
 
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4 class="panel-title"><i class="fas fa-medal"></i> IEEE INDICON 2024 — 2nd Runner-up</h4>
+          </div>
+          <div class="panel-body">
+            <p><strong>Intel AI Hackathon, IIT Kharagpur</strong></p>
+            <p>Recognized for CardioLens, an AI-assisted echocardiogram analysis system achieving 0.90 Dice score with ResNet-101 encoder.</p>
+            <p class="text-muted">Nov 2024 — Competed against top teams from across India at IIT Kharagpur</p>
+            <span class="badge badge-award">3rd Place</span>
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4 class="panel-title"><i class="fas fa-globe"></i> MAIC Challenge 2024 — 22nd Position</h4>
+          </div>
+          <div class="panel-body">
+            <p><strong>Multimodal AI for TB (MAIC), South Korea</strong></p>
+            <p>International AI competition for tuberculosis detection using multimodal data analysis.</p>
+            <p class="text-muted">2024 — Represented India in international medical AI competition</p>
+            <span class="badge badge-award">Top 25</span>
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4 class="panel-title"><i class="fas fa-satellite"></i> ISRO Bharatiya Antariksha Hackathon — Top 140</h4>
+          </div>
+          <div class="panel-body">
+            <p><strong>Indian Space Research Organisation</strong></p>
+            <p>Selected among national top teams for remote sensing AI proposal on satellite imagery analysis.</p>
+            <p class="text-muted">2025 — National-level space technology innovation competition</p>
+            <span class="badge badge-award">Top 140</span>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><i class="fas fa-lightbulb"></i> Smart India Hackathon 2024 — Internal Finalist</h4>
+          </div>
+          <div class="panel-body">
+            <p><strong>Ministry of Education, Government of India</strong></p>
+            <p>Selected as internal finalist in the nationwide innovation challenge addressing government and industry problem statements.</p>
+            <p class="text-muted">Sep 2024</p>
+            <span class="badge badge-award">Finalist</span>
+          </div>
+        </div>
+
+        <h3 class="push-down-3"><span>Research Experience</span></h3>
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h4 class="panel-title"><i class="fas fa-microscope"></i> Research Intern</h4>
+          </div>
+          <div class="panel-body">
+            <p><strong>Satellite Image Analysis for Post-Disaster Assessment</strong></p>
+            <p>Contributed to research on building debris estimation from satellite imagery, leading to ICCV 2025 workshop publication.</p>
+            <p class="text-muted">Work focused on sim-to-real domain adaptation for underwater debris detection.</p>
+          </div>
         </div>
 
       </div>
-    </section>
-
-  </main>
-
-<footer class="footer" role="contentinfo">
-  <div class="container footer__inner">
-    <div class="footer__links">
-      <a href="index.html" class="footer__link">Home</a>
-      <a href="research.html" class="footer__link">Research</a>
-      <a href="projects/" class="footer__link">Projects</a>
-      <a href="contact.html" class="footer__link">Contact</a>
     </div>
-    <div class="footer__socials">
-      <a href="https://github.com/EswarMachara" target="_blank" rel="noopener noreferrer"
-         class="footer__social-link" aria-label="GitHub" title="GitHub">
-        <i data-lucide="github"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/sai-manikanta-eswar-machara/" target="_blank" rel="noopener noreferrer"
-         class="footer__social-link" aria-label="LinkedIn" title="LinkedIn">
-        <i data-lucide="linkedin"></i>
-      </a>
-      <a href="https://scholar.google.com/citations?user=WPB2pcwAAAAJ" target="_blank" rel="noopener noreferrer"
-         class="footer__social-link" aria-label="Google Scholar" title="Google Scholar">
-        <i data-lucide="graduation-cap"></i>
-      </a>
-      <a href="mailto:macharasaimanikantaeswar@gmail.com"
-         class="footer__social-link" aria-label="Email" title="Email">
-        <i data-lucide="mail"></i>
-      </a>
-    </div>
-    <p class="footer__copy">&copy; 2026 Sai Manikanta Eswar Machara. All rights reserved.</p>
+
   </div>
-</footer>
 
-  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Back to top">
-    <i data-lucide="arrow-up"></i>
-  </button>
+  <!-- Back-to-top button -->
+  <a role="button" id="topper" data-toggle="tooltip" data-placement="top" title="Top" class="btn scroll-link" href="#top"><i class="fa fa-fw fa-2x fa-caret-up" aria-hidden="true"></i></a>
 
-  <script src="js/theme.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <!-- footer include -->
+  <div w3-include-html="footer.html"></div>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+  <!-- html file include script -->
+  <script src="js/w3data.js"></script>
+  <script>
+    w3IncludeHTML()
+  </script>
+
+  <!-- Local scripts -->
+  <script src="js/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $("li#achievements a").addClass("active");
+      $("li#achievements a").addClass("hvr-bubble-bottom");
+    });
+  </script>
+
 </body>
+
 </html>

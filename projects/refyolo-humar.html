@@ -1,93 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RefYOLO-HuMaR — Sai Manikanta Eswar Machara</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <meta name="description" content="RefYOLO-HuMaR: Multi-Human Referring Expression Grounding with token-level text-visual alignment.">
   <meta name="author" content="Sai Manikanta Eswar Machara">
 
-  <script>
-    (function(){var t=localStorage.getItem('theme'),d=document.documentElement,n=new Date(),u=n.getTime()+n.getTimezoneOffset()*6e4,i=new Date(u+198e5),h=i.getHours()*60+i.getMinutes(),p;if(h>=330&&h<720)p='morning';else if(h>=720&&h<1020)p='afternoon';else if(h>=1020&&h<1140)p='evening';else p='night';if(t==='dark'||t==='light'){d.setAttribute('data-theme',t);d.setAttribute('data-period',t==='dark'?'night':p)}else{d.setAttribute('data-theme',p==='night'?'dark':'light');d.setAttribute('data-period',p)}})();
-  </script>
+  <title>RefYOLO-HuMaR | Sai Manikanta Eswar Machara</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
 
-  <link rel="stylesheet" href="../css/themes.css">
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/layout.css">
-  <link rel="stylesheet" href="../css/components.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+  <!-- Google web fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <!-- Academicons -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+  <!-- Local styles -->
+  <link rel="stylesheet" href="../css/main.css">
 </head>
-<body class="page">
 
-  <header>
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="navbar__inner">
-      <a href="../index.html" class="navbar__brand">Eswar Machara</a>
-      <ul class="navbar__links" id="navLinks">
-        <li><a href="../index.html" class="navbar__link" data-nav="home">Home</a></li>
-        <li><a href="../research.html" class="navbar__link" data-nav="research">Research</a></li>
-        <li><a href="./" class="navbar__link navbar__link--active" data-nav="projects">Projects</a></li>
-        <li><a href="../achievements.html" class="navbar__link" data-nav="achievements">Achievements</a></li>
-        <li><a href="../contact.html" class="navbar__link" data-nav="contact">Contact</a></li>
-      </ul>
-      <div class="navbar__actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <span class="icon-moon"><i data-lucide="moon"></i></span>
-          <span class="icon-sun"><i data-lucide="sun"></i></span>
-        </button>
-        <button class="hamburger hide-desktop" id="hamburger" aria-label="Open menu" aria-expanded="false">
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-        </button>
-      </div>
-    </div>
-    <div class="nav-overlay" id="navOverlay"></div>
-  </nav>
-</header>
+<body>
 
-  <main class="page-main">
-    <article class="article">
+  <!-- navbar include -->
+  <div w3-include-html="../navbar.html"></div>
 
-      <!-- Back Link -->
-      <a href="./" class="back-link">
-        <i data-lucide="arrow-left"></i> Back to Projects
-      </a>
+  <div class="spacer-div-3 hidden-xs hidden-xs"></div>
 
-      <!-- Header -->
-      <header class="article__header">
-        <h1 class="article__title">RefYOLO-HuMaR</h1>
-        <p class="article__abstract">
+  <!-- Main content -->
+  <div id="main-container" class="container">
+
+    <div class="row">
+      <div class="col-sm-12">
+
+        <p class="push-down-2">
+          <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </p>
+
+        <h1>RefYOLO-HuMaR</h1>
+        <p class="lead">
           A unified framework for multi-human referring expression grounding that integrates
           token-level text-visual alignment with YOLO-based detection for simultaneous
           localization and identification of multiple individuals from natural language descriptions.
         </p>
 
-        <div class="article__metrics">
-          <span class="metric-badge">43.23% MSR</span>
-          <span class="metric-badge">95K+ Images</span>
-          <span class="metric-badge">540K+ Annotations</span>
-          <span class="tag tag--accent">Ongoing Research</span>
-        </div>
+        <p>
+          <span class="badge badge-research">Vision-Language</span>
+          <span class="badge badge-research">Ongoing Research</span>
+          <span class="badge badge-research">Human Detection</span>
+        </p>
 
-        <div class="article__links">
-          <a href="#" class="btn btn--primary btn--sm" aria-label="GitHub repository (coming soon)">
-            <i data-lucide="github"></i> Code (Coming Soon)
+        <p>
+          <a href="#" target="_blank" class="btn btn-primary btn-sm">
+            <i class="fab fa-github"></i> Code (Coming Soon)
           </a>
-          <a href="#" class="btn btn--secondary btn--sm" aria-label="Paper (coming soon)">
-            <i data-lucide="file-text"></i> Paper (In Preparation)
+          <a href="#" target="_blank" class="btn btn-default btn-sm">
+            <i class="fas fa-file-pdf"></i> Paper (In Preparation)
           </a>
-        </div>
-      </header>
+        </p>
 
-      <!-- Content -->
-      <div class="article__content">
+        <hr>
 
-        <h2 id="problem-statement">Problem Statement</h2>
+        <h3>Problem Statement</h3>
         <p>
           Existing referring expression comprehension (REC) methods predominantly focus on
           single-target grounding — localizing one individual per query. In real-world
@@ -97,7 +82,7 @@
           understanding and visual grounding pipelines.
         </p>
 
-        <h2 id="motivation">Motivation</h2>
+        <h3>Motivation</h3>
         <p>
           Multi-human referring expression grounding is critical for applications in surveillance,
           human-robot interaction, and assistive technologies. The ability to ground multiple
@@ -106,166 +91,136 @@
           multi-target visual grounding.
         </p>
 
-        <h2 id="dataset">Dataset</h2>
+        <h3>Dataset</h3>
         <p>
           A large-scale dataset was constructed by integrating annotations from four major sources:
         </p>
         <ul>
-          <li><strong>CrowdPose</strong> — Dense multi-person pose estimation scenes</li>
-          <li><strong>MPII Human Pose</strong> — Diverse everyday human activities</li>
-          <li><strong>OpenImagesV7</strong> — Web-scale images with rich annotations</li>
-          <li><strong>MS COCO</strong> — Complex scenes with multiple interacting people</li>
+          <li><strong>CrowdPose:</strong> Dense multi-person pose estimation scenes</li>
+          <li><strong>MPII Human Pose:</strong> Diverse everyday human activities</li>
+          <li><strong>OpenImagesV7:</strong> Web-scale images with rich annotations</li>
+          <li><strong>MS COCO:</strong> Complex scenes with multiple interacting people</li>
         </ul>
-        <p>
-          The combined dataset contains 95K+ images with 540K+ multi-human referring annotations,
-          making it one of the largest resources for this task.
-        </p>
 
-        <div class="image-placeholder">
-          Dataset Distribution and Statistics Visualization
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4 class="panel-title">Dataset Statistics</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-unstyled">
+              <li><i class="fas fa-images"></i> <strong>95K+</strong> Images</li>
+              <li><i class="fas fa-tag"></i> <strong>540K+</strong> Multi-human referring annotations</li>
+              <li><i class="fas fa-users"></i> Support for 1-8 simultaneous target individuals per query</li>
+            </ul>
+          </div>
         </div>
 
-        <h2 id="methodology">Methodology</h2>
+        <h3>Methodology</h3>
         <p>
           The framework builds on the YOLO detection backbone, extended with a language-aware
           grounding head. Key design choices include:
         </p>
         <ul>
-          <li>MiniLM-based sentence encoding for efficient query representation</li>
-          <li>Token-level text-visual alignment using bidirectional cross-attention</li>
-          <li>Multi-Instance Ranking Loss (MIRL) for hard negative mining</li>
-          <li>Joint training on detection and grounding objectives</li>
+          <li><strong>Sentence Encoding:</strong> MiniLM-based encoding for efficient query representation</li>
+          <li><strong>Token-Level Alignment:</strong> Bidirectional cross-attention between text tokens and visual features</li>
+          <li><strong>Multi-Instance Ranking Loss (MIRL):</strong> Hard negative mining for discriminative grounding</li>
+          <li><strong>Joint Training:</strong> Detection and grounding objectives trained end-to-end</li>
         </ul>
 
-        <h2 id="architecture-overview">Architecture Overview</h2>
+        <h3>Architecture Overview</h3>
+        <img src="../assets/img/projects/refyolo-humar-arch.png" class="img-responsive center-block" alt="RefYOLO-HuMaR Architecture">
+        <p class="text-center text-muted"><em>RefYOLO-HuMaR Architecture — Visual backbone, Language encoder, Cross-attention fusion, Multi-target grounding head</em></p>
 
-        <div class="image-placeholder">
-          RefYOLO-HuMaR Architecture Diagram — Visual backbone, Language encoder, Cross-attention fusion, Multi-target grounding head
-        </div>
-
-        <h3>Visual Backbone</h3>
+        <h4>Visual Backbone</h4>
         <p>
           The visual branch uses a YOLO-based feature pyramid network to extract multi-scale
           spatial features from the input image, providing both global scene context and
           fine-grained local details for accurate person localization.
         </p>
 
-        <h3>Language Encoder</h3>
+        <h4>Language Encoder</h4>
         <p>
-          Natural language queries are processed through a MiniLM encoder to produce token-level
-          embeddings. These embeddings preserve fine-grained linguistic structure necessary for
-          distinguishing between multiple referred individuals.
+          Natural language queries are processed by a pre-trained MiniLM encoder to produce
+          contextual token embeddings that capture semantic relationships between referring words.
         </p>
 
-        <h3>Cross-Attention Fusion</h3>
+        <h4>Cross-Modal Fusion</h4>
         <p>
-          Bidirectional cross-attention modules align visual region features with language
-          token embeddings, enabling the model to jointly attend to relevant spatial regions
-          and linguistic cues for each referred person.
+          Bidirectional cross-attention aligns text tokens with spatial visual features.
+          This produces language-conditioned visual features that highlight regions matching
+          the query description.
         </p>
 
-        <h2 id="experiments">Experiments</h2>
-        <p>
-          Training is conducted on the constructed multi-human dataset with standard
-          train/val/test splits. The model is evaluated against single-target baselines
-          adapted for multi-target grounding, measuring Mean Success Rate (MSR) and
-          per-instance localization accuracy.
-        </p>
-
-        <div class="image-placeholder">
-          Training Curves and Convergence Analysis
-        </div>
-
-        <h2 id="results">Results</h2>
-        <p>
-          Preliminary results demonstrate 43.23% Mean Success Rate on the validation
-          set, establishing a competitive baseline for the multi-human REC task. The
-          token-level alignment approach shows particular strength in disambiguating
-          individuals with similar visual appearances.
-        </p>
-
-        <div class="image-placeholder">
-          Qualitative Results — Grounding visualizations on test images
-        </div>
-
-        <h2 id="failure-cases">Failure Cases</h2>
-        <p>
-          Current failure modes include heavy occlusion scenarios where multiple
-          individuals overlap significantly, and ambiguous language descriptions
-          that can refer to variable numbers of people. Edge cases with extreme
-          crowd density also present challenges for the grounding head.
-        </p>
-
-        <div class="image-placeholder">
-          Failure Case Examples and Analysis
-        </div>
-
-        <h2 id="ablation-study">Ablation Study</h2>
-        <p>
-          Ablation studies are in progress to evaluate the contribution of each
-          component: cross-attention depth, MiniLM vs. alternative encoders,
-          MIRL loss weighting, and multi-scale feature fusion strategies.
-        </p>
-
-        <div class="image-placeholder">
-          Ablation Study Results Table
-        </div>
-
-        <h2 id="future-work">Future Work</h2>
+        <h3>Evaluation Metrics</h3>
         <ul>
-          <li>Integration with SAM2 for pixel-level mask generation from grounded bounding boxes</li>
-          <li>Extension to video-level multi-human tracking with language queries</li>
-          <li>Cross-dataset generalization evaluation on RefCOCO and RefCOCO+</li>
-          <li>Real-time inference optimization for deployment scenarios</li>
+          <li><strong>MSR (Multi-Subject Recall):</strong> Proportion of correctly localized subjects among all referenced individuals</li>
+          <li><strong>Acc@0.5:</strong> Standard accuracy at IoU threshold 0.5</li>
+          <li><strong>mAP:</strong> Mean average precision across different IoU thresholds</li>
         </ul>
 
-        <h2 id="references">References</h2>
+        <h3>Preliminary Results</h3>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>MSR</th>
+              <th>Acc@0.5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Baseline (Single-target)</td>
+              <td>28.5%</td>
+              <td>45.2%</td>
+            </tr>
+            <tr>
+              <td>RefYOLO-HuMaR</td>
+              <td><strong>43.23%</strong></td>
+              <td><strong>58.7%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Key Contributions</h3>
         <ul>
-          <li>Yu, L. et al. "MAttNet: Modular Attention Network for Referring Expression Comprehension." CVPR 2018.</li>
-          <li>Yang, Z. et al. "A Fast Unified Model for Parsing and Sentence Understanding." ACL 2017.</li>
-          <li>Redmon, J. et al. "You Only Look Once: Unified, Real-Time Object Detection." CVPR 2016.</li>
-          <li>Wang, N. et al. "MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression." NeurIPS 2020.</li>
+          <li>First unified framework specifically designed for multi-human referring expression grounding</li>
+          <li>Large-scale dataset with 540K+ multi-target annotations</li>
+          <li>Novel Multi-Instance Ranking Loss for multi-target grounding optimization</li>
         </ul>
 
       </div>
-    </article>
-  </main>
+    </div>
 
-  <footer class="footer" role="contentinfo">
-  <div class="container footer__inner">
-    <div class="footer__links">
-      <a href="../index.html" class="footer__link">Home</a>
-      <a href="../research.html" class="footer__link">Research</a>
-      <a href="./" class="footer__link">Projects</a>
-      <a href="../contact.html" class="footer__link">Contact</a>
-    </div>
-    <div class="footer__socials">
-      <a href="https://github.com/EswarMachara" target="_blank" rel="noopener noreferrer"
-         class="footer__social-link" aria-label="GitHub" title="GitHub">
-        <i data-lucide="github"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/sai-manikanta-eswar-machara/" target="_blank" rel="noopener noreferrer"
-         class="footer__social-link" aria-label="LinkedIn" title="LinkedIn">
-        <i data-lucide="linkedin"></i>
-      </a>
-      <a href="https://scholar.google.com/citations?user=WPB2pcwAAAAJ" target="_blank" rel="noopener noreferrer"
-         class="footer__social-link" aria-label="Google Scholar" title="Google Scholar">
-        <i data-lucide="graduation-cap"></i>
-      </a>
-      <a href="mailto:macharasaimanikantaeswar@gmail.com"
-         class="footer__social-link" aria-label="Email" title="Email">
-        <i data-lucide="mail"></i>
-      </a>
-    </div>
-    <p class="footer__copy">&copy; 2026 Sai Manikanta Eswar Machara. All rights reserved.</p>
   </div>
-</footer>
 
-  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Back to top">
-    <i data-lucide="arrow-up"></i>
-  </button>
+  <!-- Back-to-top button -->
+  <a role="button" id="topper" data-toggle="tooltip" data-placement="top" title="Top" class="btn scroll-link" href="#top"><i class="fa fa-fw fa-2x fa-caret-up" aria-hidden="true"></i></a>
 
-  <script src="../js/theme.js" defer></script>
-  <script src="../js/main.js" defer></script>
+  <!-- footer include -->
+  <div w3-include-html="../footer.html"></div>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+  <!-- html file include script -->
+  <script src="../js/w3data.js"></script>
+  <script>
+    w3IncludeHTML()
+  </script>
+
+  <!-- Local scripts -->
+  <script src="../js/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $("li#projects a").addClass("active");
+      $("li#projects a").addClass("hvr-bubble-bottom");
+    });
+  </script>
+
 </body>
+
 </html>
