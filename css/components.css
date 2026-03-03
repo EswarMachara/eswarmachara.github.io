@@ -902,20 +902,28 @@
 }
 
 
-/* =================== SCROLL SLIDE (Hero → About) =================== */
-.scroll-slide-wrapper {
-  overflow-x: hidden;
+/* =================== INTRO SPLIT SCROLL (Hero → About) =================== */
+.intro-wrapper {
+  overflow: hidden;
 }
 
 @media (min-width: 1024px) {
+  .intro-wrapper.split-active {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .intro-wrapper.split-active .hero-section,
+  .intro-wrapper.split-active .about-section {
+    min-width: 100%;
+    flex-shrink: 0;
+  }
   .hero-section {
     will-change: transform;
-    transition: transform 0.1s linear;
+    transition: transform 0.15s linear;
   }
   .about-section {
     will-change: transform;
-    transform: translateX(80px);
-    transition: transform 0.1s linear;
+    transition: transform 0.15s linear;
   }
 }
 
@@ -925,6 +933,9 @@
     will-change: auto !important;
     transform: none !important;
     transition: none !important;
+  }
+  .intro-wrapper.split-active {
+    display: block !important;
   }
 }
 

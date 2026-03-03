@@ -83,21 +83,28 @@
     }
   }
 
-  /* ── Hero → About Scroll Slide (desktop only) ── */
+  /* ── Hero → About Split Scroll (desktop only) ── */
   function bindScrollSlide() {
+    var wrapper = document.querySelector('.intro-wrapper');
     var hero = document.querySelector('.hero-section');
     var about = document.querySelector('.about-section');
-    if (!hero || !about) return;
+    if (!wrapper || !hero || !about) return;
 
     // Respect prefers-reduced-motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    // Desktop only
+    // Desktop only (≥1024px)
     if (window.innerWidth < 1024) return;
 
     var ticking = false;
     var done = false;
-    var SHIFT = 80;
+    var scrollStart = null;
+    var SCROLL_DISTANCE = window.innerHeight * 1.2; // 120vh scroll distance
+
+    // Enable split layout
+    wrapper.classList.add('split-active');
+    hero.style.transform = 'translateX(0)';
+    about.style.transform = 'translateX(100%)';
 
     function onScroll() {
       if (done) return;
@@ -109,45 +116,38 @@
 
         // Disable if resized to mobile
         if (window.innerWidth < 1024) {
-          hero.style.transform = '';
-          about.style.transform = '';
+          cleanup();
           return;
         }
 
-        var heroRect = hero.getBoundingClientRect();
-        var aboutRect = about.getBoundingClientRect();
-        var vh = window.innerHeight;
+        var scrollY = window.scrollY;
 
-        // Start: hero bottom enters viewport (heroRect.bottom <= vh)
-        // End: about top reaches 20% from top (aboutRect.top <= vh * 0.2)
-        var start = heroRect.bottom;
-        var end = aboutRect.top;
+        // Initialize scroll start point (first scroll after hero visible)
+        if (scrollStart === null) {
+          scrollStart = 0;
+        }
 
-        if (start > vh) {
-          // Hero bottom not yet in view
-          hero.style.transform = 'translateX(0)';
-          about.style.transform = 'translateX(' + SHIFT + 'px)';
-        } else if (end <= vh * 0.2) {
-          // About fully settled
-          hero.style.transform = 'translateX(-' + SHIFT + 'px)';
-          about.style.transform = 'translateX(0)';
-          // Clean up — reset transforms and remove listener
-          done = true;
-          requestAnimationFrame(function () {
-            hero.style.transform = '';
-            about.style.transform = '';
-            hero.style.willChange = 'auto';
-            about.style.willChange = 'auto';
-            window.removeEventListener('scroll', onScroll);
-          });
+        var progress = Math.min(1, Math.max(0, (scrollY - scrollStart) / SCROLL_DISTANCE));
+
+        if (progress < 1) {
+          // During transition
+          hero.style.transform = 'translateX(' + (-100 * progress) + '%)';
+          about.style.transform = 'translateX(' + (100 * (1 - progress)) + '%)';
         } else {
-          // In transition zone
-          var range = vh - vh * 0.2; // total scroll distance for transition
-          var progress = Math.max(0, Math.min(1, (vh - start) / range));
-          hero.style.transform = 'translateX(' + (-SHIFT * progress) + 'px)';
-          about.style.transform = 'translateX(' + (SHIFT * (1 - progress)) + 'px)';
+          // Transition complete — restore normal flow
+          cleanup();
         }
       });
+    }
+
+    function cleanup() {
+      done = true;
+      wrapper.classList.remove('split-active');
+      hero.style.transform = '';
+      about.style.transform = '';
+      hero.style.willChange = 'auto';
+      about.style.willChange = 'auto';
+      window.removeEventListener('scroll', onScroll);
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
