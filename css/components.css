@@ -867,39 +867,61 @@
 
 
 /* =================== INTRO SPLIT SCROLL (Hero → About) =================== */
+/* Mobile: normal stacked flow */
+.intro-container {
+  /* No special styling on mobile */
+}
 .intro-wrapper {
-  overflow: hidden;
+  /* Normal flow on mobile */
 }
 
+/* Desktop: sticky scroll-pinned horizontal split */
 @media (min-width: 1024px) {
-  .intro-wrapper.split-active {
+  .intro-container {
+    height: 200vh; /* 100vh content + 100vh scroll distance */
+  }
+  .intro-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
     display: flex;
     flex-wrap: nowrap;
+    overflow: hidden;
   }
-  .intro-wrapper.split-active .hero-section,
-  .intro-wrapper.split-active .about-section {
+  .intro-wrapper .hero-section,
+  .intro-wrapper .about-section {
     min-width: 100%;
+    width: 100%;
     flex-shrink: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .hero-section {
+  .intro-wrapper .hero-section {
     will-change: transform;
-    transition: transform 0.15s linear;
   }
-  .about-section {
+  .intro-wrapper .about-section {
     will-change: transform;
-    transition: transform 0.15s linear;
   }
 }
 
+/* Reduced motion: disable all transforms */
 @media (prefers-reduced-motion: reduce) {
-  .hero-section,
-  .about-section {
-    will-change: auto !important;
-    transform: none !important;
-    transition: none !important;
+  .intro-container {
+    height: auto !important;
   }
-  .intro-wrapper.split-active {
+  .intro-wrapper {
+    position: static !important;
+    height: auto !important;
     display: block !important;
+  }
+  .intro-wrapper .hero-section,
+  .intro-wrapper .about-section {
+    min-width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    will-change: auto !important;
   }
 }
 

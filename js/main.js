@@ -85,10 +85,12 @@
 
   /* ── Hero → About Split Scroll (desktop only) ── */
   function bindScrollSlide() {
+    var container = document.querySelector('.intro-container');
     var wrapper = document.querySelector('.intro-wrapper');
     var hero = document.querySelector('.hero-section');
     var about = document.querySelector('.about-section');
-    if (!wrapper || !hero || !about) return;
+    
+    if (!container || !wrapper || !hero || !about) return;
 
     // Respect prefers-reduced-motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -97,61 +99,53 @@
     if (window.innerWidth < 1024) return;
 
     var ticking = false;
-    var done = false;
-    var scrollStart = null;
-    var SCROLL_DISTANCE = window.innerHeight * 1.2; // 120vh scroll distance
+    // Scroll distance = 100vh (the extra height in intro-container)
+    var scrollDistance = window.innerHeight;
 
-    // Enable split layout
-    wrapper.classList.add('split-active');
+    // Initial position: Hero visible, About off to the right
     hero.style.transform = 'translateX(0)';
     about.style.transform = 'translateX(100%)';
 
     function onScroll() {
-      if (done) return;
       if (ticking) return;
       ticking = true;
 
       requestAnimationFrame(function () {
         ticking = false;
 
-        // Disable if resized to mobile
+        // Skip on mobile
         if (window.innerWidth < 1024) {
-          cleanup();
+          hero.style.transform = '';
+          about.style.transform = '';
           return;
         }
 
+        // Calculate how far we've scrolled into the container
+        var containerTop = container.offsetTop;
         var scrollY = window.scrollY;
+        var scrolled = scrollY - containerTop;
 
-        // Initialize scroll start point (first scroll after hero visible)
-        if (scrollStart === null) {
-          scrollStart = 0;
-        }
+        // Clamp progress between 0 and 1
+        var progress = Math.max(0, Math.min(1, scrolled / scrollDistance));
 
-        var progress = Math.min(1, Math.max(0, (scrollY - scrollStart) / SCROLL_DISTANCE));
-
-        if (progress < 1) {
-          // During transition
-          hero.style.transform = 'translateX(' + (-100 * progress) + '%)';
-          about.style.transform = 'translateX(' + (100 * (1 - progress)) + '%)';
-        } else {
-          // Transition complete — restore normal flow
-          cleanup();
-        }
+        // Apply transforms:
+        // Hero: slides from translateX(0) to translateX(-100%)
+        // About: slides from translateX(100%) to translateX(0)
+        hero.style.transform = 'translateX(' + (-100 * progress) + '%)';
+        about.style.transform = 'translateX(' + (100 * (1 - progress)) + '%)';
       });
     }
 
-    function cleanup() {
-      done = true;
-      wrapper.classList.remove('split-active');
-      hero.style.transform = '';
-      about.style.transform = '';
-      hero.style.willChange = 'auto';
-      about.style.willChange = 'auto';
-      window.removeEventListener('scroll', onScroll);
-    }
-
     window.addEventListener('scroll', onScroll, { passive: true });
-    // Initial check
+    window.addEventListener('resize', function() {
+      // Reset on resize to mobile
+      if (window.innerWidth < 1024) {
+        hero.style.transform = '';
+        about.style.transform = '';
+      }
+    });
+    
+    // Initial position
     onScroll();
   }
 
