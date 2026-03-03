@@ -96,6 +96,21 @@ p {
   text-align: center;
 }
 
+/* Fix email overflow in contact table */
+#contact-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+#contact-table td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+#contact-table td a {
+  word-break: break-all;
+}
+
 /* Format the nav */
 nav {
   padding-top: 1rem;
