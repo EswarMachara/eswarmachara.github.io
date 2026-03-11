@@ -1,148 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Doc2Data | Sai Manikanta Eswar Machara</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Favicons -->
   <link rel="shortcut icon" href="../favicon/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="manifest" href="../favicon/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
 
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-  <!-- Academicons -->
-  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
-
-  <!-- Local CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXpO6+Zc8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/main.css">
+
+  <style>
+    body { background:#fff; font-family:"Open Sans",Arial,sans-serif; font-size:15.5px; line-height:1.75; color:#333; }
+    .article-hero { background:#ffffff; border-bottom:1px solid #e5e8ed; padding:48px 20px 36px; text-align:center; position:relative; }
+    .hero-title { font-family:"Montserrat",Helvetica,sans-serif; font-size:3rem; font-weight:700; color:#20364c; line-height:1.22; margin:0 auto 18px; max-width:860px; }
+    .hero-meta { font-size:1.25rem; color:slategray; font-family:"Open Sans",sans-serif; margin-bottom:18px; }
+    .hero-authors { font-family:"Open Sans",sans-serif; font-size:1.45rem; color:#333; margin-bottom:6px; }
+    .hero-authors a { color:#1585cf; text-decoration:none; font-weight:600; }
+    .draft-badge { display:inline-block; background:#fff8e7; color:#b87c00; border:1px solid #f0d080; padding:5px 16px; border-radius:20px; font-family:"Montserrat",sans-serif; font-size:1.3rem; font-weight:600; margin-bottom:20px; }
+    .article-body { max-width:860px; margin:0 auto; padding:60px 20px 80px; text-align:center; }
+    .coming-soon-icon { font-size:4.5rem; color:#c8d3de; margin-bottom:24px; }
+    .coming-soon-title { font-family:"Montserrat",Helvetica,sans-serif; font-size:2rem; font-weight:700; color:#20364c; margin-bottom:14px; }
+    .coming-soon-text { font-size:1.5rem; color:#5a6a7a; max-width:580px; margin:0 auto 32px; line-height:1.7; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin:0 auto 36px; justify-content:center; }
+    .tag { background:#eaf4fb; color:#1585cf; border:1px solid #b8ddf5; padding:4px 14px; border-radius:20px; font-size:1.2rem; font-weight:500; font-family:"Montserrat",sans-serif; }
+    .hero-back-link { position:absolute; top:18px; left:20px; display:inline-flex; align-items:center; gap:6px; font-size:1.3rem; color:#1585cf; font-family:"Montserrat",sans-serif; font-weight:500; text-decoration:none; transition:color 0.2s; }
+    .hero-back-link:hover { color:#20364c; text-decoration:none; }
+    .contact-text { font-size:1.35rem; color:slategray; margin-top:40px; }
+    .contact-text a { color:#1585cf; }
+    @media (max-width:767px) { .hero-back-link{position:static;display:inline-flex;margin-bottom:16px;} .hero-title{font-size:2.2rem;} .coming-soon-title{font-size:1.7rem;} }
+    @media (max-width:480px) { .hero-title{font-size:1.85rem;} }
+  </style>
 </head>
+<body>
 
-<body id="top">
-
-  <!-- Navbar -->
   <div w3-include-html="../navbar.html"></div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 article-body">
-
-        <p class="push-down-2">
-          <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
-        </p>
-
-        <h1>Doc2Data</h1>
-        <p class="lead">
-          Towards Digitization of AP Police Handwritten Documents — An AI-powered 
-          system for automated information extraction from unstructured handwritten 
-          and printed documents using OCR, NLP, and fine-tuned language models.
-        </p>
-
-        <p class="pub-authors" style="font-size: 1.1em; margin-bottom: 10px;">
-          <strong>Sai Manikanta Eswar Machara</strong><sup>1</sup>,
-          <a href="https://nikhil-rao20.github.io" target="_blank">Nikhileswara Rao Sulake</a><sup>1</sup>
-        </p>
-        <p style="font-size: 0.9em; color: #666;">
-          <sup>1</sup> Dept. of CSE, RGUKT Nuzvid
-        </p>
-
-        <p>
-          <span class="badge badge-research">NLP</span>
-          <span class="badge badge-research">Information Extraction</span>
-          <span class="badge badge-research">OCR</span>
-          <span class="badge badge-research">Document Analysis</span>
-        </p>
-
-        <p>
-          <a href="https://github.com/Nikhil-Rao20/TripleD-AI4AP-Police_Doc2Data" target="_blank" class="btn btn-default btn-sm">
-            <i class="fab fa-github"></i> Code
-          </a>
-        </p>
-
-        <hr>
-
-        <h3>Overview</h3>
-        <p>
-          Doc2Data is an AI-powered document digitization system developed for the 
-          Andhra Pradesh Police Department. The system automates the extraction of 
-          structured information from unstructured handwritten and printed documents, 
-          including FIRs, statements, and administrative records.
-        </p>
-
-        <h3>Key Features</h3>
-        <ul>
-          <li><strong>Handwriting Recognition:</strong> Custom OCR pipeline optimized for Telugu and English handwritten text</li>
-          <li><strong>Information Extraction:</strong> Named Entity Recognition (NER) and key-value extraction from unstructured text</li>
-          <li><strong>Document Classification:</strong> Automatic classification of document types (FIR, statement, etc.)</li>
-          <li><strong>Structured Output:</strong> Conversion of extracted information into queryable database format</li>
-          <li><strong>Quality Assurance:</strong> Confidence scoring and human-in-the-loop verification workflow</li>
-        </ul>
-
-        <h3>Technical Approach</h3>
-        <p>
-          The system employs a multi-stage pipeline:
-        </p>
-        <ul>
-          <li><strong>Stage 1:</strong> Document preprocessing and image enhancement for OCR</li>
-          <li><strong>Stage 2:</strong> Text extraction using custom-trained OCR models</li>
-          <li><strong>Stage 3:</strong> NLP-based information extraction using fine-tuned transformers</li>
-          <li><strong>Stage 4:</strong> Rule-based post-processing and validation</li>
-          <li><strong>Stage 5:</strong> Structured data generation and database integration</li>
-        </ul>
-
-        <h3>Impact</h3>
-        <p>
-          The Doc2Data system aims to significantly reduce manual data entry workload 
-          for police administrative staff, improve data accuracy, and enable faster 
-          retrieval and analysis of historical records.
-        </p>
-
-        <div class="alert alert-info" style="margin-top: 30px;">
-          <i class="fas fa-info-circle"></i> 
-          <strong>Note:</strong> This project is part of an ongoing collaboration. 
-          Additional technical details and results will be published upon completion.
-        </div>
-
-      </div>
+  <section class="article-hero">
+    <a href="../projects.html" class="hero-back-link">
+      <i class="fas fa-arrow-left"></i> Back to Projects
+    </a>
+    <h1 class="hero-title">Doc2Data: Automated Information Extraction from Unstructured Clinical Documents</h1>
+    <p class="hero-authors">
+      <a href="https://eswarmachara.github.io" target="_blank">Sai Manikanta Eswar Machara</a>
+    </p>
+    <p class="hero-meta">Research Article &nbsp;·&nbsp; NLP &nbsp;·&nbsp; Clinical AI</p>
+    <div style="margin-bottom:10px;">
+      <span class="draft-badge"><i class="fas fa-pencil-alt"></i>&nbsp; Article in Preparation</span>
     </div>
+  </section>
+
+  <div class="article-body">
+
+    <div class="tag-list">
+      <span class="tag">NLP</span>
+      <span class="tag">Information Extraction</span>
+      <span class="tag">Clinical Documents</span>
+      <span class="tag">LLM</span>
+      <span class="tag">Structured Data</span>
+      <span class="tag">Healthcare AI</span>
+    </div>
+
+    <div class="coming-soon-icon">
+      <i class="fas fa-file-medical-alt"></i>
+    </div>
+    <h2 class="coming-soon-title">Content Coming Soon</h2>
+    <p class="coming-soon-text">
+      The full technical write-up for this project is currently being prepared. Doc2Data focuses on structured data extraction from unstructured clinical text — discharge summaries, radiology reports, and physician notes — using fine-tuned language models and rule-based post-processing to produce structured, queryable output.
+    </p>
+    <p class="coming-soon-text" style="font-size:1.35rem; color:#8a9aaa;">
+      Check back soon, or get in touch directly to learn more about the current state of this work.
+    </p>
+
+    <p class="contact-text">
+      <strong>Sai Manikanta Eswar Machara</strong> &mdash;
+      <a href="mailto:macharasaimanikantaeswar@gmail.com">macharasaimanikantaeswar@gmail.com</a> &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/sai-manikanta-eswar-machara/" target="_blank">LinkedIn</a> &nbsp;·&nbsp;
+      <a href="https://github.com/EswarMachara" target="_blank">GitHub</a>
+    </p>
 
   </div>
 
-  <!-- Back-to-top button -->
-  <a role="button" id="topper" data-toggle="tooltip" data-placement="top" title="Top" class="btn scroll-link" href="#top"><i class="fa fa-fw fa-2x fa-caret-up" aria-hidden="true"></i></a>
+  <a role="button" id="topper" data-toggle="tooltip" data-placement="top" title="Top" class="btn scroll-link" href="#top">
+    <i class="fa fa-fw fa-2x fa-caret-up" aria-hidden="true"></i>
+  </a>
 
-  <!-- footer include -->
   <div w3-include-html="../footer.html"></div>
 
-  <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  <!-- Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-
-  <!-- html file include script -->
   <script src="../js/w3data.js"></script>
-  <script>
-    w3IncludeHTML();
-  </script>
-
+  <script> w3IncludeHTML(); </script>
   <script src="../js/main.js"></script>
 
 </body>
-
 </html>
