@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doc2Data | Sai Manikanta Eswar Machara</title>
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <!-- Academicons -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+  <!-- Local CSS -->
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body id="top">
+
+  <!-- Navbar -->
+  <div w3-include-html="../navbar.html"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 article-body">
+
+        <p class="push-down-2">
+          <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </p>
+
+        <h1>Doc2Data</h1>
+        <p class="lead">
+          Towards Digitization of AP Police Handwritten Documents — An AI-powered 
+          system for automated information extraction from unstructured handwritten 
+          and printed documents using OCR, NLP, and fine-tuned language models.
+        </p>
+
+        <p class="pub-authors" style="font-size: 1.1em; margin-bottom: 10px;">
+          <strong>Sai Manikanta Eswar Machara</strong><sup>1</sup>,
+          <a href="https://nikhil-rao20.github.io" target="_blank">Nikhileswara Rao Sulake</a><sup>1</sup>
+        </p>
+        <p style="font-size: 0.9em; color: #666;">
+          <sup>1</sup> Dept. of CSE, RGUKT Nuzvid
+        </p>
+
+        <p>
+          <span class="badge badge-research">NLP</span>
+          <span class="badge badge-research">Information Extraction</span>
+          <span class="badge badge-research">OCR</span>
+          <span class="badge badge-research">Document Analysis</span>
+        </p>
+
+        <p>
+          <a href="https://github.com/Nikhil-Rao20/TripleD-AI4AP-Police_Doc2Data" target="_blank" class="btn btn-default btn-sm">
+            <i class="fab fa-github"></i> Code
+          </a>
+        </p>
+
+        <hr>
+
+        <h3>Overview</h3>
+        <p>
+          Doc2Data is an AI-powered document digitization system developed for the 
+          Andhra Pradesh Police Department. The system automates the extraction of 
+          structured information from unstructured handwritten and printed documents, 
+          including FIRs, statements, and administrative records.
+        </p>
+
+        <h3>Key Features</h3>
+        <ul>
+          <li><strong>Handwriting Recognition:</strong> Custom OCR pipeline optimized for Telugu and English handwritten text</li>
+          <li><strong>Information Extraction:</strong> Named Entity Recognition (NER) and key-value extraction from unstructured text</li>
+          <li><strong>Document Classification:</strong> Automatic classification of document types (FIR, statement, etc.)</li>
+          <li><strong>Structured Output:</strong> Conversion of extracted information into queryable database format</li>
+          <li><strong>Quality Assurance:</strong> Confidence scoring and human-in-the-loop verification workflow</li>
+        </ul>
+
+        <h3>Technical Approach</h3>
+        <p>
+          The system employs a multi-stage pipeline:
+        </p>
+        <ul>
+          <li><strong>Stage 1:</strong> Document preprocessing and image enhancement for OCR</li>
+          <li><strong>Stage 2:</strong> Text extraction using custom-trained OCR models</li>
+          <li><strong>Stage 3:</strong> NLP-based information extraction using fine-tuned transformers</li>
+          <li><strong>Stage 4:</strong> Rule-based post-processing and validation</li>
+          <li><strong>Stage 5:</strong> Structured data generation and database integration</li>
+        </ul>
+
+        <h3>Impact</h3>
+        <p>
+          The Doc2Data system aims to significantly reduce manual data entry workload 
+          for police administrative staff, improve data accuracy, and enable faster 
+          retrieval and analysis of historical records.
+        </p>
+
+        <div class="alert alert-info" style="margin-top: 30px;">
+          <i class="fas fa-info-circle"></i> 
+          <strong>Note:</strong> This project is part of an ongoing collaboration. 
+          Additional technical details and results will be published upon completion.
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Back-to-top button -->
+  <a role="button" id="topper" data-toggle="tooltip" data-placement="top" title="Top" class="btn scroll-link" href="#top"><i class="fa fa-fw fa-2x fa-caret-up" aria-hidden="true"></i></a>
+
+  <!-- footer include -->
+  <div w3-include-html="../footer.html"></div>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+  <!-- html file include script -->
+  <script src="../js/w3data.js"></script>
+  <script>
+    w3IncludeHTML();
+  </script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+
+</html>

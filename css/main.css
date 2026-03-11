@@ -485,6 +485,26 @@ footer {
   border-color: #20364c;
 }
 
+/* Article page styles - override h3 line-through for project articles */
+.article-body h3 {
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: #3d5166;
+  margin-top: 30px;
+  margin-bottom: 10px !important;
+}
+
+.article-body h3::after {
+  display: none !important;
+  content: none !important;
+}
+
+.article-body h3 span {
+  background: transparent;
+  padding-right: 0;
+}
+
 /* Mobile Responsive */
 @media (max-width: 767px) {
   p, ul, li, dl, dt, dd, blockquote, table, tr, td, th {

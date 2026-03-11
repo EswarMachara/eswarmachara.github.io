@@ -84,84 +84,90 @@
 
         <h3 class="push-down-3"><span>Publications</span></h3>
 
-        <!-- Publication 1: DebrisVision -->
-        <div class="pub-entry">
-          <div class="pub-img-col">
-            <img src="assets/img/projects/debrisvision.png" class="pub-img" alt="DebrisVision">
-          </div>
-          <div class="pub-text-col">
-            <p class="pub-title">DebrisVision: Bridging the Synthetic-to-Real Gap for Enhanced Underwater Debris Analysis</p>
-            <p class="pub-authors">
-              Emnet Tesfaye Retta*, <strong>Sai Manikanta Eswar Machara*</strong>, et al.
-            </p>
-            <p class="pub-venue">
-              <span class="badge badge-conf">ICCV 2025</span>
-              International Conference on Computer Vision (CVAUI &amp; AAMVEM Workshop)
-            </p>
-            <p>
-              <a href="https://openaccess.thecvf.com/content/ICCV2025W/CVAUI%20&%20AAMVEM/papers/Retta_DebrisVision_Bridging_the_Synthetic-to-Real_Gap_for_Enhanced_Underwater_Debris_Analysis_ICCVW_2025_paper.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="https://github.com/debrisvision/debrisvision" target="_blank"><i class="fab fa-github"></i> Code</a>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="#" target="_blank"><i class="fas fa-globe"></i> Project Page</a>
-            </p>
-            <p class="pub-abstract">
-              We address the sim-to-real gap in underwater debris detection by combining synthetic data generation with domain adaptation techniques. 
-              Our approach leverages photorealistic rendering and adversarial training to achieve state-of-the-art results on real underwater imagery.
-            </p>
-          </div>
-        </div>
+        <ul class="pub-list">
 
-        <!-- Publication 2: CIPS-Net -->
-        <div class="pub-entry">
-          <div class="pub-img-col">
-            <img src="assets/img/projects/cips-net.png" class="pub-img" alt="CIPS-Net">
+        <!-- Publication 1: DebrisVision -->
+        <li class="pub-entry">
+          <div class="pub-thumb">
+            <span class="pub-venue-badge badge-conf">ICCV 2025</span>
+            <img class="pub-thumb-img" src="assets/img/publications/debrisvision.png" alt="DebrisVision paper thumbnail" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="pub-thumb-placeholder" style="display:none;"><i class="fas fa-file-alt"></i></div>
           </div>
-          <div class="pub-text-col">
-            <p class="pub-title">CIPS-Net: A Comprehensive Framework for Histopathology Image Analysis</p>
-            <p class="pub-authors">
-              Nikhileswara Rao Sulake<sup>†</sup>, <strong>Sai Manikanta Eswar Machara<sup>†</sup></strong>, Sivaji Retta, Iyyakutti Iyappan Ganapathi, Naoufel Werghi
-            </p>
-            <p class="pub-venue">
-              <span class="badge badge-conf">MICCAI 2026</span>
-              29<sup>th</sup> Medical Image Computing and Computer Assisted Intervention [*Under Review]
-            </p>
-            <p>
-              <a href="#" target="_blank"><i class="fas fa-file-pdf"></i> Paper (Coming Soon)</a>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="#" target="_blank"><i class="fab fa-github"></i> Code (Upon Acceptance)</a>
-            </p>
-            <p class="pub-abstract">
-              A comprehensive deep learning framework for histopathology whole slide image analysis, combining multi-scale feature extraction with attention mechanisms for accurate tumor detection and tissue classification.
-            </p>
-            <p style="font-size: 0.85em; color: #666;"><sup>†</sup> Equal contribution</p>
+          <div class="pub-body">
+            <p class="pub-title"><a href="https://openaccess.thecvf.com/content/ICCV2025W/CVAUI%20&%20AAMVEM/papers/Retta_DebrisVision_Bridging_the_Synthetic-to-Real_Gap_for_Enhanced_Underwater_Debris_Analysis_ICCVW_2025_paper.pdf" target="_blank" rel="noopener">DebrisVision: Bridging the Synthetic-to-Real Gap for Enhanced Underwater Debris Analysis</a></p>
+            <p class="pub-authors">Emnet Tesfaye Retta*, <strong>Sai Manikanta Eswar Machara*</strong>, et al.</p>
+            <p class="pub-venue"><em>International Conference on Computer Vision (CVAUI &amp; AAMVEM Workshop), 2025</em></p>
+            <div class="pub-links">
+              <a href="https://openaccess.thecvf.com/content/ICCV2025W/CVAUI%20&%20AAMVEM/papers/Retta_DebrisVision_Bridging_the_Synthetic-to-Real_Gap_for_Enhanced_Underwater_Debris_Analysis_ICCVW_2025_paper.pdf" class="pub-btn" target="_blank">PDF</a>
+              <a href="https://github.com/debrisvision/debrisvision" class="pub-btn" target="_blank">CODE</a>
+            </div>
           </div>
-        </div>
+        </li>
+
+        <!-- Publication 2: CIPS-Net for Histopathology -->
+        <li class="pub-entry">
+          <div class="pub-thumb">
+            <span class="pub-venue-badge badge-conf">MICCAI 2026</span>
+            <img class="pub-thumb-img" src="assets/img/publications/cips_net_paper.png" alt="CIPS-Net for Histopathology paper thumbnail" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="pub-thumb-placeholder" style="display:none;"><i class="fas fa-file-alt"></i></div>
+          </div>
+          <div class="pub-body">
+            <p class="pub-title"><a href="#" target="_blank" rel="noopener">CIPS-Net: A Comprehensive Framework for Histopathology Image Analysis</a></p>
+            <p class="pub-authors"><strong>Sai Manikanta Eswar Machara</strong><sup>†</sup>, Nikhileswara Rao Sulake<sup>†</sup>, Sivaji Retta, Iyyakutti Iyappan Ganapathi, Naoufel Werghi</p>
+            <p class="pub-venue"><em>29<sup>th</sup> Medical Image Computing and Computer Assisted Intervention (MICCAI), 2026 [*Under Review]</em></p>
+            <div class="pub-links">
+              <!-- <a href="#" class="pub-btn">CODE</a> -->
+              <!-- <a href="#" class="pub-btn">WEBSITE</a> -->
+            </div>
+          </div>
+        </li>
 
         <!-- Publication 3: MINDER -->
-        <div class="pub-entry">
-          <div class="pub-img-col">
-            <img src="assets/img/projects/minder.png" class="pub-img" alt="MINDER">
+        <li class="pub-entry">
+          <div class="pub-thumb">
+            <span class="pub-venue-badge badge-conf">IEEE CONNECT 2026</span>
+            <img class="pub-thumb-img" src="assets/img/publications/minder_paper.png" alt="MINDER paper thumbnail" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="pub-thumb-placeholder" style="display:none;"><i class="fas fa-file-alt"></i></div>
           </div>
-          <div class="pub-text-col">
-            <p class="pub-title">MINDER: Machine LearnIng Framework for DepressioN Score Analysis in MinDfulness IntERventions across Medically Complex Patients</p>
-            <p class="pub-authors">
-              Nikhileswara Rao Sulake, <strong>Sai Manikanta Eswar Machara</strong>, Divya Katam, Sivalal Kethavath
-            </p>
-            <p class="pub-venue">
-              <span class="badge badge-conf">IEEE CONNECT 2026</span>
-              12<sup>th</sup> IEEE International Conference on Electronics, Computing and Communication Technologies [*Under Review]
-            </p>
-            <p>
-              <a href="#" target="_blank"><i class="fas fa-file-pdf"></i> Paper (Coming Soon)</a>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="#" target="_blank"><i class="fab fa-github"></i> Code (Upon Acceptance)</a>
-            </p>
-            <p class="pub-abstract">
-              A machine learning framework for analyzing depression scores in mindfulness intervention studies across medically complex patient populations, leveraging multimodal data fusion and temporal modeling.
-            </p>
+          <div class="pub-body">
+            <p class="pub-title"><a href="#" target="_blank" rel="noopener">MINDER: Machine LearnIng Framework for DepressioN Score Analysis in MinDfulness IntERventions across Medically Complex Patients</a></p>
+            <p class="pub-authors"><strong>Sai Manikanta Eswar Machara</strong>, Nikhileswara Rao Sulake, Divya Katam, Sivalal Kethavath</p>
+            <p class="pub-venue"><em>12<sup>th</sup> IEEE International Conference on Electronics, Computing and Communication Technologies 2026 [*Under Review]</em></p>
+            <div class="pub-links">
+              <!-- <a href="#" class="pub-btn">CODE</a> -->
+              <!-- <a href="#" class="pub-btn">WEBSITE</a> -->
+            </div>
           </div>
-        </div>
+        </li>
+
+        </ul>
+
+        <p style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">
+          † Equal contribution &nbsp;&nbsp;|&nbsp;&nbsp; * Equal contribution
+        </p>
+
+        <h3 class="push-down-4"><span>Ongoing Research Projects</span></h3>
+        <ul>
+          <li>
+            <strong>HuMAR</strong> - Working on developing efficient and scalable text-instructed vision-language model for multimodal and multitasking Human Centric detection.
+          </li>
+        </ul>
+
+        <h3 class="push-down-4"><span>Research Competitions</span></h3>
+        <ul>
+          <li>
+            <a href="https://bhi.embs.org/2025/data-competition/" target="_blank" rel="noopener">Top 10</a> - Track 1, 
+            IEEE EMBS <a href="https://bhi.embs.org/2025/" target="_blank" rel="noopener">Biomedical & Health Informatics</a> (BHI) Conference Data Competition, 2025
+          </li>
+          <li>
+            <a href="https://maic.or.kr/challenge/51/public-ranking" target="_blank" rel="noopener">Top 22</a> - 
+            Multimodal AI4TB Challenge (MAIC), <a href="http://www.snuh.org/global/en/main.do" target="_blank" rel="noopener">Seoul National University Hospital</a>, 2024
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/posts/nikhileswara-rao-sulake_knowledge-ai-research-activity-7280180242139230208-rNWK" target="_blank" rel="noopener">Top 3</a> - 
+            Intel AI Hackathon 2024, <a href="https://ieeeindicon.org/" target="_blank" rel="noopener">IEEE Indicon</a> at IIT Kharagpur, 2024
+          </li>
+        </ul>
 
         <h3 class="push-down-4"><span>Research Interests</span></h3>
 
