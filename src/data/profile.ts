@@ -21,7 +21,7 @@ export const profile = {
   location: "Bangalore, India",
   university: "RGUKT, Nuzvid",
   universityHref: rguktUrl,
-  headshot: "/images/profile/headshot.png",
+  headshot: "/images/profile/headshot.webp",
 };
 
 export const bio: RichText[] = [

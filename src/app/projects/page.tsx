@@ -13,6 +13,13 @@ export const metadata: Metadata = {
     title: "Projects | Sai Manikanta Eswar Machara",
     description: "Projects by Sai Manikanta Eswar Machara",
     url: "/projects",
+    images: ["/images/profile/headshot.webp"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects | Sai Manikanta Eswar Machara",
+    description: "Projects by Sai Manikanta Eswar Machara",
+    images: ["/images/profile/headshot.webp"],
   },
 };
 

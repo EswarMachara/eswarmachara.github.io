@@ -7,6 +7,7 @@ import Badge from "@/components/Badge";
 import ArticleContent from "@/components/ArticleContent";
 import MagneticButton from "@/components/effects/MagneticButton";
 import { getProject, projects } from "@/data/projects";
+import { site } from "@/data/profile";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -21,6 +22,8 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!project) return {};
 
+  const images = [project.thumbnail];
+
   return {
     title: project.title,
     description: project.summary,
@@ -29,6 +32,14 @@ export async function generateMetadata({
       title: `${project.title} | Sai Manikanta Eswar Machara`,
       description: project.summary,
       url: `/projects/${project.slug}`,
+      type: "article",
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description: project.summary,
+      images,
     },
   };
 }
@@ -44,8 +55,35 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   const project = getProject(slug);
   if (!project) notFound();
 
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.summary,
+    url: `${site.url}/projects/${project.slug}`,
+    image: `${site.url}${project.thumbnail}`,
+    author: (project.authors ?? []).map((author) => ({
+      "@type": "Person",
+      name: author.name,
+      ...(author.href && { url: author.href }),
+    })),
+    codeRepository: project.githubHref,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Projects", item: `${site.url}/projects` },
+      { "@type": "ListItem", position: 3, name: project.title, item: `${site.url}/projects/${project.slug}` },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-4xl px-5 py-14 sm:py-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Reveal>
         <Link href="/projects" className="inline-flex items-center gap-2 text-sm font-medium text-wine hover:text-wine-dark">
           <FaArrowLeft size={12} /> Back to Projects

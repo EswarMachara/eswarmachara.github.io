@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     title: "Experience | Sai Manikanta Eswar Machara",
     description: "Professional experience and academic collaborations",
     url: "/experience",
+    images: ["/images/profile/headshot.webp"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Experience | Sai Manikanta Eswar Machara",
+    description: "Professional experience and academic collaborations",
+    images: ["/images/profile/headshot.webp"],
   },
 };
 

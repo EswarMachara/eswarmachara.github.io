@@ -8,6 +8,7 @@ import Badge from "@/components/Badge";
 import ArticleContent from "@/components/ArticleContent";
 import MagneticButton from "@/components/effects/MagneticButton";
 import { getPublication, publications } from "@/data/research";
+import { site } from "@/data/profile";
 
 const ARTICLE_SLUGS = publications.filter((p) => p.sections).map((p) => p.slug);
 
@@ -24,14 +25,35 @@ export async function generateMetadata({
   const publication = getPublication(slug);
   if (!publication || !publication.sections) return {};
 
+  const description = publication.deck ?? publication.venue;
+  const images = publication.heroImage ? [publication.heroImage] : ["/images/profile/headshot.webp"];
+  const publicationYear = publication.dateLabel?.match(/\d{4}/)?.[0];
+
   return {
     title: publication.title,
-    description: publication.deck ?? publication.venue,
+    description,
     alternates: { canonical: `/research/${publication.slug}` },
     openGraph: {
       title: `${publication.title} | Sai Manikanta Eswar Machara`,
-      description: publication.deck ?? publication.venue,
+      description,
       url: `/research/${publication.slug}`,
+      type: "article",
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: publication.title,
+      description,
+      images,
+    },
+    other: {
+      citation_title: publication.title,
+      ...(publication.articleAuthors && {
+        citation_author: publication.articleAuthors.map((author) => author.name),
+      }),
+      ...(publicationYear && { citation_publication_date: publicationYear }),
+      citation_conference_title: publication.venue,
+      ...(publication.paperHref && { citation_pdf_url: publication.paperHref }),
     },
   };
 }
@@ -56,9 +78,39 @@ export default async function ResearchArticlePage({ params }: { params: Promise<
     0,
   );
   const readingMinutes = estimateReadingMinutes(wordCount);
+  const publicationYear = publication.dateLabel?.match(/\d{4}/)?.[0];
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    headline: publication.title,
+    description: publication.deck ?? publication.venue,
+    url: `${site.url}/research/${publication.slug}`,
+    ...(publication.heroImage && { image: `${site.url}${publication.heroImage}` }),
+    ...(publicationYear && { datePublished: publicationYear }),
+    author: (publication.articleAuthors ?? []).map((author) => ({
+      "@type": "Person",
+      name: author.name,
+      ...(author.href && { url: author.href }),
+    })),
+    publisher: { "@type": "Organization", name: publication.venue },
+    ...(publication.paperHref && { sameAs: publication.paperHref }),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Research", item: `${site.url}/research` },
+      { "@type": "ListItem", position: 3, name: publication.title, item: `${site.url}/research/${publication.slug}` },
+    ],
+  };
 
   return (
     <article className="mx-auto max-w-2xl px-5 py-14 sm:py-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Reveal>
         <Link href="/research" className="inline-flex items-center gap-2 text-sm font-medium text-wine hover:text-wine-dark">
           <FaArrowLeft size={12} /> Back to Research

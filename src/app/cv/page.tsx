@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     title: `CV | ${site.name}`,
     description: `Curriculum vitae of ${site.name}.`,
     url: "/cv",
+    images: ["/images/profile/headshot.webp"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `CV | ${site.name}`,
+    description: `Curriculum vitae of ${site.name}.`,
+    images: ["/images/profile/headshot.webp"],
   },
 };
 

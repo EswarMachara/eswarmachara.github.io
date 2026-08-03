@@ -9,12 +9,31 @@ import { competitions, ongoingResearch, publications } from "@/data/research";
 export const metadata: Metadata = {
   title: "Research",
   description: "Research publications by Sai Manikanta Eswar Machara in computer vision, medical imaging, and deep learning.",
-  keywords: ["Eswar Machara", "research", "publications", "ICCV 2025", "DebrisVision", "computer vision"],
+  keywords: [
+    "Eswar Machara",
+    "research",
+    "publications",
+    "ICCV 2025",
+    "MICCAI 2026",
+    "DebrisVision",
+    "computer vision",
+    "nucleus segmentation",
+    "histopathology AI",
+    "echocardiography",
+    "cardiac phase detection",
+  ],
   alternates: { canonical: "/research" },
   openGraph: {
     title: "Research | Sai Manikanta Eswar Machara",
     description: "Research publications by Sai Manikanta Eswar Machara",
     url: "/research",
+    images: ["/images/profile/headshot.webp"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Research | Sai Manikanta Eswar Machara",
+    description: "Research publications by Sai Manikanta Eswar Machara",
+    images: ["/images/profile/headshot.webp"],
   },
 };
 

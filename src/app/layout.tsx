@@ -57,7 +57,13 @@ export const metadata: Metadata = {
     description: `${site.name} | Homepage`,
     url: site.url,
     siteName: `${site.name} | Homepage`,
-    images: ["/images/profile/headshot.png"],
+    images: [{ url: "/images/profile/headshot.webp", width: 1024, height: 900, alt: site.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.name,
+    description: `${site.name} | Homepage`,
+    images: ["/images/profile/headshot.webp"],
   },
 };
 
@@ -67,15 +73,42 @@ const personJsonLd = {
   name: site.name,
   alternateName: ["Eswar Machara", "S. M. E. Machara"],
   url: site.url,
-  image: `${site.url}/images/profile/headshot.png`,
+  image: `${site.url}/images/profile/headshot.webp`,
   sameAs: [site.github, site.linkedin, site.scholar],
-  jobTitle: "Undergraduate Researcher - Medical Imaging and Computer Vision",
-  affiliation: {
-    "@type": "Organization",
+  jobTitle: "Undergraduate Researcher, Medical Imaging and Computer Vision",
+  description:
+    "Final-year B.Tech Computer Science and Engineering student researching medical imaging, computer vision, and computational biology, with papers accepted at ICCV and MICCAI.",
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
     name: "Rajiv Gandhi University of Knowledge Technologies (RGUKT), Nuzvid, India",
+    url: "https://rguktn.ac.in/",
   },
+  worksFor: [
+    { "@type": "Organization", name: "TANUH, The AI Centre of Excellence, IISc Bangalore" },
+    { "@type": "Organization", name: "MBZUAI" },
+  ],
   email: site.email,
-  knowsAbout: ["Computer Vision", "Deep Learning", "Medical Imaging", "Vision-Language Models"],
+  knowsAbout: [
+    "Computer Vision",
+    "Deep Learning",
+    "Medical Imaging",
+    "Vision-Language Models",
+    "Computational Biology",
+    "Computational Pathology",
+    "Echocardiography Analysis",
+    "Histopathology Image Analysis",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: `${site.name} | Portfolio`,
+  url: site.url,
+  description: "Academic portfolio of Sai Manikanta Eswar Machara: research publications, experience, and CV.",
+  author: { "@type": "Person", name: site.name },
+  publisher: { "@type": "Person", name: site.name },
+  inLanguage: "en-US",
 };
 
 export default function RootLayout({
@@ -89,6 +122,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <CustomCursor />
         <Navbar />

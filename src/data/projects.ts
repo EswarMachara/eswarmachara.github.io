@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: "CardioLens: Comprehensive Cardiac AI Analysis Platform",
     summary:
       "An integrated AI-powered cardiac analysis platform for echocardiogram view classification, ejection fraction estimation, cardiomyopathy detection, and CTA-based coronary segmentation. Developed for the Intel AI Hackathon at IEEE INDICON 2024.",
-    thumbnail: "/images/projects/cardiolens.png",
+    thumbnail: "/images/projects/cardiolens.webp",
     badges: [
       { label: "2nd Runner-up @ IEEE INDICON 2024", variant: "award" },
       { label: "IIT Kharagpur", variant: "award" },
@@ -102,7 +102,7 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "image",
-            src: "/images/projects/cardiolens_arch.png",
+            src: "/images/projects/cardiolens_arch.webp",
             alt: "CardioLens Architecture",
             caption: "CardioLens Pipeline: Frame Segmentation → Volume Estimation → EF Regression → Report Generation",
           },
@@ -151,7 +151,7 @@ export const projects: Project[] = [
     title: "Doc2Data: AP Police Document Digitization",
     summary:
       "An AI-powered system for automated information extraction from unstructured handwritten and printed documents for the Andhra Pradesh Police Department. Combines custom OCR, NLP-based extraction, and fine-tuned language models.",
-    thumbnail: "/images/projects/doc2data.jpg",
+    thumbnail: "/images/projects/doc2data.webp",
     badges: [
       { label: "NLP", variant: "research" },
       { label: "OCR", variant: "research" },
