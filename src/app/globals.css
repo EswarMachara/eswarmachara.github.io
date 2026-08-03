@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1f2937;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Brand palette */
+  --color-navy: #20364c;
+  --color-navy-light: #2d4863;
+  --color-navy-50: #f3f6f9;
+  --color-blue: #1585cf;
+  --color-blue-dark: #0f679f;
+  --color-slate: #64748b;
+
+  /* Badge accents */
+  --color-badge-conf: #1a5276;
+  --color-badge-workshop: #b7600a;
+  --color-badge-journal: #1a7a4a;
+  --color-badge-preprint: #7d3c98;
+  --color-badge-award: #b8860b;
+  --color-badge-research: #1585cf;
+
+  --font-heading: var(--font-montserrat);
+  --font-body: var(--font-open-sans);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), Helvetica, sans-serif;
+}
+
+/* Smooth scrolling for in-page anchors (back-to-top, etc.) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for the news feed panel */
+.thin-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Underline-on-hover link style used inside prose content */
+.link-hover {
+  color: var(--color-blue);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: border-color 0.18s ease;
+}
+
+.link-hover:hover {
+  border-color: var(--color-blue);
+}
