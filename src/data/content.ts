@@ -21,4 +21,6 @@ export interface ArticleAuthor {
   name: string;
   href?: string;
   affiliation: number;
+  /** Marks the author with a † for a shared "equal contribution" footnote. */
+  equalContribution?: boolean;
 }

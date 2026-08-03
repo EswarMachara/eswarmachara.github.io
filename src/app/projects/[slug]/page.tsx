@@ -66,7 +66,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                 ) : (
                   <span className="font-semibold text-ink">{author.name}</span>
                 )}
-                <sup>{author.affiliation}</sup>
+                <sup>
+                  {author.affiliation}
+                  {author.equalContribution && ",†"}
+                </sup>
                 {index < project.authors!.length - 1 && ", "}
               </span>
             ))}
@@ -80,6 +83,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                 <sup>{index + 1}</sup> {aff}
               </span>
             ))}
+            {project.authors?.some((author) => author.equalContribution) && <span>† Equal contribution</span>}
           </p>
         )}
 

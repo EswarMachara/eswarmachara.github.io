@@ -35,8 +35,8 @@ export const publications: Publication[] = [
     thumbnail: "/images/research/cips-net/hero.png",
     links: [{ label: "Project Page", href: "https://nikhil-rao20.github.io/cips-net/" }],
     articleAuthors: [
-      { name: "Nikhileswara Rao Sulake", href: "https://nikhil-rao20.github.io", affiliation: 1 },
-      { name: "Sai Manikanta Eswar Machara", affiliation: 1 },
+      { name: "Nikhileswara Rao Sulake", href: "https://nikhil-rao20.github.io", affiliation: 1, equalContribution: true },
+      { name: "Sai Manikanta Eswar Machara", affiliation: 1, equalContribution: true },
       { name: "Sivaji Retta", affiliation: 1 },
       { name: "Iyyakutti Iyappan Ganapathi", href: "https://scholar.google.com/citations?user=TMpGqLEAAAAJ&hl=en", affiliation: 2 },
       { name: "Muhammad Owais", affiliation: 2 },
@@ -412,7 +412,8 @@ export const competitions: Competition[] = [
   {
     rank: "Top 2 (Runner-up)",
     name: [
-      { text: "Problem Statement 3: Document Forgery & Deepfake Detection, AB PM-JAY Auto-Adjudication Hackathon 2026" },
+      { text: "Problem Statement 3: Document Forgery & Deepfake Detection, " },
+      { text: "AB PM-JAY Auto-Adjudication Hackathon 2026", href: "https://nha.gov.in/hackathon" },
       { text: ", National Health Authority (NHA) with IndiaAI and IISc" },
     ],
   },

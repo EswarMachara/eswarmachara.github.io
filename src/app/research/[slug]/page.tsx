@@ -87,7 +87,10 @@ export default async function ResearchArticlePage({ params }: { params: Promise<
                 ) : (
                   <span className="font-semibold text-ink">{author.name}</span>
                 )}
-                <sup>{author.affiliation}</sup>
+                <sup>
+                  {author.affiliation}
+                  {author.equalContribution && ",†"}
+                </sup>
                 {index < publication.articleAuthors!.length - 1 && ", "}
               </span>
             ))}
@@ -101,6 +104,7 @@ export default async function ResearchArticlePage({ params }: { params: Promise<
                 <sup>{index + 1}</sup> {aff}
               </span>
             ))}
+            {publication.articleAuthors?.some((author) => author.equalContribution) && <span>† Equal contribution</span>}
           </p>
         )}
 

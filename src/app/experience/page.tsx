@@ -27,7 +27,7 @@ export default function ExperiencePage() {
         <Reveal>
           <SectionHeading index="01">Academic Collaborations</SectionHeading>
         </Reveal>
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
+        <div className="flex flex-wrap justify-center gap-5">
           {academicCollaborations.map((entry, index) => (
             <Reveal key={entry.institution} delay={index * 0.06}>
               <ExperienceCard entry={entry} />
@@ -40,7 +40,7 @@ export default function ExperiencePage() {
         <Reveal>
           <SectionHeading index="02">Extra-Curricular</SectionHeading>
         </Reveal>
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3">
+        <div className="flex flex-wrap justify-center gap-5">
           {extraCurricular.map((entry, index) => (
             <Reveal key={entry.institution} delay={index * 0.06}>
               <ExperienceCard entry={entry} />
