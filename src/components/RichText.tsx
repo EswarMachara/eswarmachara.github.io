@@ -19,7 +19,7 @@ export default function RichText({ segments }: { segments: RichTextType }) {
         }
         if (segment.bold) {
           return (
-            <strong key={index} className="font-semibold text-navy">
+            <strong key={index} className="font-semibold text-ink">
               {segment.text}
             </strong>
           );

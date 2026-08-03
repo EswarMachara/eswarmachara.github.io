@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import PageHeader from "@/components/PageHeader";
 import ExperienceCard from "@/components/ExperienceCard";
 import { academicCollaborations, extraCurricular } from "@/data/experience";
 
@@ -19,16 +20,14 @@ export const metadata: Metadata = {
 
 export default function ExperiencePage() {
   return (
-    <div className="mx-auto max-w-4xl px-5 py-12 sm:py-16">
-      <Reveal>
-        <h1 className="font-heading text-3xl font-semibold text-navy">Professional Experience</h1>
-      </Reveal>
+    <div className="mx-auto max-w-4xl px-5 py-14 sm:py-20">
+      <PageHeader kicker="Where I've Worked" title="Experience" />
 
-      <div className="mt-12">
+      <div className="mt-16">
         <Reveal>
-          <SectionHeading>Academic Collaborations</SectionHeading>
+          <SectionHeading index="01">Academic Collaborations</SectionHeading>
         </Reveal>
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
           {academicCollaborations.map((entry, index) => (
             <Reveal key={entry.institution} delay={index * 0.06}>
               <ExperienceCard entry={entry} />
@@ -37,9 +36,9 @@ export default function ExperiencePage() {
         </div>
       </div>
 
-      <div className="mt-14">
+      <div className="mt-16">
         <Reveal>
-          <SectionHeading>Extra-Curricular</SectionHeading>
+          <SectionHeading index="02">Extra-Curricular</SectionHeading>
         </Reveal>
         <div className="grid grid-cols-2 gap-5 sm:grid-cols-3">
           {extraCurricular.map((entry, index) => (

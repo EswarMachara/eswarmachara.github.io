@@ -2,19 +2,35 @@ export interface ExperienceEntry {
   institution: string;
   logo: string;
   role: string;
-  person?: { name: string; href: string };
+  /** Advisor/PI. href left unset until a scholar or faculty profile link is confirmed. */
+  person?: { name: string; href?: string };
   duration: string;
+  /** Override for the logo's container box, e.g. a taller "h-32" for a logo that needs more room. */
   logoClassName?: string;
 }
 
 export const academicCollaborations: ExperienceEntry[] = [
+  {
+    institution: "TANUH, IISc Bangalore",
+    logo: "/images/experience/iisc_logo.png",
+    role: "Research Intern, Renal Health",
+    person: { name: "Prof. Phaneendra K. Yalavarthy", href: "https://scholar.google.co.in/citations?user=a7qDlNQAAAAJ&hl=en" },
+    duration: "2026 - Present",
+  },
+  {
+    institution: "MBZUAI",
+    logo: "/images/experience/mbzuai_logo.png",
+    role: "Remote Research Assistant, Computational Biology",
+    person: { name: "Prof. Yanding Zhao", href: "https://scholar.google.com/citations?user=5GJ_1iIAAAAJ&hl=en" },
+    duration: "2026 - Present",
+  },
   {
     institution: "Khalifa University",
     logo: "/images/experience/khalifa_logo.png",
     role: "Research Collaborator",
     person: { name: "Dr. Iyyakutti I. Ganapathi", href: "https://scholar.google.com/citations?user=TMpGqLEAAAAJ&hl=en" },
     duration: "Aug 2025 - Present",
-    logoClassName: "max-w-[136px] max-h-[136px]",
+    logoClassName: "h-32",
   },
   {
     institution: "IISER, Trivandrum",

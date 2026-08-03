@@ -1,32 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1f2937;
+  --background: #fbf7f0;
+  --foreground: #1b1a1f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Brand palette */
-  --color-navy: #20364c;
-  --color-navy-light: #2d4863;
-  --color-navy-50: #f3f6f9;
-  --color-blue: #1585cf;
-  --color-blue-dark: #0f679f;
-  --color-slate: #64748b;
+  /* Paper & ink — warm editorial base */
+  --color-paper: #fbf7f0;
+  --color-paper-raised: #f3ecdf;
+  --color-ink: #1b1a1f;
+  --color-ink-soft: #55504a;
+
+  /* Warm neutral scale (replaces Tailwind's default cool slate/stone) */
+  --color-stone-50: #faf7f2;
+  --color-stone-100: #f3ecdf;
+  --color-stone-200: #e7dcc7;
+  --color-stone-300: #d6c6a8;
+  --color-stone-400: #b3a184;
+  --color-stone-500: #8c7d64;
+  --color-stone-600: #6b5f4c;
+  --color-stone-700: #534a3b;
+  --color-stone-800: #3a3329;
+  --color-stone-900: #24201a;
+
+  /* Accents */
+  --color-wine: #7a2635;
+  --color-wine-dark: #5c1d28;
+  --color-gold: #ab7d2f;
+  --color-gold-soft: #d8b878;
 
   /* Badge accents */
-  --color-badge-conf: #1a5276;
-  --color-badge-workshop: #b7600a;
-  --color-badge-journal: #1a7a4a;
-  --color-badge-preprint: #7d3c98;
-  --color-badge-award: #b8860b;
-  --color-badge-research: #1585cf;
+  --color-badge-conf: #1b1a1f;
+  --color-badge-workshop: #9c6b1f;
+  --color-badge-journal: #3f6b4a;
+  --color-badge-preprint: #5a4a78;
+  --color-badge-award: #ab7d2f;
 
-  --font-heading: var(--font-montserrat);
-  --font-body: var(--font-open-sans);
+  --font-heading: var(--font-fraunces);
+  --font-body: var(--font-inter);
 }
 
 body {
@@ -41,36 +56,45 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading), Helvetica, sans-serif;
+  font-family: var(--font-heading), Georgia, serif;
 }
 
-/* Smooth scrolling for in-page anchors (back-to-top, etc.) */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar for the news feed panel */
-.thin-scrollbar::-webkit-scrollbar {
-  width: 8px;
+::selection {
+  background: var(--color-wine);
+  color: var(--color-paper);
 }
 
-.thin-scrollbar::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
+/* Dot-grid field — used behind the homepage hero only */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--color-stone-300) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
-.thin-scrollbar::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
+/* Whole-page scrollbar, warm-toned */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.thin-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+::-webkit-scrollbar-track {
+  background: var(--color-paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-stone-300);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-stone-400);
 }
 
 /* Underline-on-hover link style used inside prose content */
 .link-hover {
-  color: var(--color-blue);
+  color: var(--color-wine);
   font-weight: 500;
   text-decoration: none;
   border-bottom: 1px dashed transparent;
@@ -78,5 +102,5 @@ html {
 }
 
 .link-hover:hover {
-  border-color: var(--color-blue);
+  border-color: var(--color-wine);
 }

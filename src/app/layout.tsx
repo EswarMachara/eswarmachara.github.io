@@ -1,29 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Open_Sans } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import { site } from "@/data/profile";
 
-const montserrat = Montserrat({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-montserrat",
+  variable: "--font-fraunces",
   display: "swap",
 });
 
-const openSans = Open_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-open-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#20364c",
+  themeColor: "#1b1a1f",
 };
 
 export const metadata: Metadata = {
@@ -86,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${openSans.variable} h-full`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${fraunces.variable} ${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col antialiased">
         <script
           type="application/ld+json"

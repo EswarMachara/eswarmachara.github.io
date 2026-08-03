@@ -10,10 +10,10 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-5 py-8 text-center sm:flex-row sm:justify-between sm:text-left">
-        <p className="text-sm text-slate-500">&copy; {new Date().getFullYear()} {site.name}</p>
-        <ul className="flex items-center gap-4">
+    <footer className="mt-auto border-t border-stone-200 bg-paper-raised">
+      <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 px-5 py-10 text-center sm:flex-row sm:justify-between sm:text-left">
+        <p className="text-sm text-ink-soft">&copy; {new Date().getFullYear()} {site.name}</p>
+        <ul className="flex items-center gap-5">
           {SOCIAL_LINKS.map(({ href, label, Icon }) => (
             <li key={label}>
               <a
@@ -21,9 +21,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="text-navy/70 transition-colors hover:text-blue"
+                className="text-ink/60 transition-colors hover:text-ink"
               >
-                <Icon size={22} />
+                <Icon size={20} />
               </a>
             </li>
           ))}

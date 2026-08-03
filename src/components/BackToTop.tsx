@@ -27,7 +27,7 @@ export default function BackToTop() {
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.94 }}
           transition={{ duration: 0.2 }}
-          className="fixed bottom-8 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-blue text-white shadow-lg shadow-blue/30 sm:right-8"
+          className="fixed bottom-8 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-lg bg-ink text-gold-soft shadow-lg shadow-ink/20 transition-all hover:text-gold hover:shadow-xl sm:right-8"
         >
           <FaArrowUp size={16} />
         </motion.button>

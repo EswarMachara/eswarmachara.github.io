@@ -20,14 +20,15 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-navy/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-stone-200 bg-paper/90 backdrop-blur">
       <nav className="mx-auto flex max-w-4xl items-center justify-between px-5 py-4">
         <Link
           href="/"
-          className="font-heading text-lg font-semibold text-white transition-colors hover:text-white/80 sm:text-xl"
+          className="flex items-baseline gap-1.5 font-heading text-xl italic text-ink transition-opacity hover:opacity-70"
           onClick={() => setOpen(false)}
         >
-          {site.name}
+          {site.shortName}
+          <span aria-hidden="true" className="text-sm text-gold">·</span>
         </Link>
 
         {/* Desktop nav */}
@@ -38,18 +39,18 @@ export default function Navbar() {
               <li key={item.href} className="relative">
                 <Link
                   href={item.href}
-                  className={`relative block rounded px-3 py-2 font-heading text-sm font-medium transition-colors ${
-                    isActive ? "text-navy" : "text-white/85 hover:text-navy"
+                  className={`relative block px-3 py-2 text-[0.95rem] font-medium tracking-wide transition-colors ${
+                    isActive ? "text-ink" : "text-ink-soft hover:text-ink"
                   }`}
                 >
+                  <span className="relative">{item.label}</span>
                   {isActive && (
                     <motion.span
-                      layoutId="nav-pill"
-                      className="absolute inset-0 rounded bg-white"
+                      layoutId="nav-underline"
+                      className="absolute inset-x-3 -bottom-0.5 h-[2px] bg-gold"
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
-                  <span className="relative">{item.label}</span>
                 </Link>
               </li>
             );
@@ -59,7 +60,7 @@ export default function Navbar() {
               href={site.cv}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-1 block rounded px-3 py-2 font-heading text-sm font-medium text-white/85 transition-colors hover:text-navy hover:bg-white"
+              className="ml-3 block rounded-full border border-ink/70 px-4 py-1.5 text-[0.85rem] font-medium tracking-wide text-ink transition-colors hover:bg-ink hover:text-paper"
             >
               CV
             </a>
@@ -71,7 +72,7 @@ export default function Navbar() {
           type="button"
           aria-label="Toggle navigation"
           aria-expanded={open}
-          className="flex h-9 w-9 items-center justify-center rounded text-white sm:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded text-ink sm:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <FaXmark size={20} /> : <FaBars size={20} />}
@@ -86,15 +87,15 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-white/10 sm:hidden"
+            className="overflow-hidden border-t border-stone-200 sm:hidden"
           >
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className={`block px-5 py-3 font-heading text-sm font-medium ${
-                    pathname === item.href ? "bg-white text-navy" : "text-white/85"
+                  className={`block px-5 py-3 text-sm font-medium ${
+                    pathname === item.href ? "bg-paper-raised text-ink" : "text-ink-soft"
                   }`}
                 >
                   {item.label}
@@ -106,7 +107,7 @@ export default function Navbar() {
                 href={site.cv}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block px-5 py-3 font-heading text-sm font-medium text-white/85"
+                className="block px-5 py-3 text-sm font-medium text-ink-soft"
               >
                 CV
               </a>

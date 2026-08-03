@@ -6,13 +6,13 @@ const variantClasses: Record<BadgeVariant, string> = {
   journal: "bg-badge-journal text-white",
   preprint: "bg-badge-preprint text-white",
   award: "bg-badge-award text-white",
-  research: "bg-navy-50 text-navy border border-navy/15",
+  research: "bg-paper-raised text-ink border border-ink/15",
 };
 
 export default function Badge({ label, variant = "research" }: { label: string; variant?: BadgeVariant }) {
   return (
     <span
-      className={`inline-block rounded-md px-2.5 py-1 text-[0.72rem] font-semibold tracking-wide font-heading ${variantClasses[variant]}`}
+      className={`inline-block rounded-full px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-wider ${variantClasses[variant]}`}
     >
       {label}
     </span>

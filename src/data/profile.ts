@@ -3,6 +3,8 @@ import type { RichText } from "./types";
 export const site = {
   name: "Sai Manikanta Eswar Machara",
   shortName: "Eswar Machara",
+  nameLead: "Sai Manikanta Eswar",
+  nameAccent: "Machara",
   url: "https://eswarmachara.github.io",
   email: "macharasaimanikantaeswar@gmail.com",
   github: "https://github.com/EswarMachara",
@@ -21,7 +23,7 @@ export const profile = {
 
 export const bio: RichText[] = [
   [
-    { text: "Hello, I'm Sai Manikanta Eswar Machara, a third-year undergraduate researcher in Computer Science and Engineering at " },
+    { text: "Hello, I'm Sai Manikanta Eswar Machara, a final-year undergraduate researcher in Computer Science and Engineering at " },
     { text: "Rajiv Gandhi University of Knowledge Technologies (RGUKT)", href: "https://rguktn.ac.in/" },
     { text: " in Nuzvid, India. My research interests are in Medical Imaging, Computational Biology, and Computer Vision, areas where I have been spending most of my time over the past couple of years, learning, building, and slowly finding my direction." },
   ],
@@ -34,7 +36,7 @@ export const bio: RichText[] = [
     { text: ", a few competition placements, and research collaborations that have taught me how to think more carefully about the problems I pick and the methods I use. I am grateful for the mentors and collaborators who have guided me, and I am excited to continue learning and contributing to this field." },
   ],
   [
-    { text: "I am working toward a PhD in Medical Imaging or Computational Biology. My goal is to do research that sits close to clinical practice, the kind of work where the questions come from real problems and the results can find their way back to them." },
+    { text: "I am planning to pursue a PhD in Medical Imaging or Computational Biology directly after my B.Tech. My goal is to do research that sits close to clinical practice, the kind of work where the questions come from real problems and the results can find their way back to them." },
   ],
 ];
 

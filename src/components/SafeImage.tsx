@@ -10,7 +10,9 @@ export default function SafeImage({ className, alt, ...props }: ImageProps & { c
 
   if (failed) {
     return (
-      <div className={`flex items-center justify-center bg-navy-50 text-navy/30 ${className ?? ""}`}>
+      <div
+        className={`flex items-center justify-center bg-paper-raised text-ink/30 ${props.fill ? "absolute inset-0" : ""} ${className ?? ""}`}
+      >
         <FaFileImage size={28} />
       </div>
     );

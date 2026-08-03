@@ -1,27 +1,5 @@
 import type { BadgeVariant } from "./research";
-
-export interface ListItem {
-  label?: string;
-  text: string;
-}
-
-export type ContentBlock =
-  | { kind: "paragraph"; text: string }
-  | { kind: "subheading"; text: string }
-  | { kind: "list"; items: ListItem[] }
-  | { kind: "image"; src: string; alt: string; caption?: string }
-  | { kind: "table"; headers: string[]; rows: string[][] };
-
-export interface ProjectSection {
-  heading: string;
-  blocks: ContentBlock[];
-}
-
-export interface ProjectAuthor {
-  name: string;
-  href?: string;
-  affiliation: number;
-}
+import type { ArticleAuthor, ArticleSection } from "./content";
 
 export interface Project {
   slug: string;
@@ -32,10 +10,10 @@ export interface Project {
   githubHref: string;
   comingSoon?: boolean;
   tags?: string[];
-  authors?: ProjectAuthor[];
+  authors?: ArticleAuthor[];
   affiliations?: string[];
   links?: { label: string; href: string; icon: "pdf" | "slides" | "code" }[];
-  sections?: ProjectSection[];
+  sections?: ArticleSection[];
 }
 
 export const projects: Project[] = [
