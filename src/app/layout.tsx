@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import CustomCursor from "@/components/effects/CustomCursor";
 import { site } from "@/data/profile";
 
 const fraunces = Fraunces({
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description:
-    "Sai Manikanta Eswar Machara — AI Researcher specializing in computer vision, deep learning, and medical imaging. B.Tech student at RGUKT Nuzvid, India.",
+    "Sai Manikanta Eswar Machara, an AI researcher specializing in computer vision, deep learning, and medical imaging. B.Tech student at RGUKT Nuzvid, India.",
   keywords: [
     "Sai Manikanta Eswar Machara",
     "Eswar Machara",
@@ -89,6 +90,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
+        <CustomCursor />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

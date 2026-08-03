@@ -6,6 +6,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import Reveal from "@/components/Reveal";
 import Badge from "@/components/Badge";
 import ArticleContent from "@/components/ArticleContent";
+import MagneticButton from "@/components/effects/MagneticButton";
 import { getPublication, publications } from "@/data/research";
 
 const ARTICLE_SLUGS = publications.filter((p) => p.sections).map((p) => p.slug);
@@ -113,15 +114,16 @@ export default async function ResearchArticlePage({ params }: { params: Promise<
         {publication.links.length > 0 && (
           <div className="mt-5 flex flex-wrap gap-3">
             {publication.links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-ink/70 px-4 py-1.5 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-paper"
-              >
-                {link.label}
-              </a>
+              <MagneticButton key={link.label}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-ink/70 px-4 py-1.5 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-paper"
+                >
+                  {link.label}
+                </a>
+              </MagneticButton>
             ))}
           </div>
         )}

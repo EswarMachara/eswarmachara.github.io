@@ -92,6 +92,12 @@ html {
   background: var(--color-stone-400);
 }
 
+/* Native cursor is hidden only once the custom cursor has taken over (fine pointer, motion allowed) */
+.cursor-none-custom,
+.cursor-none-custom * {
+  cursor: none !important;
+}
+
 /* Underline-on-hover link style used inside prose content */
 .link-hover {
   color: var(--color-wine);

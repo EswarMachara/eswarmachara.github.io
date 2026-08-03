@@ -8,7 +8,7 @@ import { academicCollaborations, extraCurricular } from "@/data/experience";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Professional experience and academic collaborations of Sai Manikanta Eswar Machara — AI research, deep learning projects, and competition achievements.",
+    "Professional experience and academic collaborations of Sai Manikanta Eswar Machara: AI research, deep learning projects, and competition achievements.",
   keywords: ["Eswar Machara experience", "research experience", "AI hackathons", "ICCV 2025", "IEEE INDICON", "RGUKT Nuzvid"],
   alternates: { canonical: "/experience" },
   openGraph: {

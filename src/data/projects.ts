@@ -104,7 +104,7 @@ export const projects: Project[] = [
             kind: "image",
             src: "/images/projects/cardiolens_arch.png",
             alt: "CardioLens Architecture",
-            caption: "CardioLens Pipeline — Frame Segmentation → Volume Estimation → EF Regression → Report Generation",
+            caption: "CardioLens Pipeline: Frame Segmentation → Volume Estimation → EF Regression → Report Generation",
           },
           { kind: "subheading", text: "Segmentation Module" },
           {

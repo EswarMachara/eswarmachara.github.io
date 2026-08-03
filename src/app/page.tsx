@@ -7,6 +7,9 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import HeroIntro from "@/components/HeroIntro";
 import HeroText from "@/components/HeroText";
+import NeuralBackground from "@/components/effects/NeuralBackground";
+import ScrambleText from "@/components/effects/ScrambleText";
+import TiltCard from "@/components/effects/TiltCard";
 import { bio, education, profile, site } from "@/data/profile";
 import { news } from "@/data/news";
 
@@ -23,15 +26,17 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="dot-grid relative overflow-hidden border-b border-stone-200">
-        <div className="mx-auto max-w-4xl px-5 pb-14 pt-16 sm:pb-20 sm:pt-24">
+      <section className="relative overflow-hidden border-b border-stone-200">
+        <NeuralBackground />
+        <div className="relative mx-auto max-w-4xl px-5 pb-14 pt-16 sm:pb-20 sm:pt-24">
           <HeroText>
             <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-gold">
               <span className="h-px w-9 bg-gold" />
               {profile.title}
             </p>
             <h1 className="mt-6 max-w-2xl font-heading text-[2.6rem] font-medium leading-[1.08] text-ink sm:text-6xl">
-              {site.nameLead} <em className="italic text-wine">{site.nameAccent}</em>
+              <ScrambleText text={site.nameLead} />{" "}
+              <ScrambleText as="em" text={site.nameAccent} className="italic text-wine" startDelay={350} />
             </h1>
             <p className="mt-5 max-w-md text-base leading-relaxed text-ink-soft">{profile.program}</p>
           </HeroText>
@@ -41,14 +46,16 @@ export default function HomePage() {
       <div className="mx-auto max-w-4xl px-5 py-14 sm:py-16">
         <div className="grid gap-12 sm:grid-cols-[240px_1fr] sm:gap-14">
           <HeroIntro>
-            <Image
-              src={profile.headshot}
-              alt={`Photo of ${site.name}`}
-              width={260}
-              height={260}
-              priority
-              className="mx-auto aspect-square w-40 rounded-xl border border-stone-200 object-cover sm:mx-0 sm:w-full"
-            />
+            <TiltCard className="mx-auto w-40 sm:mx-0 sm:w-full">
+              <Image
+                src={profile.headshot}
+                alt={`Photo of ${site.name}`}
+                width={260}
+                height={260}
+                priority
+                className="aspect-square w-full rounded-xl border border-stone-200 object-cover"
+              />
+            </TiltCard>
 
             <ul className="mt-10 space-y-3 border-t border-stone-200 pt-6">
               {CONTACT_ROWS.map(({ icon: Icon, content, href }) => (

@@ -33,7 +33,7 @@ export const publications: Publication[] = [
     ],
     venue: "COMPAYL Workshop, MICCAI Society 2026",
     thumbnail: "/images/research/cips-net/hero.png",
-    links: [{ label: "Project Page", href: "https://nikhil-rao20.github.io/cips-net/" }],
+    links: [],
     articleAuthors: [
       { name: "Nikhileswara Rao Sulake", href: "https://nikhil-rao20.github.io", affiliation: 1, equalContribution: true },
       { name: "Sai Manikanta Eswar Machara", affiliation: 1, equalContribution: true },
@@ -394,6 +394,21 @@ export interface OngoingResearchItem {
 }
 
 export const ongoingResearch: OngoingResearchItem[] = [
+  {
+    title: "Cross-Site OCT Generalization",
+    description:
+      "Working at TANUH, IISc Bangalore, under Prof. Phaneendra K. Yalavarthy, on domain generalization for retinal Optical Coherence Tomography, so that models trained on one scanner and clinical site continue to hold up reliably on another, a key barrier to deploying OCT-based screening at scale.",
+  },
+  {
+    title: "eGFR from Renal Ultrasound",
+    description:
+      "Working at TANUH, IISc Bangalore, on estimating eGFR (glomerular filtration rate) directly from kidney ultrasound images, with the resulting estimate serving as a physiological biometric for insurance and risk-assessment use cases.",
+  },
+  {
+    title: "KFRE Recalibration for Indian Cohorts",
+    description:
+      "Working at TANUH, IISc Bangalore, on recalibrating the Kidney Failure Risk Equation for Indian CKD populations, whose demographics and disease patterns are underrepresented in the equation's original validation, to enable more reliable 2- and 5-year kidney-failure risk prediction.",
+  },
   {
     title: "PDS with H&E slides",
     description:

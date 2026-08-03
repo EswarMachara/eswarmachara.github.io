@@ -2,11 +2,12 @@ import Link from "next/link";
 import { FaGithub, FaCircleInfo } from "react-icons/fa6";
 import Badge from "@/components/Badge";
 import SafeImage from "@/components/SafeImage";
+import Spotlight from "@/components/effects/Spotlight";
 import type { Project } from "@/data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="group flex flex-col gap-5 border-l-2 border-stone-200 bg-paper-raised/50 p-5 transition-all hover:border-gold hover:bg-paper-raised sm:flex-row">
+    <Spotlight className="group flex flex-col gap-5 border-l-2 border-stone-200 bg-paper-raised/50 p-5 transition-all hover:border-gold hover:bg-paper-raised sm:flex-row">
       <Link href={`/projects/${project.slug}`} className="relative h-44 w-full shrink-0 overflow-hidden rounded-md bg-stone-100 sm:h-auto sm:w-56">
         <SafeImage
           src={project.thumbnail}
@@ -43,6 +44,6 @@ export default function ProjectCard({ project }: { project: Project }) {
           </a>
         </div>
       </div>
-    </div>
+    </Spotlight>
   );
 }

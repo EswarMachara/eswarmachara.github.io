@@ -5,6 +5,7 @@ import { FaArrowLeft, FaFilePdf, FaGithub, FaFilePowerpoint, FaFileMedical } fro
 import Reveal from "@/components/Reveal";
 import Badge from "@/components/Badge";
 import ArticleContent from "@/components/ArticleContent";
+import MagneticButton from "@/components/effects/MagneticButton";
 import { getProject, projects } from "@/data/projects";
 
 export function generateStaticParams() {
@@ -98,15 +99,16 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             {project.links.map((link) => {
               const Icon = LINK_ICONS[link.icon];
               return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper transition-colors hover:bg-ink/85"
-                >
-                  <Icon size={14} /> {link.label}
-                </a>
+                <MagneticButton key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper transition-colors hover:bg-ink/85"
+                  >
+                    <Icon size={14} /> {link.label}
+                  </a>
+                </MagneticButton>
               );
             })}
           </div>

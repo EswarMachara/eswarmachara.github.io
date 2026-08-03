@@ -2,13 +2,15 @@ import Link from "next/link";
 import RichText from "@/components/RichText";
 import Badge from "@/components/Badge";
 import SafeImage from "@/components/SafeImage";
+import Spotlight from "@/components/effects/Spotlight";
+import MagneticButton from "@/components/effects/MagneticButton";
 import type { Publication } from "@/data/research";
 
 export default function PublicationCard({ publication }: { publication: Publication }) {
   const articleHref = publication.sections ? `/research/${publication.slug}` : undefined;
 
   return (
-    <div className="group flex flex-col gap-5 border-l-2 border-stone-200 bg-paper-raised/50 p-5 transition-all hover:border-gold hover:bg-paper-raised sm:flex-row">
+    <Spotlight className="group flex flex-col gap-5 border-l-2 border-stone-200 bg-paper-raised/50 p-5 transition-all hover:border-gold hover:bg-paper-raised sm:flex-row">
       <div className="relative h-40 w-full shrink-0 overflow-hidden rounded-md bg-stone-200 sm:h-auto sm:w-40">
         <SafeImage
           src={publication.thumbnail}
@@ -42,14 +44,16 @@ export default function PublicationCard({ publication }: { publication: Publicat
         <p className="mt-1 text-sm italic text-ink-soft/80">{publication.venue}</p>
 
         {(articleHref || publication.links.length > 0) && (
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap items-center gap-2">
             {articleHref && (
-              <Link
-                href={articleHref}
-                className="rounded-full bg-ink px-3.5 py-1 text-xs font-semibold tracking-wide text-paper transition-colors hover:bg-ink/85"
-              >
-                READ THE ARTICLE
-              </Link>
+              <MagneticButton>
+                <Link
+                  href={articleHref}
+                  className="inline-block rounded-full bg-ink px-3.5 py-1 text-xs font-semibold tracking-wide text-paper transition-colors hover:bg-ink/85"
+                >
+                  READ THE ARTICLE
+                </Link>
+              </MagneticButton>
             )}
             {publication.links.map((link) => (
               <a
@@ -65,6 +69,6 @@ export default function PublicationCard({ publication }: { publication: Publicat
           </div>
         )}
       </div>
-    </div>
+    </Spotlight>
   );
 }

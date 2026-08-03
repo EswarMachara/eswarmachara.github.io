@@ -1,9 +1,10 @@
 import SafeImage from "@/components/SafeImage";
+import Spotlight from "@/components/effects/Spotlight";
 import type { ExperienceEntry } from "@/data/experience";
 
 export default function ExperienceCard({ entry }: { entry: ExperienceEntry }) {
   return (
-    <div className="group flex h-full w-44 flex-col items-center border border-stone-200 bg-paper-raised/40 p-6 text-center transition-all hover:-translate-y-1 hover:border-gold/60 hover:bg-paper-raised sm:w-48">
+    <Spotlight className="group flex h-full w-44 flex-col items-center border border-stone-200 bg-paper-raised/40 p-6 text-center transition-all hover:-translate-y-1 hover:border-gold/60 hover:bg-paper-raised sm:w-48">
       <div className={`relative h-24 w-full shrink-0 ${entry.logoClassName ?? ""}`}>
         <SafeImage
           src={entry.logo}
@@ -32,6 +33,6 @@ export default function ExperienceCard({ entry }: { entry: ExperienceEntry }) {
         )}
       </div>
       <p className="text-xs font-medium text-ink-soft">{entry.duration}</p>
-    </div>
+    </Spotlight>
   );
 }
