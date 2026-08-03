@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { href: "/", label: "About" },
   { href: "/research", label: "Research" },
   { href: "/experience", label: "Experience" },
+  { href: "/cv", label: "CV" },
   // Projects section is intentionally left out of the primary nav for now while
   // detail pages are still being written up — the route itself stays live at /projects.
 ];
@@ -55,16 +56,6 @@ export default function Navbar() {
               </li>
             );
           })}
-          <li>
-            <a
-              href={site.cv}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-3 block rounded-full border border-ink/70 px-4 py-1.5 text-[0.85rem] font-medium tracking-wide text-ink transition-colors hover:bg-ink hover:text-paper"
-            >
-              CV
-            </a>
-          </li>
         </ul>
 
         {/* Mobile toggle */}
@@ -102,16 +93,6 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
-            <li>
-              <a
-                href={site.cv}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-5 py-3 text-sm font-medium text-ink-soft"
-              >
-                CV
-              </a>
-            </li>
           </motion.ul>
         )}
       </AnimatePresence>

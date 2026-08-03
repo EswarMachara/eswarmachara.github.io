@@ -13,18 +13,26 @@ export const site = {
   cv: "/docs/Eswar_Machara_CV.pdf",
 };
 
+export const rguktUrl = "https://rguktn.ac.in/";
+
 export const profile = {
   title: "Undergraduate Researcher",
   program: "B.Tech in Computer Science and Engineering",
-  location: "Vijayawada, India",
+  location: "Bangalore, India",
   university: "RGUKT, Nuzvid",
+  universityHref: rguktUrl,
   headshot: "/images/profile/headshot.png",
 };
 
 export const bio: RichText[] = [
   [
-    { text: "Hello, I'm Sai Manikanta Eswar Machara, a final-year undergraduate student in Computer Science and Engineering at " },
-    { text: "Rajiv Gandhi University of Knowledge Technologies (RGUKT)", href: "https://rguktn.ac.in/" },
+    { text: "Hello, I'm Sai Manikanta Eswar Machara, a final-year undergraduate student in " },
+    {
+      text: "Computer Science and Engineering",
+      href: "https://www.linkedin.com/company/department-of-cse-rgukt-nuzvid/posts/?feedView=all",
+    },
+    { text: " at " },
+    { text: "Rajiv Gandhi University of Knowledge Technologies (RGUKT)", href: rguktUrl },
     { text: " in Nuzvid, India. My research interests are in Medical Imaging, Computational Biology, and Computer Vision, areas where I have been spending most of my time over the past couple of years, learning, building, and slowly finding my direction." },
   ],
   [
@@ -44,6 +52,7 @@ export interface EducationEntry {
   program: string;
   years: string;
   institution: string;
+  institutionHref?: string;
   location: string;
   gpa: string;
 }
@@ -53,7 +62,16 @@ export const education: EducationEntry[] = [
     program: "B.Tech in Computer Science and Engineering",
     years: "2023 – 2027",
     institution: "Rajiv Gandhi University of Knowledge Technologies, Nuzvid",
+    institutionHref: rguktUrl,
     location: "Andhra Pradesh, India",
-    gpa: "CGPA: 8.95/10",
+    gpa: "CGPA: 9.2/10",
+  },
+  {
+    program: "Pre-University Course (Intermediate)",
+    years: "2021 – 2023",
+    institution: "Rajiv Gandhi University of Knowledge Technologies, Nuzvid",
+    institutionHref: rguktUrl,
+    location: "Andhra Pradesh, India",
+    gpa: "CGPA: 9.86/10",
   },
 ];

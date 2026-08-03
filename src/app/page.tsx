@@ -12,7 +12,7 @@ import { news } from "@/data/news";
 
 const CONTACT_ROWS = [
   { icon: FaHome, content: profile.location },
-  { icon: FaUniversity, content: profile.university },
+  { icon: FaUniversity, content: profile.university, href: profile.universityHref },
   { icon: FaAt, content: site.email, href: `mailto:${site.email}` },
   { icon: SiGooglescholar, content: "Google Scholar", href: site.scholar },
   { icon: FaLinkedin, content: "LinkedIn", href: site.linkedin },
@@ -96,12 +96,19 @@ export default function HomePage() {
               <SectionHeading index="02">Education</SectionHeading>
               <ul className="space-y-4">
                 {education.map((entry) => (
-                  <li key={entry.institution} className="border-l-2 border-gold/50 pl-4">
+                  <li key={entry.program} className="border-l-2 border-gold/50 pl-4">
                     <p className="font-medium text-ink">
                       {entry.program} ({entry.years})
                     </p>
                     <p className="text-sm text-ink-soft">
-                      {entry.institution}, {entry.location}
+                      {entry.institutionHref ? (
+                        <a href={entry.institutionHref} target="_blank" rel="noopener noreferrer" className="link-hover">
+                          {entry.institution}
+                        </a>
+                      ) : (
+                        entry.institution
+                      )}
+                      , {entry.location}
                     </p>
                     <p className="text-sm text-ink-soft">{entry.gpa}</p>
                   </li>

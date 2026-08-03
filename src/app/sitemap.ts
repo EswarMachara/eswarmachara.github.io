@@ -21,5 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/research`, lastModified: new Date(), priority: 0.9 },
     ...articleEntries,
     { url: `${site.url}/experience`, lastModified: new Date(), priority: 0.8 },
+    { url: `${site.url}/cv`, lastModified: new Date(), priority: 0.6 },
   ];
 }
