@@ -45,6 +45,9 @@ export const metadata: Metadata = {
   authors: [{ name: site.name }],
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },
+  verification: {
+    google: "5UPBS4ahIoOay91wKM3dwcxd9NjPOFTcrwVzokoQWaw",
+  },
   manifest: "/manifest.json",
   icons: {
     icon: "/icon.png",
