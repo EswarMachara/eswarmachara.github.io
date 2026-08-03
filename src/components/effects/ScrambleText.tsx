@@ -19,7 +19,7 @@ export default function ScrambleText({
   startDelay?: number;
 }) {
   const reducedMotion = usePrefersReducedMotion();
-  const [display, setDisplay] = useState("");
+  const [display, setDisplay] = useState(text);
 
   useEffect(() => {
     if (reducedMotion) return;
