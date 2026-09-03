@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Children, cloneElement, isValidElement, useId, type ReactElement, type ReactNode } from "react";
 import { formatCountdown } from "@/lib/phd/dates";
 import { URGENCY_CLASSES, urgencyOf } from "@/lib/phd/derive";
 import { PRIORITY_META, STATUS_META, STATUS_ORDER } from "@/lib/phd/presets";
@@ -86,6 +86,18 @@ export function StatusSelect({
   );
 }
 
+/**
+ * A labelled form row.
+ *
+ * The label is associated automatically: when the caller does not pass
+ * `htmlFor` and the child is a single element without its own id, a generated
+ * id is cloned onto the child and the label points at it. Most call sites
+ * omitted `htmlFor`, which left the label as a decorative sibling and the input
+ * with no accessible name.
+ *
+ * A `hint` is wired through `aria-describedby` so it is read as part of the
+ * field rather than being invisible to assistive technology.
+ */
 export function Field({
   label,
   children,
@@ -97,16 +109,40 @@ export function Field({
   hint?: string;
   htmlFor?: string;
 }) {
+  const generatedId = useId();
+  const hintId = `${generatedId}-hint`;
+
+  const only = Children.count(children) === 1 ? Children.only(children) : null;
+  const single = only !== null && isValidElement(only) ? (only as ReactElement<Record<string, unknown>>) : null;
+  const childId = single && typeof single.props.id === "string" ? single.props.id : undefined;
+  const targetId = htmlFor ?? childId ?? (single ? generatedId : undefined);
+
+  const described = [single && typeof single.props["aria-describedby"] === "string" ? single.props["aria-describedby"] : null, hint ? hintId : null]
+    .filter(Boolean)
+    .join(" ");
+
+  const child =
+    single && targetId
+      ? cloneElement(single, {
+          id: targetId,
+          ...(described ? { "aria-describedby": described } : {}),
+        })
+      : children;
+
   return (
     <div>
       <label
-        htmlFor={htmlFor}
+        htmlFor={targetId}
         className="mb-1 block text-[0.7rem] font-semibold uppercase tracking-wider text-ink-soft"
       >
         {label}
       </label>
-      {children}
-      {hint && <p className="mt-1 text-xs leading-relaxed text-ink-soft/80">{hint}</p>}
+      {child}
+      {hint && (
+        <p id={hintId} className="mt-1 text-xs leading-relaxed text-ink-soft/80">
+          {hint}
+        </p>
+      )}
     </div>
   );
 }
@@ -208,6 +244,8 @@ export function TextInput({
   id,
   type = "text",
   className = "",
+  "aria-label": ariaLabel,
+  "aria-describedby": ariaDescribedBy,
 }: {
   value: string;
   onChange: (next: string) => void;
@@ -215,6 +253,8 @@ export function TextInput({
   id?: string;
   type?: "text" | "date" | "url" | "email" | "number";
   className?: string;
+  "aria-label"?: string;
+  "aria-describedby"?: string;
 }) {
   return (
     <input
@@ -222,6 +262,8 @@ export function TextInput({
       type={type}
       value={value}
       placeholder={placeholder}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedBy}
       onChange={(event) => onChange(event.target.value)}
       className={`track-field ${className}`}
     />

@@ -42,8 +42,9 @@
 
   /* PhD tracker status scale, warm-leaning so it sits inside the editorial palette */
   --color-gold-deep: #8a6420;
-  --color-track-researching: #8c7d64;
-  --color-track-shortlisted: #ab7d2f;
+  /* Darkened from #8c7d64 and #ab7d2f, which put white chip text below 4.5:1 */
+  --color-track-researching: #6b5f4c;
+  --color-track-shortlisted: #8a6420;
   --color-track-preparing: #9c6b1f;
   --color-track-submitted: #5a4a78;
   --color-track-interview: #2f6274;
@@ -147,7 +148,7 @@ html {
 }
 
 .track-field::placeholder {
-  color: var(--color-stone-400);
+  color: var(--color-stone-500);
 }
 
 /* Native date inputs render an almost invisible indicator on the warm ground */

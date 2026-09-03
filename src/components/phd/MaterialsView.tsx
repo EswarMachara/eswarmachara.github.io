@@ -226,7 +226,7 @@ export default function MaterialsView({
                     onClick={() => actions.moveDocumentDef(def.id, -1)}
                     disabled={index === 0}
                     aria-label={`Move ${def.name} up`}
-                    className="rounded p-0.5 text-ink-soft/50 transition-colors hover:text-ink disabled:opacity-25"
+                    className="rounded p-0.5 text-ink-soft transition-colors hover:text-ink disabled:opacity-40"
                   >
                     <FaArrowUp size={9} />
                   </button>
@@ -235,7 +235,7 @@ export default function MaterialsView({
                     onClick={() => actions.moveDocumentDef(def.id, 1)}
                     disabled={index === coverage.length - 1}
                     aria-label={`Move ${def.name} down`}
-                    className="rounded p-0.5 text-ink-soft/50 transition-colors hover:text-ink disabled:opacity-25"
+                    className="rounded p-0.5 text-ink-soft transition-colors hover:text-ink disabled:opacity-40"
                   >
                     <FaArrowDown size={9} />
                   </button>

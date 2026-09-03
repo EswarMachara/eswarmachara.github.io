@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { FaXmark } from "react-icons/fa6";
 import { parseBulk } from "@/lib/phd/parseBulk";
 import { CHECKLIST_PRESETS } from "@/lib/phd/presets";
 import type { BulkLeadRow } from "@/lib/phd/store";
 import { Field, GhostButton, SolidButton } from "./ui";
+import { useOverlay } from "./useOverlay";
 
 const EXAMPLE = `Johns Hopkins University; Biomedical Engineering; United States; 2026-12-15
 ETH Zurich; Biomedical Imaging; Switzerland
@@ -26,20 +27,16 @@ export default function BulkAddDialog({
   const [text, setText] = useState("");
   const [presetId, setPresetId] = useState("us-phd");
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onCancel();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [onCancel]);
+  // Focus trap, focus restore and Escape all come from the shared hook.
+  const panelRef = useOverlay(onCancel, false);
 
   const parsed = useMemo(() => parseBulk(text), [text]);
 
   return (
     <div className="fixed inset-0 z-[85] flex items-start justify-center overflow-y-auto p-4 sm:items-center">
-      <button type="button" aria-label="Cancel" onClick={onCancel} className="fixed inset-0 bg-ink/30 backdrop-blur-[2px]" />
+      <div aria-hidden="true" onClick={onCancel} className="fixed inset-0 bg-ink/30 backdrop-blur-[2px]" />
       <div
+        ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Add several programmes"
@@ -50,7 +47,9 @@ export default function BulkAddDialog({
             <h2 className="font-heading text-xl font-medium text-ink">Paste a shortlist</h2>
             <p className="mt-1 text-xs leading-relaxed text-ink-soft">
               One programme per line. Columns are university, programme, country, deadline, separated by a
-              semicolon, tab, pipe or comma. Only the university is required.
+              semicolon, tab or pipe. Only the university is required. Commas are read as columns only when
+              every line has the same three or more of them, so a name like &ldquo;University of California,
+              Berkeley&rdquo; stays intact.
             </p>
           </div>
           <button

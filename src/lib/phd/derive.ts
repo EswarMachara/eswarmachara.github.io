@@ -301,7 +301,9 @@ export function buildAlerts(state: TrackerState, today: Date = startOfToday()): 
       }
     }
 
-    for (const interview of lead.interviews) {
+    // Terminal leads are done: an interview slot on a rejected application is
+    // history, not something to prepare for.
+    for (const interview of active ? lead.interviews : []) {
       const until = daysUntil(interview.date, today);
       if (until === null) continue;
       if (!interview.done && until >= 0 && until <= 3) {
@@ -353,7 +355,7 @@ export function buildAlerts(state: TrackerState, today: Date = startOfToday()): 
       }
     }
 
-    for (const advisor of lead.advisors) {
+    for (const advisor of active ? lead.advisors : []) {
       if (!advisor.emailedOn || advisor.repliedOn) continue;
       if (advisor.outcome === "negative" || advisor.outcome === "no-reply") continue;
       const waited = daysSince(advisor.emailedOn, today);
@@ -369,11 +371,13 @@ export function buildAlerts(state: TrackerState, today: Date = startOfToday()): 
       }
     }
 
-    for (const id of lead.recommenderIds) {
+    for (const id of active && !filed && dated ? lead.recommenderIds : []) {
       const person = recommenderById.get(id);
       if (!person || person.agreed || !person.askedOn) continue;
       const waited = daysSince(person.askedOn, today);
-      if (waited !== null && waited >= 10 && days !== null && days <= settings.lorLeadDays) {
+      // days >= 0 matters: without it any past deadline satisfies the upper
+      // bound and the copy reads "closes in -276 days".
+      if (waited !== null && waited >= 10 && days !== null && days >= 0 && days <= settings.lorLeadDays) {
         alerts.push({
           id: `${lead.id}:rec-silent:${id}`,
           kind: "recommender-silent",
@@ -736,12 +740,29 @@ export interface FunnelMetrics {
  * should read as "nothing yet", not as a broken number.
  */
 export function buildFunnel(leads: Lead[]): FunnelMetrics {
+  /**
+   * Every stage is measured on one basis: did this ever happen, judged from
+   * recorded history. Mixing "currently at interview" with "has an interview
+   * record" let a later stage exceed an earlier one, which produced rates above
+   * 100% once an application moved from interview to offer.
+   *
+   * A stage is also always a subset of the one before it by construction.
+   */
   const filed = leads.filter((lead) => isFiled(lead.status));
-  const interviews = leads.filter((lead) => lead.interviews?.length > 0 || lead.status === "interview");
-  const offers = leads.filter((lead) => lead.status === "offer");
-  const responded = leads.filter(
-    (lead) => lead.status === "interview" || lead.status === "offer" || lead.status === "waitlisted",
+  const everInterviewed = filed.filter(
+    (lead) => (lead.interviews?.length ?? 0) > 0 || lead.status === "interview" || lead.status === "offer",
   );
+  const offers = filed.filter((lead) => lead.status === "offer");
+  const responded = filed.filter(
+    (lead) =>
+      (lead.interviews?.length ?? 0) > 0 ||
+      lead.status === "interview" ||
+      lead.status === "offer" ||
+      lead.status === "waitlisted" ||
+      lead.status === "rejected" ||
+      Boolean(lead.decisionOn),
+  );
+  const interviews = everInterviewed;
 
   let outreachSent = 0;
   let outreachReplied = 0;
@@ -825,8 +846,16 @@ export function monthlyVolume(leads: Lead[]): CountBucket[] {
   const cursor = new Date(firstYear, firstMonth - 1, 1);
   const end = new Date(lastYear, lastMonth - 1, 1);
 
-  // Hard stop at 36 buckets so a stray far-future createdAt cannot spin here.
-  while (cursor <= end && buckets.length < 36) {
+  // Cap the window at 36 months, keeping the MOST RECENT 36. Capping the loop
+  // instead trimmed the current end of the series, so a single stray old or
+  // far-future createdAt hid this season's leads from the chart entirely.
+  const MAX_BUCKETS = 36;
+  const span = (end.getFullYear() - cursor.getFullYear()) * 12 + (end.getMonth() - cursor.getMonth());
+  if (span >= MAX_BUCKETS) {
+    cursor.setFullYear(end.getFullYear(), end.getMonth() - (MAX_BUCKETS - 1), 1);
+  }
+
+  while (cursor <= end) {
     const key = `${cursor.getFullYear()}-${`${cursor.getMonth() + 1}`.padStart(2, "0")}`;
     buckets.push({ key, label: key, value: counts.get(key) ?? 0 });
     cursor.setMonth(cursor.getMonth() + 1);

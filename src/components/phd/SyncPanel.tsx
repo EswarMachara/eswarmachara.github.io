@@ -2,6 +2,7 @@
 
 import { FaCircleCheck, FaCloudArrowUp, FaGoogle, FaRotate, FaTriangleExclamation } from "react-icons/fa6";
 import { cloudProjectId } from "@/lib/phd/cloud";
+import { describeState } from "@/lib/phd/syncPayload";
 import type { SyncStatus } from "@/lib/phd/useCloudSync";
 import type { useCloudSync } from "@/lib/phd/useCloudSync";
 import { EmptyNote, GhostButton, SectionLabel, SolidButton } from "./ui";
@@ -15,6 +16,7 @@ const STATUS_COPY: Record<SyncStatus, string> = {
   synced: "Up to date",
   pushing: "Saving…",
   conflict: "Both copies changed",
+  "local-only": "Saved, but this browser could not record the sync point",
   error: "Sync problem",
 };
 
@@ -84,9 +86,11 @@ export default function SyncPanel({ sync, lastSyncAt }: { sync: Sync; lastSyncAt
   const tone =
     sync.status === "error" || sync.status === "conflict"
       ? "border-track-rejected/35 bg-track-rejected/5"
-      : sync.status === "synced"
-        ? "border-track-offer/30 bg-track-offer/5"
-        : "border-stone-200 bg-paper-raised/40";
+      : sync.status === "local-only"
+        ? "border-gold/40 bg-gold/5"
+        : sync.status === "synced"
+          ? "border-track-offer/30 bg-track-offer/5"
+          : "border-stone-200 bg-paper-raised/40";
 
   return (
     <div className="space-y-5">
@@ -99,7 +103,7 @@ export default function SyncPanel({ sync, lastSyncAt }: { sync: Sync; lastSyncAt
           <div className="flex items-center gap-2.5">
             {sync.status === "synced" ? (
               <FaCircleCheck size={14} className="text-track-offer" />
-            ) : sync.status === "error" || sync.status === "conflict" ? (
+            ) : sync.status === "error" || sync.status === "conflict" || sync.status === "local-only" ? (
               <FaTriangleExclamation size={14} className="text-track-rejected" />
             ) : (
               <FaRotate size={14} className="text-ink-soft" />
@@ -117,9 +121,14 @@ export default function SyncPanel({ sync, lastSyncAt }: { sync: Sync; lastSyncAt
 
           {sync.user ? (
             <div className="flex items-center gap-2">
-              <GhostButton onClick={() => void sync.pushNow()}>
-                <FaCloudArrowUp size={11} /> Save now
-              </GhostButton>
+              {sync.status === "error" && <GhostButton onClick={() => sync.retry()}>Retry</GhostButton>}
+              {/* Hidden during a conflict: pushing would decide it in favour of
+                  whichever copy happens to be local, without saying so. */}
+              {sync.status !== "conflict" && (
+                <GhostButton onClick={() => void sync.pushNow()}>
+                  <FaCloudArrowUp size={11} /> Save now
+                </GhostButton>
+              )}
               <GhostButton onClick={() => void sync.signOut()}>Sign out</GhostButton>
             </div>
           ) : (
@@ -142,10 +151,13 @@ export default function SyncPanel({ sync, lastSyncAt }: { sync: Sync; lastSyncAt
           </p>
           <ul className="mt-3 space-y-1 text-sm text-ink-soft">
             <li>
-              This browser: <span className="font-medium text-ink">{sync.conflict.localPayload.length > 0 ? "local edits present" : "empty"}</span>
+              This browser: <span className="font-medium text-ink">{describeState(sync.conflict.localState)}</span>
+              {sync.conflict.localState.updatedAt && (
+                <>, changed {new Date(sync.conflict.localState.updatedAt).toLocaleString()}</>
+              )}
             </li>
             <li>
-              Cloud copy: <span className="font-medium text-ink">{sync.conflict.cloudState.leads.length} leads</span>, saved{" "}
+              Cloud copy: <span className="font-medium text-ink">{describeState(sync.conflict.cloudState)}</span>, saved{" "}
               {new Date(sync.conflict.cloudUpdatedAt).toLocaleString()}
             </li>
           </ul>

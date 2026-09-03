@@ -154,17 +154,22 @@ export default function LeadTable({
                 const days = daysUntil(lead.deadline);
                 const flagged = flaggedIds.has(lead.id);
                 return (
-                  <tr
-                    key={lead.id}
-                    onClick={() => onOpenLead(lead.id)}
-                    className="cursor-pointer odd:bg-paper even:bg-paper-raised/40 hover:bg-gold/8"
-                  >
+                  <tr key={lead.id} className="odd:bg-paper even:bg-paper-raised/40 hover:bg-gold/8">
                     <td className="border-b border-stone-100 px-4 py-3">
                       <div className="flex items-center gap-2">
                         <span className={`h-2 w-2 shrink-0 rounded-full ${PRIORITY_META[lead.priority].dot}`} aria-hidden="true" />
                         <div className="min-w-0">
                           <p className="font-medium text-ink">
-                            {lead.university}
+                            {/* A real button, so the row is reachable and
+                                activatable from the keyboard. A <tr> has no
+                                interactive semantics of its own. */}
+                            <button
+                              type="button"
+                              onClick={() => onOpenLead(lead.id)}
+                              className="text-left font-medium text-ink hover:text-wine"
+                            >
+                              {lead.university}
+                            </button>
                             {flagged && (
                               <span className="ml-2 align-middle text-[0.65rem] font-semibold uppercase tracking-wider text-track-rejected">
                                 needs attention

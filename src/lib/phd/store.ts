@@ -86,10 +86,6 @@ export function subscribe(listener: () => void): () => void {
   if (!hydrated) {
     const stored = loadState();
     if (stored) current = stored;
-    // A first-time visitor gets the starter document list, so the Documents
-    // section is never an empty dead end. Seeding happens here rather than in a
-    // component because mutating the store during render is not allowed.
-    else current = { ...current, documents: seedDocuments() };
     hydrated = true;
     snapshot = { state: current, hydrated, storageBlocked };
   }
@@ -104,6 +100,10 @@ function update(updater: (previous: TrackerState) => TrackerState): void {
   current = { ...updater(current), updatedAt: new Date().toISOString() };
   storageBlocked = !saveState(current);
   publish();
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function seedDocuments(): DocumentDef[] {
@@ -151,7 +151,14 @@ export const trackerActions = {
       createdAt: now,
       updatedAt: now,
     };
-    update((previous) => ({ ...previous, leads: [...previous.leads, lead] }));
+    update((previous) => ({
+      ...previous,
+      leads: [...previous.leads, lead],
+      // Seeded on the first lead rather than at hydration: a device that opens
+      // the tracker and immediately signs in must still look empty, or the sync
+      // reconcile mistakes the starter list for real content.
+      documents: previous.documents.length === 0 ? seedDocuments() : previous.documents,
+    }));
     return lead.id;
   },
 
@@ -186,7 +193,11 @@ export const trackerActions = {
         updatedAt: now,
       }));
     if (created.length === 0) return 0;
-    update((previous) => ({ ...previous, leads: [...previous.leads, ...created] }));
+    update((previous) => ({
+      ...previous,
+      leads: [...previous.leads, ...created],
+      documents: previous.documents.length === 0 ? seedDocuments() : previous.documents,
+    }));
     return created.length;
   },
 
@@ -237,6 +248,9 @@ export const trackerActions = {
       status: "researching",
       submittedOn: undefined,
       decisionOn: undefined,
+      // A duplicate has not been interviewed and holds no offer.
+      interviews: [],
+      offer: undefined,
       requirements: source.requirements.map((item) => ({ ...item, id: uid(), done: false })),
       // Keep which documents are required, reset how far along each one is.
       docs: Object.fromEntries(
@@ -528,25 +542,28 @@ export const trackerActions = {
 
   /** Replaces everything with an imported backup. Returns false if the file was not usable. */
   importState(raw: string): boolean {
-    let parsed: unknown;
+    let parsed: Record<string, unknown> | unknown;
     try {
       parsed = JSON.parse(raw);
     } catch {
       return false;
     }
-    const next = normalizeState(parsed);
-    if (next.leads.length === 0 && next.recommenders.length === 0 && next.tests.length === 0) {
-      // Valid JSON holding nothing is almost certainly the wrong file, and
-      // silently wiping the tracker would be the worst possible response.
-      return false;
-    }
-    update(() => next);
+    // Shape check, not a fullness check. A backup holding only a customised
+    // document registry and settings is legitimate, while an unrelated JSON
+    // file that happens to contain a "leads" count is not.
+    if (!isRecord(parsed)) return false;
+    const looksLikeTracker =
+      typeof parsed.version === "number" &&
+      ["leads", "documents", "recommenders", "tests"].some((key) => Array.isArray(parsed[key]));
+    if (!looksLikeTracker) return false;
+
+    update(() => normalizeState(parsed));
     return true;
   },
 
   resetAll(): void {
     clearState();
-    current = { ...emptyState(), documents: seedDocuments() };
+    current = emptyState();
     storageBlocked = false;
     publish();
   },

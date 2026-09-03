@@ -34,6 +34,8 @@ import type {
 } from "@/lib/phd/types";
 import type { TrackerActions } from "@/lib/phd/useTracker";
 import { CountdownChip, Field, GhostButton, ReadinessBar, StatusSelect, TextInput } from "./ui";
+import { useOverlay } from "./useOverlay";
+import { safeExternalUrl } from "@/lib/phd/urls";
 
 function Divider({ label }: { label: string }) {
   return (
@@ -157,42 +159,32 @@ export default function LeadDrawer({
   const [entryDate, setEntryDate] = useState("");
   const [entryKind, setEntryKind] = useState<TimelineKind>("email-sent");
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const panelRef = useOverlay(onClose);
   const closeRef = useRef<HTMLButtonElement>(null);
 
   const ready = readinessOf(lead);
   const docs = documentProgress(lead);
   const days = daysUntil(lead.deadline);
   const milestones = milestonesFor(lead, state.settings);
+  // Only http(s) links are offered. A javascript: or data: value typed into one
+  // of these fields would otherwise render as a clickable anchor.
+  const links: { label: string; href: string }[] = [
+    { label: "Open programme page", href: safeExternalUrl(lead.programUrl) },
+    { label: "Open portal", href: safeExternalUrl(lead.portalUrl) },
+    { label: "Lab site", href: safeExternalUrl(lead.labUrl) },
+    { label: "Drafts folder", href: safeExternalUrl(lead.folderUrl) },
+    { label: "Original post", href: safeExternalUrl(lead.sourceUrl) },
+  ].flatMap((link) => (link.href ? [{ label: link.label, href: link.href }] : []));
 
   useEffect(() => {
     closeRef.current?.focus();
   }, [lead.id]);
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    // The page behind the panel should not scroll while it is open.
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [onClose]);
-
   const patch = (values: Partial<Lead>) => actions.patchLead(lead.id, values);
 
   return (
     <div className="fixed inset-0 z-[80] flex justify-end">
-      <button
-        type="button"
-        aria-label="Close detail panel"
-        onClick={onClose}
-        className="absolute inset-0 bg-ink/25 backdrop-blur-[2px]"
-      />
+      <div aria-hidden="true" onClick={onClose} className="absolute inset-0 bg-ink/25 backdrop-blur-[2px]" />
       <div
         ref={panelRef}
         role="dialog"
@@ -438,7 +430,7 @@ export default function LeadDrawer({
                     type="button"
                     onClick={() => actions.removeRequirement(lead.id, item.id)}
                     aria-label={`Remove ${item.label}`}
-                    className="shrink-0 rounded p-1 text-ink-soft/0 transition-colors group-hover:text-ink-soft/60 hover:!text-track-rejected"
+                    className="shrink-0 rounded p-1 text-ink-soft/70 transition-colors hover:text-track-rejected sm:text-ink-soft/0 sm:group-hover:text-ink-soft/60 sm:group-focus-within:text-ink-soft/60"
                   >
                     <FaTrash size={10} />
                   </button>
@@ -839,33 +831,19 @@ export default function LeadDrawer({
             </Field>
           </div>
 
-          {(lead.programUrl || lead.portalUrl || lead.labUrl || lead.sourceUrl || lead.folderUrl) && (
+          {links.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {lead.programUrl && (
-                <a href={lead.programUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-ink/25 px-3 py-1 text-xs font-semibold text-ink-soft transition-colors hover:border-ink hover:text-ink">
-                  Open programme page
+              {links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-ink/25 px-3 py-1 text-xs font-semibold text-ink-soft transition-colors hover:border-ink hover:text-ink"
+                >
+                  {link.label}
                 </a>
-              )}
-              {lead.portalUrl && (
-                <a href={lead.portalUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-ink/25 px-3 py-1 text-xs font-semibold text-ink-soft transition-colors hover:border-ink hover:text-ink">
-                  Open portal
-                </a>
-              )}
-              {lead.labUrl && (
-                <a href={lead.labUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-ink/25 px-3 py-1 text-xs font-semibold text-ink-soft transition-colors hover:border-ink hover:text-ink">
-                  Lab site
-                </a>
-              )}
-              {lead.folderUrl && (
-                <a href={lead.folderUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-ink/25 px-3 py-1 text-xs font-semibold text-ink-soft transition-colors hover:border-ink hover:text-ink">
-                  Drafts folder
-                </a>
-              )}
-              {lead.sourceUrl && (
-                <a href={lead.sourceUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-ink/25 px-3 py-1 text-xs font-semibold text-ink-soft transition-colors hover:border-ink hover:text-ink">
-                  Original post
-                </a>
-              )}
+              ))}
             </div>
           )}
 

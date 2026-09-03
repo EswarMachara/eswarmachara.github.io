@@ -85,13 +85,17 @@ export default function OffersView({
             </thead>
             <tbody>
               {comparison.rows.map((row) => (
-                <tr
-                  key={row.lead.id}
-                  onClick={() => onOpenLead(row.lead.id)}
-                  className="cursor-pointer odd:bg-paper even:bg-paper-raised/40 hover:bg-gold/8"
-                >
+                <tr key={row.lead.id} className="odd:bg-paper even:bg-paper-raised/40 hover:bg-gold/8">
                   <td className="border-b border-stone-100 px-4 py-3">
-                    <p className="font-medium text-ink">{row.lead.university}</p>
+                    <p>
+                      <button
+                        type="button"
+                        onClick={() => onOpenLead(row.lead.id)}
+                        className="text-left font-medium text-ink hover:text-wine"
+                      >
+                        {row.lead.university}
+                      </button>
+                    </p>
                     <p className="mt-0.5 flex items-center gap-2 text-xs text-ink-soft">
                       <StatusChip status={row.lead.status} />
                       {row.lead.country}

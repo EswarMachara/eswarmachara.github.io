@@ -3,17 +3,51 @@ import { allDates, isActive, isFiled, milestonesFor } from "./derive";
 import { INTERVIEW_MODE_LABELS } from "./presets";
 import type { Lead, TrackerState } from "./types";
 
-/** RFC 5545 wants CRLF line breaks and lines folded at 75 octets. */
+/**
+ * Folds a line to RFC 5545's 75-octet limit with CRLF breaks.
+ *
+ * Counted in octets and broken only at code-point boundaries. The previous
+ * version sliced by UTF-16 code unit, which both undercounted multi-byte
+ * characters (so a line of accented text still overflowed 75 octets) and could
+ * cut an emoji or CJK character between its surrogate halves, emitting U+FFFD
+ * into the calendar file.
+ */
 function fold(line: string): string {
-  if (line.length <= 75) return line;
-  const parts: string[] = [line.slice(0, 75)];
-  let rest = line.slice(75);
-  while (rest.length > 74) {
-    parts.push(` ${rest.slice(0, 74)}`);
-    rest = rest.slice(74);
+  const encoder = new TextEncoder();
+  if (encoder.encode(line).length <= 75) return line;
+
+  const segments: string[] = [];
+  let current = "";
+  let bytes = 0;
+  // The continuation lines carry a leading space, so their payload budget is 74.
+  let limit = 75;
+
+  for (const codePoint of Array.from(line)) {
+    const size = encoder.encode(codePoint).length;
+    if (bytes + size > limit) {
+      segments.push(current);
+      current = "";
+      bytes = 0;
+      limit = 74;
+    }
+    current += codePoint;
+    bytes += size;
   }
-  if (rest.length > 0) parts.push(` ${rest}`);
-  return parts.join("\r\n");
+  if (current !== "") segments.push(current);
+
+  return segments.map((segment, index) => (index === 0 ? segment : ` ${segment}`)).join("\r\n");
+}
+
+/**
+ * URL is a URI-valued property, not TEXT, so it must not be TEXT-escaped.
+ * Running escapeText() over it inserted backslashes before any comma or
+ * semicolon in a query string and broke the link. Only http and https are
+ * emitted, so a javascript: or data: URL cannot ride into a calendar entry.
+ */
+function safeUrl(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  const trimmed = value.trim();
+  return /^https?:\/\//i.test(trimmed) ? trimmed : undefined;
 }
 
 function escapeText(value: string): string {
@@ -60,19 +94,21 @@ function allDayEvent(options: {
     `DTEND;VALUE=DATE:${compact(toISODate(end))}`,
     fold(`SUMMARY:${escapeText(options.summary)}`),
     options.description ? fold(`DESCRIPTION:${escapeText(options.description)}`) : "",
-    options.url ? fold(`URL:${escapeText(options.url)}`) : "",
+    safeUrl(options.url) ? fold(`URL:${safeUrl(options.url)}`) : "",
     "TRANSP:TRANSPARENT",
     "END:VEVENT",
   ].filter((line) => line !== "");
 }
 
 function contextFor(lead: Lead): string {
+  const portal = safeUrl(lead.portalUrl);
+  const programme = safeUrl(lead.programUrl);
   return [
     lead.program ? `Programme: ${lead.program}` : "",
     lead.lab ? `Lab: ${lead.lab}` : "",
     lead.intake ? `Intake: ${lead.intake}` : "",
-    lead.portalUrl ? `Portal: ${lead.portalUrl}` : "",
-    lead.programUrl ? `Programme page: ${lead.programUrl}` : "",
+    portal ? `Portal: ${portal}` : "",
+    programme ? `Programme page: ${programme}` : "",
   ]
     .filter(Boolean)
     .join("\n");

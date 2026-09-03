@@ -6,6 +6,7 @@ import { CHECKLIST_PRESETS, DEADLINE_KIND_LABELS, DEGREE_LABELS, PRIORITY_META, 
 import type { DeadlineKind, DegreeKind, Priority } from "@/lib/phd/types";
 import type { NewLeadInput } from "@/lib/phd/useTracker";
 import { Field, GhostButton, SolidButton, TextInput } from "./ui";
+import { useOverlay } from "./useOverlay";
 
 /**
  * Deliberately short. Only the university name is required, because a lead is
@@ -36,21 +37,17 @@ export default function AddLeadDialog({
     firstFieldRef.current?.focus();
   }, []);
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onCancel();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [onCancel]);
+  // Focus trap, focus restore and Escape all come from the shared hook.
+  const panelRef = useOverlay<HTMLFormElement>(onCancel, false);
 
   const preset = CHECKLIST_PRESETS.find((entry) => entry.id === presetId);
   const canSubmit = university.trim().length > 0;
 
   return (
     <div className="fixed inset-0 z-[85] flex items-start justify-center overflow-y-auto p-4 sm:items-center">
-      <button type="button" aria-label="Cancel" onClick={onCancel} className="fixed inset-0 bg-ink/30 backdrop-blur-[2px]" />
+      <div aria-hidden="true" onClick={onCancel} className="fixed inset-0 bg-ink/30 backdrop-blur-[2px]" />
       <form
+        ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Add a programme"

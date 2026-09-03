@@ -99,7 +99,15 @@ export default function TrackerApp() {
   const handleImportFile = (file: File) => {
     const reader = new FileReader();
     reader.onload = () => {
-      const ok = actions.importState(String(reader.result ?? ""));
+      const raw = String(reader.result ?? "");
+      // Restoring overwrites everything, so say what is about to be lost and
+      // what arrives in its place before doing it.
+      const summary = `Replace this bench (${state.leads.length} lead${state.leads.length === 1 ? "" : "s"}, ${state.recommenders.length} referee${state.recommenders.length === 1 ? "" : "s"}) with the contents of ${file.name}?\n\nThis cannot be undone. Take a backup first if you are unsure.`;
+      if (state.leads.length > 0 && !window.confirm(summary)) {
+        flash("Restore cancelled. Nothing was changed.");
+        return;
+      }
+      const ok = actions.importState(raw);
       flash(ok ? "Backup restored." : "That file could not be read as a tracker backup.");
     };
     reader.onerror = () => flash("The file could not be opened.");
@@ -129,7 +137,7 @@ export default function TrackerApp() {
       )}
 
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200 pb-3">
-        <div role="tablist" aria-label="Tracker sections" className="flex flex-wrap gap-1">
+        <nav aria-label="Tracker sections" className="flex flex-wrap gap-1">
           {TABS.map((entry) => {
             const active = tab === entry.id;
             const urgent =
@@ -145,8 +153,7 @@ export default function TrackerApp() {
             return (
               <button
                 key={entry.id}
-                role="tab"
-                aria-selected={active}
+                aria-current={active ? "page" : undefined}
                 type="button"
                 onClick={() => setTab(entry.id)}
                 className={`relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
@@ -162,7 +169,7 @@ export default function TrackerApp() {
               </button>
             );
           })}
-        </div>
+        </nav>
 
         <div className="flex flex-wrap items-center gap-2">
           {sync.configured && (
@@ -216,9 +223,14 @@ export default function TrackerApp() {
         </div>
       </div>
 
-      {notice && (
-        <p className="mt-4 rounded-lg border border-gold/40 bg-gold/8 px-4 py-2.5 text-sm text-ink">{notice}</p>
-      )}
+      {/* Rendered unconditionally so insertions into it are announced. A plain
+          conditional <p> is added to the DOM after the announcement window and
+          screen readers stay silent. */}
+      <div role="status" aria-live="polite" aria-atomic="true" className={notice ? "mt-4" : "sr-only"}>
+        {notice && (
+          <p className="rounded-lg border border-gold/40 bg-gold/8 px-4 py-2.5 text-sm text-ink">{notice}</p>
+        )}
+      </div>
 
       <div className="mt-8">
         {tab === "dashboard" && (
@@ -254,9 +266,25 @@ export default function TrackerApp() {
         <p className="flex items-start gap-2.5 text-xs leading-relaxed text-ink-soft">
           <FaLock size={11} className="mt-0.5 shrink-0 text-gold" />
           <span>
-            Everything on this page is stored in this browser only. It is never uploaded, never sent anywhere, and
-            is not visible to anyone else who opens this link. That also means it does not follow you to another
-            device, so take a backup now and then. Clearing site data for this domain erases it.
+            {sync.user ? (
+              <>
+                Everything on this page is stored in this browser and also saved to your own Firebase project,
+                where the security rules make it readable only by your Google account. Nobody else who opens this
+                link can see it. Clearing site data erases the local copy, not the cloud one.
+              </>
+            ) : sync.configured ? (
+              <>
+                Everything on this page is stored in this browser only, and nothing is uploaded while you are
+                signed out. Sign in on the Materials tab to sync it to your own Firebase project. Clearing site
+                data for this domain erases it.
+              </>
+            ) : (
+              <>
+                Everything on this page is stored in this browser only. It is never uploaded, never sent anywhere,
+                and is not visible to anyone else who opens this link. That also means it does not follow you to
+                another device, so take a backup now and then. Clearing site data for this domain erases it.
+              </>
+            )}
           </span>
         </p>
         {state.leads.length > 0 && (
@@ -316,6 +344,10 @@ export default function TrackerApp() {
 
       {openLead && (
         <LeadDrawer
+          // Remount per lead: the drawer holds unsaved draft text (a new
+          // requirement, an advisor name, a timeline entry) that must not
+          // survive a switch and land on a different application.
+          key={openLead.id}
           lead={openLead}
           state={state}
           actions={actions}
