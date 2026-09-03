@@ -44,9 +44,9 @@ export default function HomePage() {
       </section>
 
       <div className="mx-auto max-w-4xl px-5 py-14 sm:py-16">
-        <div className="grid gap-12 sm:grid-cols-[240px_1fr] sm:gap-14">
+        <div className="grid gap-12 md:grid-cols-[240px_1fr] md:gap-14">
           <HeroIntro>
-            <TiltCard className="mx-auto w-40 sm:mx-0 sm:w-full">
+            <TiltCard className="mx-auto w-40 md:mx-0 md:w-full">
               <Image
                 src={profile.headshot}
                 alt={`Photo of ${site.name}`}

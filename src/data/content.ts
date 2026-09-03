@@ -9,7 +9,7 @@ export type ContentBlock =
   | { kind: "paragraph"; text: string }
   | { kind: "subheading"; text: string }
   | { kind: "list"; items: ListItem[] }
-  | { kind: "image"; src: string; alt: string; caption?: string }
+  | { kind: "image"; src: string; alt: string; width: number; height: number; caption?: string }
   | { kind: "table"; headers: string[]; rows: string[][] };
 
 export interface ArticleSection {

@@ -18,6 +18,8 @@ export interface Publication {
   dateLabel?: string;
   deck?: string;
   heroImage?: string;
+  heroImageWidth?: number;
+  heroImageHeight?: number;
   sections?: ArticleSection[];
 }
 
@@ -50,6 +52,8 @@ export const publications: Publication[] = [
     deck:
       "Most nucleus segmentation tools return every cell in an image and leave the filtering to the pathologist. CIPS-Net lets a pathologist ask for exactly the cells they need, in plain language, and segments only those.",
     heroImage: "/images/research/cips-net/hero.webp",
+    heroImageWidth: 1800,
+    heroImageHeight: 436,
     sections: [
       {
         heading: "A different way to ask for a segmentation",
@@ -75,7 +79,7 @@ export const publications: Publication[] = [
             kind: "paragraph",
             text: "Four lightweight heads then turn those features into instances: one flags nucleus presence, one regresses a distance transform that seeds the instance boundaries, one produces per-pixel embeddings that get clustered into instances, and one classifies each instance's type. It is a fairly involved pipeline, but each head has a narrow job, and that separation is what keeps the model both accurate and fast.",
           },
-          { kind: "image", src: "/images/research/cips-net/architecture.webp", alt: "CIPS-Net architecture diagram" },
+          { kind: "image", src: "/images/research/cips-net/architecture.webp", alt: "CIPS-Net architecture diagram", width: 1600, height: 548 },
         ],
       },
       {
@@ -98,7 +102,7 @@ export const publications: Publication[] = [
             kind: "paragraph",
             text: "Efficiency held up too. CIPS-Net needs about 11 percent fewer computations and runs roughly 20 percent faster than the best-performing unconditional baseline we tested against, while its trainable parameter count stays modest since the text encoder remains frozen during training.",
           },
-          { kind: "image", src: "/images/research/cips-net/qualitative.webp", alt: "CIPS-Net qualitative segmentation results across tissue types" },
+          { kind: "image", src: "/images/research/cips-net/qualitative.webp", alt: "CIPS-Net qualitative segmentation results across tissue types", width: 1600, height: 883 },
         ],
       },
       {
@@ -140,6 +144,8 @@ export const publications: Publication[] = [
     deck:
       "Does more algorithmic complexity make ECG-free cardiac timing more accurate? Across 11,000+ echocardiography sequences, we found the opposite: a simple, speckle-aware signal beat every complex alternative we tested.",
     heroImage: "/images/research/ecg-free/hero.webp",
+    heroImageWidth: 1800,
+    heroImageHeight: 626,
     sections: [
       {
         heading: "A simple question about complexity",
@@ -161,6 +167,8 @@ export const publications: Publication[] = [
             kind: "image",
             src: "/images/research/ecg-free/proxy_signal_intuition.webp",
             alt: "Intuition behind the speckle-transparent proxy signal",
+            width: 1600,
+            height: 719,
           },
         ],
       },
@@ -180,7 +188,7 @@ export const publications: Publication[] = [
             kind: "paragraph",
             text: "The result surprised us a little, even though it is exactly what we set out to check. On CAMUS, the high-complexity configuration, the one combining optical flow with multi-proxy fusion, produced a median end-diastole error of 9.0 frames. Both our minimal-adaptive and speckle-transparent configurations landed at 1.0 frame. Digging into why, we found that optical flow error roughly doubles as speckle signal-to-noise ratio worsens across the dataset, a fairly direct confirmation that speckle interference, not a shortage of algorithmic sophistication, was the actual bottleneck the more complex methods were fighting.",
           },
-          { kind: "image", src: "/images/research/ecg-free/speckle_mechanism.webp", alt: "Optical flow error worsening with speckle compared to the stable intensity proxy" },
+          { kind: "image", src: "/images/research/ecg-free/speckle_mechanism.webp", alt: "Optical flow error worsening with speckle compared to the stable intensity proxy", width: 1600, height: 570 },
         ],
       },
       {
@@ -215,6 +223,8 @@ export const publications: Publication[] = [
     deck:
       "64 fine-grained terrain classes, some occupying fewer than 50 pixels an image. Our Mask2Former adaptation placed 3rd on the GOOSE 2D leaderboard at 70.08% composite mIoU.",
     heroImage: "/images/research/goose-m2f/architecture.webp",
+    heroImageWidth: 1800,
+    heroImageHeight: 800,
     sections: [
       {
         heading: "A benchmark that refuses to be easy",
@@ -250,7 +260,7 @@ export const publications: Publication[] = [
             kind: "paragraph",
             text: "The final system reached 70.08 percent official composite mIoU on the GOOSE 2D FGSS leaderboard, splitting into 63.55 percent on fine-grained classes and 76.61 percent on coarse ones, and placed third overall on the challenge. We wrote the approach up as a technical report and released the code and trained weights publicly, since a lot of the value in a long-tailed benchmark like this comes from other teams being able to build on what worked and what did not.",
           },
-          { kind: "image", src: "/images/research/goose-m2f/qualitative.webp", alt: "Qualitative GOOSE-M2F segmentation results on outdoor terrain scenes" },
+          { kind: "image", src: "/images/research/goose-m2f/qualitative.webp", alt: "Qualitative GOOSE-M2F segmentation results on outdoor terrain scenes", width: 1600, height: 1382 },
         ],
       },
       {
@@ -296,6 +306,8 @@ export const publications: Publication[] = [
     deck:
       "Underwater debris detection has been held back by a shortage of large, well-annotated datasets. DebrisVision combines 9,430 real images with 15,570 synthetic ones, closes the gap between them, and roughly doubles detection accuracy for models trained on it.",
     heroImage: "/images/research/debrisvision/hero.webp",
+    heroImageWidth: 1800,
+    heroImageHeight: 463,
     sections: [
       {
         heading: "Why underwater debris is, at its core, a data problem",
@@ -321,6 +333,8 @@ export const publications: Publication[] = [
             kind: "image",
             src: "/images/research/debrisvision/annotations.webp",
             alt: "Example DebrisVision annotation: a plastic bag with its detection box, segmentation mask, and depth map",
+            width: 1600,
+            height: 444,
             caption: "Every image in DebrisVision carries a bounding box, a segmentation mask, a depth map, and a text description, generated automatically rather than by hand.",
           },
           {
@@ -340,6 +354,8 @@ export const publications: Publication[] = [
             kind: "image",
             src: "/images/research/debrisvision/dataset_stats.webp",
             alt: "DebrisVision dataset composition and class distribution charts",
+            width: 990,
+            height: 850,
             caption: "Synthetic augmentation meaningfully improves the balance of underrepresented classes like metal and biowaste debris, though plastics still dominate the overall distribution.",
           },
         ],

@@ -186,8 +186,8 @@ export default async function ResearchArticlePage({ params }: { params: Promise<
           <Image
             src={publication.heroImage}
             alt={`${publication.title} overview figure`}
-            width={1400}
-            height={700}
+            width={publication.heroImageWidth ?? 1400}
+            height={publication.heroImageHeight ?? 700}
             priority
             className="h-auto w-full object-contain"
           />

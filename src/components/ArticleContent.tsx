@@ -22,7 +22,13 @@ function Block({ block }: { block: ContentBlock }) {
       return (
         <figure>
           <div className="relative w-full overflow-hidden rounded-lg border border-stone-200 bg-paper-raised">
-            <Image src={block.src} alt={block.alt} width={1400} height={700} className="h-auto w-full object-contain" />
+            <Image
+              src={block.src}
+              alt={block.alt}
+              width={block.width}
+              height={block.height}
+              className="h-auto w-full object-contain"
+            />
           </div>
           {block.caption && (
             <figcaption className="mt-2 text-center text-sm italic text-ink-soft">{block.caption}</figcaption>
