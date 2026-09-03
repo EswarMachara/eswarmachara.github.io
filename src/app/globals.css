@@ -40,6 +40,18 @@
   --color-badge-preprint: #5a4a78;
   --color-badge-award: #ab7d2f;
 
+  /* PhD tracker status scale, warm-leaning so it sits inside the editorial palette */
+  --color-gold-deep: #8a6420;
+  --color-track-researching: #8c7d64;
+  --color-track-shortlisted: #ab7d2f;
+  --color-track-preparing: #9c6b1f;
+  --color-track-submitted: #5a4a78;
+  --color-track-interview: #2f6274;
+  --color-track-offer: #3f6b4a;
+  --color-track-waitlisted: #8a6a3a;
+  --color-track-rejected: #7a2635;
+  --color-track-closed: #6b5f4c;
+
   --font-heading: var(--font-fraunces);
   --font-body: var(--font-inter);
 }
@@ -114,4 +126,32 @@ html {
 
 .link-hover:hover {
   border-color: var(--color-wine);
+}
+
+/* PhD tracker: shared field styling for the dense form controls in the detail panel */
+.track-field {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid var(--color-stone-200);
+  background: var(--color-paper);
+  padding: 0.4rem 0.6rem;
+  font-size: 0.875rem;
+  color: var(--color-ink);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.track-field:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgb(171 125 47 / 0.15);
+}
+
+.track-field::placeholder {
+  color: var(--color-stone-400);
+}
+
+/* Native date inputs render an almost invisible indicator on the warm ground */
+.track-field[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.55;
+  cursor: pointer;
 }

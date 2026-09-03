@@ -35,6 +35,17 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Optional. The PhD tracker falls back to browser-local storage when
+          # these are absent, so the build succeeds with none of them set.
+          # A Firebase web config is an identifier rather than a credential;
+          # what protects the data is the Firestore rule scoping access to
+          # users/{uid}. They are kept in secrets to avoid handing crawlers a
+          # ready-made project id, not because exposure breaks the security model.
+          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
+          NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
