@@ -19,7 +19,11 @@ export function useOverlay<T extends HTMLElement = HTMLDivElement>(onClose: () =
   const restoreRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    restoreRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const active = document.activeElement;
+    // document.body means nothing was focused, which is what happens when one
+    // overlay opens as another closes. Restoring to it would silently drop
+    // focus to the top of the page, so treat it as "no anchor" and fall back.
+    restoreRef.current = active instanceof HTMLElement && active !== document.body ? active : null;
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -61,10 +65,15 @@ export function useOverlay<T extends HTMLElement = HTMLDivElement>(onClose: () =
       document.removeEventListener("keydown", onKeyDown, true);
       if (previousOverflow !== null) document.body.style.overflow = previousOverflow;
       // The element that opened the overlay may itself be gone, e.g. the row
-      // that was just deleted. Falling back to the body keeps this a no-op
-      // rather than a crash.
+      // that was just deleted, or it may never have existed. Either way focus
+      // has to land somewhere deliberate rather than on the document body.
       const restore = restoreRef.current;
-      if (restore && document.contains(restore)) restore.focus();
+      if (restore && document.contains(restore)) {
+        restore.focus();
+        return;
+      }
+      const fallback = document.querySelector<HTMLElement>("[data-overlay-return]");
+      if (fallback) fallback.focus();
     };
   }, [onClose, lockScroll]);
 

@@ -154,6 +154,9 @@ export default function TrackerApp() {
               <button
                 key={entry.id}
                 aria-current={active ? "page" : undefined}
+                // Where focus lands when an overlay closes and the element that
+                // opened it is gone. See useOverlay.
+                data-overlay-return={active ? "" : undefined}
                 type="button"
                 onClick={() => setTab(entry.id)}
                 className={`relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
@@ -164,6 +167,9 @@ export default function TrackerApp() {
                 {urgent > 0 && !active && (
                   <span className="ml-1.5 inline-block rounded-full bg-track-rejected px-1.5 text-[0.65rem] font-bold text-paper">
                     {urgent}
+                    {/* Without this the button's accessible name reads as
+                        "Dates 5", which says nothing about what the 5 counts. */}
+                    <span className="sr-only"> needing attention</span>
                   </span>
                 )}
               </button>

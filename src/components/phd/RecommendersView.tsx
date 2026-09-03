@@ -37,7 +37,12 @@ export default function RecommendersView({
         }}
         className="flex gap-2"
       >
-        <TextInput value={name} onChange={setName} placeholder="Add a referee, e.g. Prof. Yalavarthy" />
+        <TextInput
+          value={name}
+          onChange={setName}
+          aria-label="Name of the referee to add"
+          placeholder="Add a referee, e.g. Prof. Yalavarthy"
+        />
         <GhostButton type="submit">
           <FaPlus size={10} /> Add
         </GhostButton>

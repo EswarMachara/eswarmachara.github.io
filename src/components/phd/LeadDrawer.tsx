@@ -447,7 +447,12 @@ export default function LeadDrawer({
             }}
             className="flex gap-2"
           >
-            <TextInput value={newItem} onChange={setNewItem} placeholder="Add a requirement" />
+            <TextInput
+              value={newItem}
+              onChange={setNewItem}
+              aria-label="New requirement"
+              placeholder="Add a requirement"
+            />
             <GhostButton type="submit">
               <FaPlus size={10} /> Add
             </GhostButton>
@@ -596,7 +601,12 @@ export default function LeadDrawer({
               </select>
             </div>
             <div className="flex gap-2">
-              <TextInput value={entryNote} onChange={setEntryNote} placeholder="What happened" />
+              <TextInput
+                value={entryNote}
+                onChange={setEntryNote}
+                aria-label="What happened"
+                placeholder="What happened"
+              />
               <GhostButton type="submit">
                 <FaPlus size={10} /> Log
               </GhostButton>
@@ -780,7 +790,12 @@ export default function LeadDrawer({
             }}
             className="flex gap-2"
           >
-            <TextInput value={newAdvisor} onChange={setNewAdvisor} placeholder="Add a professor to contact" />
+            <TextInput
+              value={newAdvisor}
+              onChange={setNewAdvisor}
+              aria-label="Name of the professor to add"
+              placeholder="Add a professor to contact"
+            />
             <GhostButton type="submit">
               <FaPlus size={10} /> Add
             </GhostButton>

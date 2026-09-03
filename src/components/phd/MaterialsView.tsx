@@ -56,7 +56,12 @@ export default function MaterialsView({
           className="mb-4 flex flex-wrap gap-2"
         >
           <div className="min-w-48 flex-1">
-            <TextInput value={testName} onChange={setTestName} placeholder="e.g. TOEFL iBT, IELTS, GRE General" />
+            <TextInput
+              value={testName}
+              onChange={setTestName}
+              aria-label="Name of the test to add"
+              placeholder="e.g. TOEFL iBT, IELTS, GRE General"
+            />
           </div>
           <GhostButton type="submit">
             <FaPlus size={10} /> Add
@@ -205,7 +210,12 @@ export default function MaterialsView({
           }}
           className="mb-4 flex gap-2"
         >
-          <TextInput value={docName} onChange={setDocName} placeholder="Add a document, e.g. Research statement" />
+          <TextInput
+            value={docName}
+            onChange={setDocName}
+            aria-label="Name of the document to add"
+            placeholder="Add a document, e.g. Research statement"
+          />
           <GhostButton type="submit">
             <FaPlus size={10} /> Add
           </GhostButton>

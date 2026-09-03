@@ -73,34 +73,32 @@ export function BarList({
 }
 
 /**
- * Columns over time. Bars are anchored to a shared baseline with a rounded top
- * edge, and every column keeps its slot even at zero so a quiet month reads as
- * a gap rather than disappearing from the sequence.
+ * Columns over time.
+ *
+ * Columns are capped in width and the group is left-aligned. Letting a handful
+ * of buckets divide the full container width produced 300px-wide bars that read
+ * as one solid slab rather than a chart. Values are labelled directly above
+ * each column rather than on hover, because a hover-only number is invisible on
+ * touch and to a screen reader.
  */
 export function ColumnChart({ data, unit = "" }: { data: BarDatum[]; unit?: string }) {
   const ceiling = Math.max(1, ...data.map((row) => row.value));
   // Past roughly a year of buckets, thin the labels so they stop colliding.
-  const labelEvery = data.length > 12 ? 3 : data.length > 7 ? 2 : 1;
+  const labelEvery = data.length > 18 ? 3 : data.length > 10 ? 2 : 1;
 
   return (
-    <div>
-      <ul className="flex h-36 items-end gap-[2px]" role="list">
+    <div className="overflow-x-auto">
+      <ul className="flex min-w-max items-end gap-1.5" style={{ height: "9rem" }} role="list">
         {data.map((row) => {
           const height = Math.round((row.value / ceiling) * 100);
           return (
-            <li
-              key={row.key}
-              className="group relative flex h-full flex-1 flex-col justify-end"
-              title={`${row.label}: ${row.value}${unit}`}
-            >
-              {row.value > 0 && (
-                <span className="mb-1 text-center text-[0.65rem] tabular-nums text-ink-soft opacity-0 transition-opacity group-hover:opacity-100">
-                  {row.value}
-                </span>
-              )}
+            <li key={row.key} className="flex h-full w-9 flex-col justify-end sm:w-11">
+              <span className="mb-1 text-center text-[0.65rem] tabular-nums text-ink-soft">
+                {row.value > 0 ? row.value : ""}
+              </span>
               <span
                 className="w-full rounded-t-[4px] bg-gold transition-[height] duration-500"
-                style={{ height: `${Math.max(height, row.value > 0 ? 3 : 0)}%` }}
+                style={{ height: `${Math.max(height, row.value > 0 ? 4 : 0)}%` }}
               />
               <span className="sr-only">
                 {row.label}: {row.value}
@@ -110,9 +108,9 @@ export function ColumnChart({ data, unit = "" }: { data: BarDatum[]; unit?: stri
           );
         })}
       </ul>
-      <div className="mt-2 flex gap-[2px] border-t border-stone-200 pt-1.5">
+      <div className="mt-1.5 flex min-w-max gap-1.5 border-t border-stone-200 pt-1.5">
         {data.map((row, index) => (
-          <span key={row.key} className="flex-1 text-center text-[0.6rem] text-ink-soft/70">
+          <span key={row.key} className="w-9 text-center text-[0.6rem] text-ink-soft/80 sm:w-11">
             {index % labelEvery === 0 ? row.label : ""}
           </span>
         ))}
