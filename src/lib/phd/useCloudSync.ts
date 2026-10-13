@@ -85,6 +85,8 @@ export function useCloudSync(state: TrackerState, hydrated: boolean) {
   const [conflict, setConflict] = useState<ConflictInfo | null>(null);
 
   const reconciledRef = useRef(false);
+  /** Bumped when another tab writes, to actually re-run the reconcile effect. */
+  const [staleSignal, setStaleSignal] = useState(0);
   const pushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   /** The payload of the last push that failed, so a failure is not retried in a loop. */
   const failedPayloadRef = useRef<string | null>(null);
@@ -112,6 +114,9 @@ export function useCloudSync(state: TrackerState, hydrated: boolean) {
       if (event.key !== BASE_KEY && event.key !== "phd-bench:v1") return;
       baseMemory = null;
       reconciledRef.current = false;
+      // Clearing the refs alone changes nothing: the reconcile effect only runs
+      // when one of its dependencies changes, and a ref is not one.
+      setStaleSignal((value) => value + 1);
     };
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);
@@ -217,7 +222,8 @@ export function useCloudSync(state: TrackerState, hydrated: boolean) {
         setError(describeCloudError(caught).message);
       }
     })();
-  }, [configured, user, hydrated, doPush, applyCloud]);
+    // staleSignal is a dependency so a write from another tab re-reconciles.
+  }, [configured, user, hydrated, doPush, applyCloud, staleSignal]);
 
   // Auto-push edits once reconciled, debounced so a burst of typing is one write.
   useEffect(() => {

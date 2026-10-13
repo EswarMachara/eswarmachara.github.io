@@ -1,5 +1,5 @@
 import { CHECKLIST_PRESETS, DEFAULT_DOCUMENTS, STATUS_META } from "./presets";
-import { clearState, loadState, normalizeState, saveState, uid } from "./storage";
+import { STORAGE_KEY, clearState, loadState, normalizeState, saveState, uid } from "./storage";
 import { emptyState } from "./types";
 import type {
   AdvisorContact,
@@ -80,6 +80,40 @@ export function getServerSnapshot(): TrackerSnapshot {
   return SERVER_SNAPSHOT;
 }
 
+let storageListenerAttached = false;
+
+/**
+ * Adopts a write made by another tab.
+ *
+ * Every edit here serialises the whole document, so without this a second tab
+ * holding a stale copy would overwrite everything the first tab added, silently
+ * and for the entire bench rather than per field. Adopting the foreign write
+ * makes the tabs converge on the newest state instead of diverging.
+ */
+function attachStorageListener(): void {
+  if (storageListenerAttached || typeof window === "undefined") return;
+  storageListenerAttached = true;
+
+  window.addEventListener("storage", (event) => {
+    if (event.key !== STORAGE_KEY) return;
+    // A null newValue means the other tab cleared everything.
+    if (event.newValue === null) {
+      current = emptyState();
+      publish();
+      return;
+    }
+    try {
+      const incoming = normalizeState(JSON.parse(event.newValue));
+      // Ignore an echo of our own state.
+      if (incoming.updatedAt === current.updatedAt) return;
+      current = incoming;
+      publish();
+    } catch {
+      // A corrupted foreign write is not worth acting on; keep what we have.
+    }
+  });
+}
+
 export function subscribe(listener: () => void): () => void {
   // The first subscriber triggers the read. React runs this after mount, which
   // is the earliest point localStorage is available.
@@ -89,6 +123,7 @@ export function subscribe(listener: () => void): () => void {
     hydrated = true;
     snapshot = { state: current, hydrated, storageBlocked };
   }
+  attachStorageListener();
   listeners.add(listener);
   return () => {
     listeners.delete(listener);

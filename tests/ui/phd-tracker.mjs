@@ -84,6 +84,50 @@ ok('focus restored to a real visible control', await page.evaluate(() => {
 }), await page.evaluate(() => document.activeElement === document.body ? 'landed on body' : String(document.activeElement && document.activeElement.tagName)))
 ok('page scroll unlocked after close', await page.evaluate(() => document.body.style.overflow !== 'hidden'))
 
+console.log('\n== real keystrokes into store-backed fields ==')
+/*
+ * This section exists because an earlier version of this test used fill(),
+ * which sets a value in a single operation. That masked a bug where every
+ * store-backed field in the drawer accepted exactly one character before the
+ * overlay's focus-restore stole the caret. Only per-character typing finds it.
+ */
+await page.getByRole('button', { name: /^All leads/ }).click()
+await page.waitForTimeout(300)
+await page.locator('table button').first().click()
+await page.waitForTimeout(400)
+
+const uni = page.locator('input[aria-label="University"]')
+await uni.click()
+await uni.fill('')
+await uni.pressSequentially('Johns Hopkins University', { delay: 20 })
+await page.waitForTimeout(300)
+ok('a store-backed field keeps every typed character', (await uni.inputValue()) === 'Johns Hopkins University', JSON.stringify(await uni.inputValue()))
+ok('focus stays in the field while typing', await page.evaluate(() => document.activeElement?.getAttribute('aria-label') === 'University'), await page.evaluate(() => String(document.activeElement?.tagName)))
+ok('the drawer stays open while typing', (await page.locator('[role="dialog"]').count()) > 0)
+
+const prog = page.locator('#lead-program')
+await prog.click()
+await prog.fill('')
+await prog.pressSequentially('Biomedical Engineering', { delay: 20 })
+await page.waitForTimeout(300)
+ok('a second store-backed field also keeps every character', (await prog.inputValue()) === 'Biomedical Engineering', JSON.stringify(await prog.inputValue()))
+
+// A textarea, which takes a different code path through Field.
+const why = page.locator('#lead-why')
+await why.click()
+await why.pressSequentially('Their 2026 nucleus paper', { delay: 15 })
+await page.waitForTimeout(300)
+ok('a store-backed textarea keeps every character', (await why.inputValue()) === 'Their 2026 nucleus paper', JSON.stringify(await why.inputValue()))
+
+console.log('\n== the fee field keeps its label (no duplicate id on a wrapper) ==')
+ok('fee input is uniquely identified', (await page.locator('#lead-fee').count()) === 1, String(await page.locator('#lead-fee').count()))
+ok('fee input is the labelled element', await page.evaluate(() => {
+  const el = document.getElementById('lead-fee')
+  return el !== null && el.tagName === 'INPUT'
+}), await page.evaluate(() => String(document.getElementById('lead-fee')?.tagName)))
+await page.keyboard.press('Escape')
+await page.waitForTimeout(300)
+
 console.log('\n== keyboard path to a lead from the All leads table ==')
 await page.getByRole('button', { name: /^All leads/ }).click()
 await page.waitForTimeout(350)

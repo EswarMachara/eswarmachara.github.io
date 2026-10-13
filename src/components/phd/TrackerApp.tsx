@@ -102,8 +102,12 @@ export default function TrackerApp() {
       const raw = String(reader.result ?? "");
       // Restoring overwrites everything, so say what is about to be lost and
       // what arrives in its place before doing it.
-      const summary = `Replace this bench (${state.leads.length} lead${state.leads.length === 1 ? "" : "s"}, ${state.recommenders.length} referee${state.recommenders.length === 1 ? "" : "s"}) with the contents of ${file.name}?\n\nThis cannot be undone. Take a backup first if you are unsure.`;
-      if (state.leads.length > 0 && !window.confirm(summary)) {
+      const held =
+        state.leads.length + state.recommenders.length + state.tests.length + state.documents.length;
+      const summary = `Replace this bench (${state.leads.length} lead${state.leads.length === 1 ? "" : "s"}, ${state.recommenders.length} referee${state.recommenders.length === 1 ? "" : "s"}, ${state.tests.length} test record${state.tests.length === 1 ? "" : "s"}) with the contents of ${file.name}?\n\nThis cannot be undone. Take a backup first if you are unsure.`;
+      // Any content at all, not just leads: a bench of referees and test
+      // records is still work worth confirming before it is overwritten.
+      if (held > 0 && !window.confirm(summary)) {
         flash("Restore cancelled. Nothing was changed.");
         return;
       }
@@ -192,7 +196,7 @@ export default function TrackerApp() {
               }`}
             >
               <FaCloud size={11} />
-              {sync.user ? (sync.status === "synced" ? "Synced" : sync.status === "pushing" ? "Saving" : "Sync") : "Sign in"}
+              {sync.user && (sync.status === "synced" || sync.status === "pushing") ? (sync.status === "synced" ? "Synced" : sync.status === "pushing" ? "Saving" : "Sync") : "Sign in"}
             </button>
           )}
           <GhostButton onClick={handleCalendar}>
@@ -277,6 +281,11 @@ export default function TrackerApp() {
                 Everything on this page is stored in this browser and also saved to your own Firebase project,
                 where the security rules make it readable only by your Google account. Nobody else who opens this
                 link can see it. Clearing site data erases the local copy, not the cloud one.
+              </>
+            ) : sync.user ? (
+              <>
+                Cloud sync is signed in but not currently up to date, so this browser holds the only complete
+                copy right now. The Materials tab says what needs attention.
               </>
             ) : sync.configured ? (
               <>

@@ -115,16 +115,33 @@ export function Field({
   const only = Children.count(children) === 1 ? Children.only(children) : null;
   const single = only !== null && isValidElement(only) ? (only as ReactElement<Record<string, unknown>>) : null;
   const childId = single && typeof single.props.id === "string" ? single.props.id : undefined;
-  const targetId = htmlFor ?? childId ?? (single ? generatedId : undefined);
+
+  /**
+   * Whether it is safe to stamp a generated id onto the child.
+   *
+   * A caller that wraps several controls in a layout element passes `htmlFor`
+   * itself and puts the matching id on the real input inside. Cloning onto that
+   * wrapper produced a duplicate id and left the label pointing at a `<div>`,
+   * which is not labelable, so the input lost the name it used to have.
+   */
+  const cloneable =
+    single !== null &&
+    htmlFor === undefined &&
+    childId === undefined &&
+    (typeof single.type !== "string" || ["input", "select", "textarea"].includes(single.type));
+
+  const targetId = htmlFor ?? childId ?? (cloneable ? generatedId : undefined);
 
   const described = [single && typeof single.props["aria-describedby"] === "string" ? single.props["aria-describedby"] : null, hint ? hintId : null]
     .filter(Boolean)
     .join(" ");
 
+  // The describedby wiring is independent of the id clone: a child that already
+  // carries its own id still benefits from having the hint announced with it.
   const child =
-    single && targetId
+    single && (cloneable || described)
       ? cloneElement(single, {
-          id: targetId,
+          ...(cloneable && targetId ? { id: targetId } : {}),
           ...(described ? { "aria-describedby": described } : {}),
         })
       : children;

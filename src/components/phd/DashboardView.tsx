@@ -129,7 +129,7 @@ export default function DashboardView({
           tone={next && next.days <= 7 ? "urgent" : "default"}
         />
         <StatTile label="Submitted" value={stats.submitted} sub={`of ${stats.total} tracked`} />
-        <StatTile label="Interviews" value={stats.interviews} sub="invitations received" />
+        <StatTile label="Interviews" value={stats.interviews} sub="reached interview or beyond" />
         <StatTile label="Offers" value={stats.offers} sub={stats.rejected > 0 ? `${stats.rejected} rejected` : "no rejections logged"} tone={stats.offers > 0 ? "good" : "default"} />
         <StatTile
           label="Fees paid"
@@ -240,8 +240,10 @@ No open application carries a date yet. Add deadlines, portal opening dates or l
           <div className="rounded-lg border border-stone-200 bg-paper-raised/40 px-5 py-4">
             <div className="flex items-center justify-between gap-4">
               <p className="text-sm text-ink-soft">
-                Average readiness across {stats.openWithDeadline || stats.active} open application
-                {(stats.openWithDeadline || stats.active) === 1 ? "" : "s"}
+                {/* The real denominator, reported by buildStats, rather than a
+                    nearby count that happens to look similar. */}
+                Average readiness across {stats.readinessBasis} open application
+                {stats.readinessBasis === 1 ? "" : "s"}
               </p>
               <p className="font-heading text-xl font-medium tabular-nums text-ink">{stats.averageReadiness}%</p>
             </div>

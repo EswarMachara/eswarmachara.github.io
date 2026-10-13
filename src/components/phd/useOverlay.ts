@@ -17,6 +17,24 @@ const FOCUSABLE =
 export function useOverlay<T extends HTMLElement = HTMLDivElement>(onClose: () => void, lockScroll = true) {
   const containerRef = useRef<T>(null);
   const restoreRef = useRef<HTMLElement | null>(null);
+  /**
+   * The close callback is read through a ref so it can stay out of the effect's
+   * dependencies.
+   *
+   * Consumers pass an inline arrow, which gets a new identity on every parent
+   * render, and the parent re-renders on every store write. With `onClose` in
+   * the dependency array the effect tore down and set up again per keystroke,
+   * and its cleanup calls focus() on the element that opened the overlay. The
+   * result was that every store-backed field in the drawer accepted exactly one
+   * character before focus was yanked out from under the caret.
+   */
+  const onCloseRef = useRef(onClose);
+
+  // Refs may not be written during render, so the sync happens here. Declared
+  // before the main effect so it has already run when that one mounts.
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   useEffect(() => {
     const active = document.activeElement;
@@ -28,7 +46,7 @@ export function useOverlay<T extends HTMLElement = HTMLDivElement>(onClose: () =
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.stopPropagation();
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (event.key !== "Tab") return;
@@ -75,7 +93,9 @@ export function useOverlay<T extends HTMLElement = HTMLDivElement>(onClose: () =
       const fallback = document.querySelector<HTMLElement>("[data-overlay-return]");
       if (fallback) fallback.focus();
     };
-  }, [onClose, lockScroll]);
+    // Deliberately excludes onClose: see onCloseRef above. This effect must run
+    // exactly once per overlay, not once per parent render.
+  }, [lockScroll]);
 
   return containerRef;
 }

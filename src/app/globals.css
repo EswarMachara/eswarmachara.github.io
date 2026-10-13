@@ -116,6 +116,31 @@ html {
   cursor: none !important;
 }
 
+/*
+ * Form controls keep their native cursor even under the custom one. Hiding it
+ * everywhere costs nothing on a reading page, but the tracker is a data-entry
+ * surface: without an I-beam there is no sign that a field is editable, and
+ * without the resize handle a textarea looks fixed. The custom ring still
+ * follows the pointer, so the effect is intact.
+ */
+.cursor-none-custom input:not([type="checkbox"]):not([type="radio"]),
+.cursor-none-custom textarea {
+  cursor: auto !important;
+}
+
+.cursor-none-custom textarea {
+  cursor: auto !important;
+  resize: vertical;
+}
+
+.cursor-none-custom input[type="checkbox"],
+.cursor-none-custom input[type="radio"],
+.cursor-none-custom select,
+.cursor-none-custom [type="date"],
+.cursor-none-custom [type="time"] {
+  cursor: pointer !important;
+}
+
 /* Underline-on-hover link style used inside prose content */
 .link-hover {
   color: var(--color-wine);

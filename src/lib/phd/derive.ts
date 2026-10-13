@@ -456,6 +456,8 @@ export interface TrackerStats {
   feesCommitted: number;
   feesWaived: number;
   averageReadiness: number;
+  /** How many leads the average is actually over, so the caption can say so. */
+  readinessBasis: number;
 }
 
 export function buildStats(leads: Lead[], today: Date = startOfToday()): TrackerStats {
@@ -486,7 +488,11 @@ export function buildStats(leads: Lead[], today: Date = startOfToday()): Tracker
     total: leads.length,
     active: leads.filter((lead) => isActive(lead.status)).length,
     submitted: leads.filter((lead) => isFiled(lead.status) && lead.status !== "rejected" && lead.status !== "declined" && lead.status !== "withdrawn").length,
-    interviews: leads.filter((lead) => lead.status === "interview").length,
+    // Historical basis, matching buildFunnel: an interview that happened stays
+    // counted after the application advances to an offer.
+    interviews: leads.filter(
+      (lead) => (lead.interviews?.length ?? 0) > 0 || lead.status === "interview" || lead.status === "offer",
+    ).length,
     offers: leads.filter((lead) => lead.status === "offer").length,
     rejected: leads.filter((lead) => lead.status === "rejected").length,
     openWithDeadline: upcoming.length,
@@ -494,6 +500,7 @@ export function buildStats(leads: Lead[], today: Date = startOfToday()): Tracker
     feesCommitted,
     feesWaived,
     averageReadiness: readinessCount === 0 ? 0 : Math.round(readinessSum / readinessCount),
+    readinessBasis: readinessCount,
   };
 }
 
@@ -524,8 +531,12 @@ export function recommenderLoad(person: Recommender, leads: Lead[], today: Date 
   const assigned = leads.filter((lead) => lead.recommenderIds.includes(person.id));
   const pending = assigned.filter((lead) => isActive(lead.status) && !isFiled(lead.status));
   const nextDays = pending
+    // Rolling leads have no clock, and a deadline already past is not "next".
+    // Without the lower bound the earliest lapsed deadline wins and the Letters
+    // tab renders "next in -277 days".
+    .filter((lead) => lead.deadlineKind !== "rolling")
     .map((lead) => daysUntil(lead.deadline, today))
-    .filter((days): days is number => days !== null)
+    .filter((days): days is number => days !== null && days >= 0)
     .sort((a, b) => a - b)[0];
   return { assigned, pending, nextDays: nextDays ?? null };
 }

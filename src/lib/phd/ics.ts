@@ -140,7 +140,10 @@ export function buildCalendar(state: TrackerState): string {
       if (!eventDate) continue;
       lines.push(
         ...allDayEvent({
-          uid: `${lead.id}-${milestone.offset}`,
+          // Keyed on which milestone this is, not on its day offset. The two
+          // offsets are user-configurable and collide when set equal, and a
+          // calendar client silently keeps only one event per UID.
+          uid: `${lead.id}-${milestone.label.toLowerCase().replace(/[^a-z]+/g, "-")}`,
           stamp,
           date: eventDate,
           summary: `${milestone.label.replace(/ by$/, "")}: ${where}`,
