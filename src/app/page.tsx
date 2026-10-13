@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FaAt, FaHome, FaUniversity } from "react-icons/fa";
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { FaFilePdf, FaGithub, FaLinkedin } from "react-icons/fa6";
 import { SiGooglescholar } from "react-icons/si";
 import RichText from "@/components/RichText";
 import Reveal from "@/components/Reveal";
@@ -17,6 +17,7 @@ const CONTACT_ROWS = [
   { icon: FaHome, content: profile.location },
   { icon: FaUniversity, content: profile.university, href: profile.universityHref },
   { icon: FaAt, content: site.email, href: `mailto:${site.email}` },
+  { icon: FaFilePdf, content: "Curriculum Vitae (PDF)", href: site.cv },
   { icon: SiGooglescholar, content: "Google Scholar", href: site.scholar },
   { icon: FaLinkedin, content: "LinkedIn", href: site.linkedin },
   { icon: FaGithub, content: "GitHub", href: site.github },
